@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>sample html title</title>
+	<link rel="stylesheet" href="../../../css/style.css" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" href="../../../node_modules/bulma/css/my-bluma.css" th:href="@{/node_modules/bulma/css/my-bluma.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+<header>
+	<nav class="nav has-shadow">
+		<div class="container">
+			<div class="nav-left">
+				<a class="nav-item is-tab">Dashboard</a>
+				<a class="nav-item is-tab">WBS</a>
+			</div>
+		</div>
+	</nav>
+	<main>
+		<div class="container">
+			<section class="section">
+				<h1 class="title is-1">Create</h1>
+				<div class="field">
+					<label class="label">Subject</label>
+					<p class="control">
+						<span class="select">
+						  <select>
+							<option>Ticket</option>
+							<option>Ticket Status</option>
+							<option>Ticket Type</option>
+						  </select>
+						</span>
+					</p>
+				</div>
+			</section>
+		</div>
+	</main>
+</header>
+</body>
+</html>

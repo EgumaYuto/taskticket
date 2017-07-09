@@ -1,0 +1,6 @@
+map:{
+    ; url = jdbc:mysql://localhost:3306/taskticketdb
+	; schema =
+    ; user = taskticketdb
+    ; password = taskticketdb
+}

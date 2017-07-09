@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//DBFLUTE//DTD LastaDi 1.0//EN" 
+	"http://dbflute.org/meta/lastadi10.dtd">
+<components namespace="dbflute">
+	<include condition="#exists('#path')" path="my_included_dbflute.xml"/>
+	<include path="rdb.xml"/>
+
+	<!-- The components of DBFlute Runtime. -->
+	<component name="introduction" class="io.github.yutoeguma.dbflute.allcommon.DBFluteInitializer"/>
+	<component name="invokerAssistant" class="io.github.yutoeguma.dbflute.allcommon.ImplementedInvokerAssistant"/>
+	<component name="behaviorCommandInvoker" class="org.dbflute.bhv.core.BehaviorCommandInvoker"/>
+	<component name="behaviorSelector" class="io.github.yutoeguma.dbflute.allcommon.ImplementedBehaviorSelector"/>
+	<component name="commonColumnAutoSetupper" class="io.github.yutoeguma.dbflute.allcommon.ImplementedCommonColumnAutoSetupper"/>
+
+	<!-- The components of Behavior. -->
+	<component name="memberBhv" class="io.github.yutoeguma.dbflute.exbhv.MemberBhv"/>
+	<component name="memberStatusBhv" class="io.github.yutoeguma.dbflute.exbhv.MemberStatusBhv"/>
+	<component name="projectBhv" class="io.github.yutoeguma.dbflute.exbhv.ProjectBhv"/>
+	<component name="projectMemberBhv" class="io.github.yutoeguma.dbflute.exbhv.ProjectMemberBhv"/>
+	<component name="ticketBhv" class="io.github.yutoeguma.dbflute.exbhv.TicketBhv"/>
+	<component name="ticketStatusBhv" class="io.github.yutoeguma.dbflute.exbhv.TicketStatusBhv"/>
+	<component name="ticketTypeBhv" class="io.github.yutoeguma.dbflute.exbhv.TicketTypeBhv"/>
+</components>

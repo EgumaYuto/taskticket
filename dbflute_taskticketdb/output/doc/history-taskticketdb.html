@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>taskticketdb history</title>
+	<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: Verdana, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", "MS P Gothic", "MS Pゴシック", sans-serif;
+	font-size: 80%;
+	margin: 1em 1.5em;
+	background-color: #ffffee;
+}
+
+/* heading */
+h1 {
+	font-size: 1.5em;
+	border-bottom: 2px solid #af0000;
+	border-top: 2px solid #af0000;
+}
+h2 {
+	margin-top: 2em;
+	border-bottom: 2px solid #af0000;
+	border-left: 10px solid #af0000;
+	text-indent: 1em;
+	font-size: 1.6em;
+}
+h3 {
+	width: 14em;
+	margin: 0.8em 0;
+	padding-left: 1.8em;
+	border-bottom: solid 1px #333;
+	color: #555;
+	font-size: 1.2em;
+}
+h4 {
+	margin: 1em 0em;
+	font-size: 1em;
+	font-weight: normal;
+	display: list-item;
+}
+h5 {
+	width: 11em;
+	font-size: 80%;
+	border-bottom: solid 1px #333;
+	text-indent: 0.3em;
+	color: #555;
+}
+
+/* total info */
+.updatedate {
+	text-align: right;
+}
+.mainschema {
+	text-align: right;
+}
+.navilinkarea {
+	text-align: right;
+}
+.sisterlink {
+	margin-top: 0.6em;
+	font-size: 110%;
+}
+.sistersublink {
+	margin-top: 0.6em;
+	font-size: 80%;
+}
+
+/* history info */
+.table-content {
+	margin: 0 6em;
+}
+.column-content {
+	margin: 0.5em 1em 0.5em 3em;
+	line-height: 1.4em;
+}
+
+div.change-table-content {
+	margin-left: 3em;
+}
+
+dl.column-content dt {
+	display: list-item;
+}
+dl.column-content dd {
+	margin: 0 4em;
+}
+dl.column-content dd span {
+	display: block;
+	float: left;
+	width: 6em;
+	margin-right: 1.5em;
+	border-right: dotted 2px #333;
+	font-weight: bold;
+	font-size: 80%;
+	color: #555;
+}
+
+span.dt {
+	font-size: 80%;
+}
+p.comment {
+	margin-left: 23em;
+}
+p.tablecount {
+	margin-left: 23em;
+}
+	</style>
+</head>
+
+<body>
+<h1>History for taskticketdb (mysql)</h1>
+<div class="navilinkarea">
+<p class="sisterlink"><a href="./schema-taskticketdb.html">to SchemaHTML</a></p>
+<p class="sistersublink"><a href="./properties-taskticketdb.html">to PropertiesHTML</a></p>
+</div>
+
+<div class="section">
+	<h2><span class="dt">Diff Date: </span>2017/07/09 13:50:59</h2>
+
+	<h3>Change Table</h3>
+	<div class="table-content">
+		<h4><a href="./schema-taskticketdb.html#project_member">PROJECT_MEMBER</a></h4>
+		<div class="change-table-content">
+			<h5>Add Column</h5>
+			<ul class="column-content">
+				<li>REGISTER_DATETIME</li>
+				<li>REGISTER_USER</li>
+				<li>UPDATE_DATETIME</li>
+				<li>UPDATE_USER</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="section">
+	<h2><span class="dt">Diff Date: </span>2017/06/18 14:44:57</h2>
+
+	<h3>Add Table</h3>
+	<ul class="table-content">
+		<li>PROJECT_MEMBER</li>
+	</ul>
+	<h3>Delete Table</h3>
+	<ul class="table-content">
+		<li>PROJECT_MENBER</li>
+	</ul>
+</div>
+<div class="section">
+	<h2><span class="dt">Diff Date: </span>2017/06/18 14:35:51</h2>
+
+	<h3>Change Table</h3>
+	<div class="table-content">
+		<h4>MEMBER</h4>
+		<div class="change-table-content">
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INT&nbsp;-&gt;&nbsp;BIGINT</dd>
+				<dd><span>Size</span>10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+		</div>
+		<h4>PROJECT</h4>
+		<div class="change-table-content">
+			<h5>Add Column</h5>
+			<ul class="column-content">
+				<li>MEMBER_ID</li>
+			</ul>
+			<h5>Add FK</h5>
+			<ul class="column-content">
+				<li>FK_PROJECT_MEMBER</li>
+			</ul>
+			<h5>Add Index</h5>
+			<ul class="column-content">
+				<li>FK_PROJECT_MEMBER</li>
+			</ul>
+		</div>
+		<h4>PROJECT_MENBER</h4>
+		<div class="change-table-content">
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INT&nbsp;-&gt;&nbsp;BIGINT</dd>
+				<dd><span>Size</span>10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+		</div>
+		<h4>TICKET</h4>
+		<div class="change-table-content">
+			<h5>Add Column</h5>
+			<ul class="column-content">
+				<li>ASSIGNEED_MEMBER_ID</li>
+			</ul>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INT&nbsp;-&gt;&nbsp;BIGINT</dd>
+				<dd><span>Size</span>10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+			<h5>Add FK</h5>
+			<ul class="column-content">
+				<li>FK_TICKET_ASIGNEED_MEMBER</li>
+			</ul>
+			<h5>Add Index</h5>
+			<ul class="column-content">
+				<li>FK_TICKET_ASIGNEED_MEMBER</li>
+			</ul>
+		</div>
+		<h4>TICKET_STATUS</h4>
+		<div class="change-table-content">
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INT&nbsp;-&gt;&nbsp;BIGINT</dd>
+				<dd><span>Size</span>10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+		</div>
+		<h4>TICKET_TYPE</h4>
+		<div class="change-table-content">
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INT&nbsp;-&gt;&nbsp;BIGINT</dd>
+				<dd><span>Size</span>10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+<div class="section">
+	<h2><span class="dt">Diff Date: </span>2017/06/17 23:32:18</h2>
+
+	<h3>Change Table</h3>
+	<div class="table-content">
+		<h4>TICKET_STATUS</h4>
+		<div class="change-table-content">
+			<h5>Add Column</h5>
+			<ul class="column-content">
+				<li>TICKET_STATUS_ICON</li>
+				<li>TICKET_STATUS_NAME</li>
+			</ul>
+		</div>
+		<h4>TICKET_TYPE</h4>
+		<div class="change-table-content">
+			<h5>Add Column</h5>
+			<ul class="column-content">
+				<li>TICKET_TYPE_ICON</li>
+				<li>TICKET_TYPE_NAME</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="section">
+	<h2><span class="dt">Diff Date: </span>2017/06/17 23:07:54</h2>
+	<p class="tablecount"><span class="dt">table count: </span>2&nbsp;-&gt;&nbsp;7</p>
+
+	<h3>Add Table</h3>
+	<ul class="table-content">
+		<li>PROJECT</li>
+		<li>PROJECT_MENBER</li>
+		<li>TICKET</li>
+		<li>TICKET_STATUS</li>
+		<li>TICKET_TYPE</li>
+	</ul>
+</div>
+<div class="section">
+	<h2><span class="dt">Diff Date: </span>2017/06/13 23:49:01</h2>
+
+	<h3>Change Table</h3>
+	<div class="table-content">
+		<h4>MEMBER</h4>
+		<div class="change-table-content">
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>PASSWORD</dt>
+				<dd><span>Size</span>50&nbsp;-&gt;&nbsp;64</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+<div class="section">
+	<h2><span class="dt">Diff Date: </span>2017/06/05 21:18:43</h2>
+	<p class="tablecount"><span class="dt">table count: </span>16&nbsp;-&gt;&nbsp;2</p>
+
+	<h3>Change Table</h3>
+	<div class="table-content">
+		<h4>MEMBER</h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;taskticketdb</div>
+			<h5>Add Column</h5>
+			<ul class="column-content">
+				<li>PASSWORD</li>
+				<li>EMAIL_ADDRESS</li>
+			</ul>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_ID</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+				<dd><span>Default</span>NEXT&nbsp;VALUE&nbsp;FOR&nbsp;PUBLIC.SYSTEM_SEQUENCE_F45906CC_5625_4750_B42A_F11D38D588C8&nbsp;-&gt;&nbsp;null</dd>
+				<dt>REGISTER_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+				<dt>UPDATE_DATETIME</dt>
+				<dd><span>Type</span>TIMESTAMP&nbsp;-&gt;&nbsp;DATETIME</dd>
+				<dd><span>Size</span>23,&nbsp;10&nbsp;-&gt;&nbsp;19</dd>
+			</dl>
+			<h5>Delete Column</h5>
+			<ul class="column-content">
+				<li>MEMBER_ACCOUNT</li>
+				<li>FORMALIZED_DATETIME</li>
+				<li>BIRTHDATE</li>
+			</ul>
+			<h5>Add UQ</h5>
+			<ul class="column-content">
+				<li>EMAIL_ADDRESS</li>
+			</ul>
+			<h5>Delete UQ</h5>
+			<ul class="column-content">
+				<li>UQ_MEMBER_MEMBER_ACCOUNT_INDEX_8</li>
+			</ul>
+			<h5>Delete Index</h5>
+			<ul class="column-content">
+				<li>IX_MEMBER_FORMALIZED_DATETIME</li>
+			</ul>
+		</div>
+		<h4>MEMBER_STATUS</h4>
+		<div class="change-table-content">
+			<h5>Schema</h5>
+			<div class="column-content">MAIHAMADB.PUBLIC&nbsp;-&gt;&nbsp;taskticketdb</div>
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>DISPLAY_ORDER</dt>
+				<dd><span>Type</span>INTEGER&nbsp;-&gt;&nbsp;INT</dd>
+			</dl>
+		</div>
+	</div>
+	<h3>Delete Table</h3>
+	<ul class="table-content">
+		<li>MEMBER_ADDRESS</li>
+		<li>MEMBER_FOLLOWING</li>
+		<li>MEMBER_LOGIN</li>
+		<li>MEMBER_SECURITY</li>
+		<li>MEMBER_SERVICE</li>
+		<li>MEMBER_WITHDRAWAL</li>
+		<li>PRODUCT</li>
+		<li>PRODUCT_CATEGORY</li>
+		<li>PRODUCT_STATUS</li>
+		<li>PURCHASE</li>
+		<li>PURCHASE_PAYMENT</li>
+		<li>REGION</li>
+		<li>SERVICE_RANK</li>
+		<li>WITHDRAWAL_REASON</li>
+	</ul>
+</div>
+<div class="section">
+	<h2><span class="dt">Diff Date: </span>2015/12/02 23:48:43</h2>
+
+	<h3>Change Table</h3>
+	<div class="table-content">
+		<h4>MEMBER</h4>
+		<div class="change-table-content">
+			<h5>Change Column</h5>
+			<dl class="column-content">
+				<dt>MEMBER_NAME</dt>
+				<dd><span>Size</span>200&nbsp;-&gt;&nbsp;100</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+<div class="section">
+	<h2><span class="dt">Diff Date: </span>2015/09/25 16:35:28</h2>
+
+	<h3>Change Table</h3>
+	<div class="table-content">
+		<h4>MEMBER_WITHDRAWAL</h4>
+		<div class="change-table-content">
+			<h5>Delete Column</h5>
+			<ul class="column-content">
+				<li>VERSION_NO</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h2>Thanks</h2>
+<p>
+	Created by <a href="http://dbflute.org/">DBFlute(AutoGenerator)</a>
+</p>
+</body>
+</html>

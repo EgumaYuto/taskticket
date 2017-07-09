@@ -1,0 +1,15 @@
+
+* * * * * * * * * *
+*                 *
+* Xls Data Result *
+*                 *
+* * * * * * * * * *
+data-directory: playsql/data/ut/reversexls
+
+[cyclic-data-01-PROJECT-plus.xls]
+  MEMBER (1)
+  PROJECT (0)
+  PROJECT_MEMBER (0)
+  TICKET_STATUS (0)
+  TICKET_TYPE (0)
+  TICKET (0)

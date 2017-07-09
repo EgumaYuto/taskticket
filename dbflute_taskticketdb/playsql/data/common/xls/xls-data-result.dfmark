@@ -1,0 +1,10 @@
+
+* * * * * * * * * *
+*                 *
+* Xls Data Result *
+*                 *
+* * * * * * * * * *
+data-directory: playsql/data/common/xls
+
+[10-master.xls]
+  MEMBER_STATUS (3)

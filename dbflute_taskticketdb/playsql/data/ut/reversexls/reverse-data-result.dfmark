@@ -1,0 +1,23 @@
+
+* * * * * * * * * * *
+*                   *
+* Load Data Reverse *
+*                   *
+* * * * * * * * * * *
+...Outputting load data: tables=6
+  isReplaceSchemaDirectUse = true
+  isOverrideExistingDataFile = false
+  isSynchronizeOriginDate = true
+
+[cyclic-data-01-PROJECT-plus.xls]: tables=6
+  MEMBER (1)
+  PROJECT (0)
+  PROJECT_MEMBER (0)
+  TICKET_STATUS (0)
+  TICKET_TYPE (0)
+  TICKET (0)
+
+[loadingControlMap.dataprop]
+df:originDate: 2017/06/18 -> 2017/06/18
+
+Output Date: 2017/06/18 14:50:44
