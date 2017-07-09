@@ -42,10 +42,8 @@ public class LoginAction extends TaskticketBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public JsonResponse<Void> post$index(LoginForm form) {
-        validate(form, messages -> moreValidate(form, messages), () -> {
-            return asHtml(path_Login_LoginHtml);
-        });
+    public JsonResponse<Void> index(LoginBody form) {
+        validateApi(form, messages -> moreValidate(form, messages));
         loginAssist.login(createCredential(form), op -> op.rememberMe(true));
         return JsonResponse.asEmptyBody();
     }
@@ -53,7 +51,7 @@ public class LoginAction extends TaskticketBaseAction {
     // ===================================================================================
     //                                                                          Validation
     //                                                                          ==========
-    private void moreValidate(LoginForm form, TaskticketMessages messages) {
+    private void moreValidate(LoginBody form, TaskticketMessages messages) {
         if (LaStringUtil.isNotEmpty(form.email) && LaStringUtil.isNotEmpty(form.password)) {
             if (!loginAssist.checkUserLoginable(createCredential(form))) {
                 messages.addErrorsLoginFailure("email");
@@ -61,7 +59,7 @@ public class LoginAction extends TaskticketBaseAction {
         }
     }
 
-    private UserPasswordCredential createCredential(LoginForm form) {
+    private UserPasswordCredential createCredential(LoginBody form) {
         return new UserPasswordCredential(form.email, form.password);
     }
 }

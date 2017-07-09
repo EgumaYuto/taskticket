@@ -17,18 +17,7 @@ package io.github.yutoeguma.mylasta.direction;
 
 import javax.annotation.Resource;
 
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketActionAdjustmentProvider;
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketApiFailureHook;
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketCookieResourceProvider;
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketCurtainBeforeHook;
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketJsonResourceProvider;
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketListedClassificationProvider;
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketMailDeliveryDepartmentCreator;
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketMultipartRequestHandler;
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketSecurityResourceProvider;
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketTimeResourceProvider;
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketUserLocaleProcessProvider;
-import io.github.yutoeguma.mylasta.direction.sponsor.TaskticketUserTimeZoneProcessProvider;
+import io.github.yutoeguma.mylasta.direction.sponsor.*;
 import org.lastaflute.core.direction.CachedFwAssistantDirector;
 import org.lastaflute.core.direction.CurtainBeforeHook;
 import org.lastaflute.core.direction.FwAssistDirection;
@@ -47,6 +36,7 @@ import org.lastaflute.web.path.ActionAdjustmentProvider;
 import org.lastaflute.web.ruts.multipart.MultipartResourceProvider;
 import org.lastaflute.web.ruts.renderer.HtmlRenderingProvider;
 import org.lastaflute.web.servlet.cookie.CookieResourceProvider;
+import org.lastaflute.web.servlet.filter.cors.CorsHook;
 import org.lastaflute.web.servlet.request.UserLocaleProcessProvider;
 import org.lastaflute.web.servlet.request.UserTimeZoneProcessProvider;
 
@@ -146,6 +136,10 @@ public class TaskticketFwAssistantDirector extends CachedFwAssistantDirector {
         direction.directApiCall(createApiFailureHook());
         direction.directHtmlRendering(createHtmlRenderingProvider());
         direction.directMultipart(createMultipartResourceProvider());
+
+        // CORS対応
+        final String allowOrigin = "http://localhost:4200";
+        direction.directCors(new CorsHook(allowOrigin));
     }
 
     protected UserLocaleProcessProvider createUserLocaleProcessProvider() {

@@ -1,24 +1,22 @@
-<div class="container">
-  <section id="signup-form">
-    <h2 class="title is-2">Log in</h2>
-    <form>
-      <div class="field">
-        <label class="label">Email</label>
-        <p class="control">
-          <input class="input" type="email" name="email" />
-        </p>
-      </div>
-      <div class="field">
-        <label class="label">Password</label>
-        <p class="control">
-          <input class="input" type="password" name="password" />
-        </p>
-      </div>
-      <div class="field">
-        <p class="control">
-          <button class="waves-effect waves-light btn">Longin</button>
-        </p>
-      </div>
-    </form>
-  </section>
-</div>
+<section id="signup-form">
+  <h2 class="title is-2">Log in</h2>
+  <form >
+    <div class="field">
+      <label class="label">Email</label>
+      <p class="control">
+        <input class="input" [(ngModel)]="email" name="email" type="email" placeholder="email">
+      </p>
+    </div>
+    <div class="field">
+      <label class="label">Password</label>
+      <p class="control">
+        <input class="input" [(ngModel)]="password" name="password" type="password" placeholder="password">
+      </p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <button class="waves-effect waves-light btn" (click)="doLogin()">Login</button>
+      </p>
+    </div>
+  </form>
+</section>
