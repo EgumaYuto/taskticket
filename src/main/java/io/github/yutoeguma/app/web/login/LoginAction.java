@@ -19,13 +19,12 @@ import javax.annotation.Resource;
 
 import io.github.yutoeguma.app.web.base.TaskticketBaseAction;
 import io.github.yutoeguma.app.web.base.login.TaskticketLoginAssist;
-import io.github.yutoeguma.app.web.mypage.MypageAction;
 import io.github.yutoeguma.mylasta.action.TaskticketMessages;
 import org.lastaflute.core.util.LaStringUtil;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.login.credential.UserPasswordCredential;
-import org.lastaflute.web.response.HtmlResponse;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author cabos
@@ -43,20 +42,12 @@ public class LoginAction extends TaskticketBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public HtmlResponse index() {
-        return getUserBean().map(user -> {
-            return redirect(MypageAction.class);
-        }).orElse(asHtml(path_Login_LoginHtml));
-    }
-
-    @Execute
-    public HtmlResponse doLogin(LoginForm form) {
+    public JsonResponse<Void> post$index(LoginForm form) {
         validate(form, messages -> moreValidate(form, messages), () -> {
             return asHtml(path_Login_LoginHtml);
         });
-        return loginAssist.loginRedirect(createCredential(form), op -> op.rememberMe(true), () -> {
-            return redirect(MypageAction.class);
-        });
+        loginAssist.login(createCredential(form), op -> op.rememberMe(true));
+        return JsonResponse.asEmptyBody();
     }
 
     // ===================================================================================

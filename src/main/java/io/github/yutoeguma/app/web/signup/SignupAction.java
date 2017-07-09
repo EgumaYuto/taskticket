@@ -1,17 +1,16 @@
 package io.github.yutoeguma.app.web.signup;
 
+import javax.annotation.Resource;
+
 import io.github.yutoeguma.app.web.base.TaskticketBaseAction;
 import io.github.yutoeguma.app.web.base.login.TaskticketLoginAssist;
-import io.github.yutoeguma.app.web.mypage.MypageAction;
 import io.github.yutoeguma.dbflute.exbhv.MemberBhv;
 import io.github.yutoeguma.dbflute.exentity.Member;
 import io.github.yutoeguma.mylasta.action.TaskticketMessages;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.login.credential.UserPasswordCredential;
-import org.lastaflute.web.response.HtmlResponse;
-
-import javax.annotation.Resource;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author yuto.eguma
@@ -31,14 +30,13 @@ public class SignupAction extends TaskticketBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public HtmlResponse post$index(SignupForm form) {
+    public JsonResponse<Void> post$index(SignupForm form) {
         validate(form, messages -> moreValidate(form, messages), () -> {
-            return asHtml(path_IndexHtml);
+            return JsonResponse.asEmptyBody();
         });
         registerMember(form);
-        return loginAssist.loginRedirect(createCredential(form), op -> op.rememberMe(true), () -> {
-            return redirect(MypageAction.class);
-        });
+        loginAssist.login(createCredential(form), op -> op.rememberMe(true));
+        return JsonResponse.asEmptyBody();
     }
 
     // ===================================================================================
