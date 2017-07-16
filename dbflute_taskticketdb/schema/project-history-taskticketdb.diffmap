@@ -1,4 +1,53 @@
 map:{
+    ; 2017/07/15 18:33:54 = map:{
+        ; diffDate = 2017/07/15 18:33:54
+        ; tableDiff = map:{
+            ; MEMBER_ACCESS_TOKEN = map:{
+                ; tableName = MEMBER_ACCESS_TOKEN
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; MEMBER_ID = map:{
+                        ; constraintName = MEMBER_ID
+                        ; diffType = ADD
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_MEMBER_ACCESS_TOKEN_MEMBER = map:{
+                        ; constraintName = FK_MEMBER_ACCESS_TOKEN_MEMBER
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+    ; 2017/07/15 17:27:38 = map:{
+        ; diffDate = 2017/07/15 17:27:38
+        ; tableDiff = map:{
+            ; MEMBER_ACCESS_TOKEN = map:{
+                ; tableName = MEMBER_ACCESS_TOKEN
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; ACCESS_TOKEN = map:{
+                        ; constraintName = ACCESS_TOKEN
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2017/07/15 17:22:25 = map:{
+        ; diffDate = 2017/07/15 17:22:25
+        ; tableCount = map:{
+            ; next = 8
+            ; previous = 7
+        }
+        ; tableDiff = map:{
+            ; MEMBER_ACCESS_TOKEN = map:{
+                ; tableName = MEMBER_ACCESS_TOKEN
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2017/07/09 13:50:59 = map:{
         ; diffDate = 2017/07/09 13:50:59
         ; tableDiff = map:{

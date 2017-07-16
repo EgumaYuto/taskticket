@@ -474,7 +474,7 @@ h6 {
             <xsl:call-template name="testsuite.test.header"/>
             <xsl:for-each select="testsuite[not(./@package = preceding-sibling::testsuite/@package)]">
                 <xsl:sort select="@package" order="ascending"/>
-                <!-- get the node set containing all testsuites that have the same package -->
+                <!-- getSavedUserBean the node set containing all testsuites that have the same package -->
                 <xsl:variable name="insamepackage" select="/testsuites/testsuite[./@package = current()/@package]"/>
                 <tr valign="top">
                     <!-- display a failure if there is any failure/error in the package -->

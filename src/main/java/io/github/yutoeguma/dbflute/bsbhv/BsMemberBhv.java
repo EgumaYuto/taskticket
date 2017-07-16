@@ -53,13 +53,13 @@ import io.github.yutoeguma.dbflute.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     MEMBER_STATUS
+ *     MEMBER_STATUS, MEMBER_ACCESS_TOKEN(AsOne)
  *
  * [referrer table]
- *     PROJECT, PROJECT_MEMBER, TICKET, TICKET_STATUS, TICKET_TYPE
+ *     PROJECT, PROJECT_MEMBER, TICKET, TICKET_STATUS, TICKET_TYPE, MEMBER_ACCESS_TOKEN
  *
  * [foreign property]
- *     memberStatus
+ *     memberStatus, memberAccessTokenAsOne
  *
  * [referrer property]
  *     projectList, projectMemberList, ticketByAssigneedMemberIdList, ticketByMemberIdList, ticketStatusList, ticketTypeList
@@ -793,6 +793,14 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable<Member, Membe
      */
     public List<MemberStatus> pulloutMemberStatus(List<Member> memberList)
     { return helpPulloutInternally(memberList, "memberStatus"); }
+
+    /**
+     * Pull out the list of referrer-as-one table 'MemberAccessToken'.
+     * @param memberList The list of member. (NotNull, EmptyAllowed)
+     * @return The list of referrer-as-one table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<MemberAccessToken> pulloutMemberAccessTokenAsOne(List<Member> memberList)
+    { return helpPulloutInternally(memberList, "memberAccessTokenAsOne"); }
 
     // ===================================================================================
     //                                                                      Extract Column

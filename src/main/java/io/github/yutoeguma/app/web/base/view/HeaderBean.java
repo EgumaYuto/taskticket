@@ -50,7 +50,7 @@ public class HeaderBean { // #change_it #delete_ifapi
         sb.append("{").append(memberId);
         sb.append(",").append(memberName);
         if (isLogin) {
-            sb.append(", doLogin");
+            sb.append(", login");
         }
         sb.append("}");
         return sb.toString();

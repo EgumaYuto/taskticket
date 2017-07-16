@@ -42,13 +42,13 @@ import io.github.yutoeguma.dbflute.cbean.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     MEMBER_STATUS
+ *     MEMBER_STATUS, MEMBER_ACCESS_TOKEN(AsOne)
  *
  * [referrer table]
- *     PROJECT, PROJECT_MEMBER, TICKET, TICKET_STATUS, TICKET_TYPE
+ *     PROJECT, PROJECT_MEMBER, TICKET, TICKET_STATUS, TICKET_TYPE, MEMBER_ACCESS_TOKEN
  *
  * [foreign property]
- *     memberStatus
+ *     memberStatus, memberAccessTokenAsOne
  *
  * [referrer property]
  *     projectList, projectMemberList, ticketByAssigneedMemberIdList, ticketByMemberIdList, ticketStatusList, ticketTypeList
@@ -288,6 +288,13 @@ public class LoaderOfMember {
         if (_foreignMemberStatusLoader == null)
         { _foreignMemberStatusLoader = new LoaderOfMemberStatus().ready(myBhv().pulloutMemberStatus(_selectedList), _selector); }
         return _foreignMemberStatusLoader;
+    }
+
+    protected LoaderOfMemberAccessToken _foreignMemberAccessTokenAsOneLoader;
+    public LoaderOfMemberAccessToken pulloutMemberAccessTokenAsOne() {
+        if (_foreignMemberAccessTokenAsOneLoader == null)
+        { _foreignMemberAccessTokenAsOneLoader = new LoaderOfMemberAccessToken().ready(myBhv().pulloutMemberAccessTokenAsOne(_selectedList), _selector); }
+        return _foreignMemberAccessTokenAsOneLoader;
     }
 
     // ===================================================================================

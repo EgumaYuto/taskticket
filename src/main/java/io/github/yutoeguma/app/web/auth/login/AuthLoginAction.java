@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package io.github.yutoeguma.app.web.login;
+package io.github.yutoeguma.app.web.auth.login;
 
 import javax.annotation.Resource;
 
@@ -30,7 +30,7 @@ import org.lastaflute.web.response.JsonResponse;
  * @author cabos
  */
 @AllowAnyoneAccess
-public class LoginAction extends TaskticketBaseAction {
+public class AuthLoginAction extends TaskticketBaseAction {
 
     // ===================================================================================
     //                                                                           Attribute
@@ -42,16 +42,23 @@ public class LoginAction extends TaskticketBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public JsonResponse<Void> index(LoginBody form) {
+    public JsonResponse<LoginResult> post$index(AuthLoginBody form) {
         validateApi(form, messages -> moreValidate(form, messages));
-        loginAssist.login(createCredential(form), op -> op.rememberMe(true));
-        return JsonResponse.asEmptyBody();
+        LoginResult result = loginAssist.login(createCredential(form));
+        return asJson(result);
+    }
+
+    @Execute
+    public JsonResponse<LoginCheckResult> check() {
+        LoginCheckResult result = new LoginCheckResult();
+        result.isLogin = loginAssist.getSavedUserBean().isPresent();
+        return asJson(result);
     }
 
     // ===================================================================================
     //                                                                          Validation
     //                                                                          ==========
-    private void moreValidate(LoginBody form, TaskticketMessages messages) {
+    private void moreValidate(AuthLoginBody form, TaskticketMessages messages) {
         if (LaStringUtil.isNotEmpty(form.email) && LaStringUtil.isNotEmpty(form.password)) {
             if (!loginAssist.checkUserLoginable(createCredential(form))) {
                 messages.addErrorsLoginFailure("email");
@@ -59,7 +66,7 @@ public class LoginAction extends TaskticketBaseAction {
         }
     }
 
-    private UserPasswordCredential createCredential(LoginBody form) {
+    private UserPasswordCredential createCredential(AuthLoginBody form) {
         return new UserPasswordCredential(form.email, form.password);
     }
 }

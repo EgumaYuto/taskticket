@@ -1,26 +1,89 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from "./login.service";
+import {AuthService} from "../_service/auth.service";
+import {UserInfoService} from "../_service/user.info";
+import {IValidationErrorModel} from "../_model/error.validation.model";
+import {IUser} from "../_model/user.model";
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
-  email: string;
-  password: string;
+  // ===================================================================================
+  //                                                                          Definition
+  //                                                                          ==========
+  private static _redirectUrl: string = '/';
+  private static _invalidInputClass: string = 'invalid';
 
-  constructor(private loginService: LoginService) { }
+  // ===================================================================================
+  //                                                                           Attribute
+  //                                                                           =========
+  // ----------------------------------
+  //                              Email
+  //                              -----
+  email: string;
+  emailErrorMessage: string;
+  emailInputClasses: Array<string>;
+
+  // ----------------------------------
+  //                           Password
+  //                           --------
+  password: string;
+  passwordErrorMessage: string;
+  passwordInputClasses: Array<string>;
+
+  // ===================================================================================
+  //                                                                         Constructor
+  //                                                                         ===========
+  constructor(private authService: AuthService, private accessTokenService: UserInfoService) { }
 
   ngOnInit(): void {
-    // do noting
+    if (this.authService.isLogin()) {
+      this.redirectMypage();
+    }
+    this.emailInputClasses = Array('validate');
+    this.passwordInputClasses = Array('validate');
   }
 
-  doLogin() {
+  // ===================================================================================
+  //                                                                               Login
+  //                                                                               =====
+  login(): void {
     console.log(this.email, this.password);
-    this.loginService.doLogin(this.email, this.password)
-      .then(res => console.log(res))
-      .catch(e => console.error(e));
+    this.authService.login(this.email, this.password)
+      .then(res => {
+        this.accessTokenService.setUserInfo(res.json() as IUser);
+        this.redirectMypage();
+      }).catch(res => {
+        this.handleErrorResponse(res);
+      });
+  }
+
+  private redirectMypage() {
+    window.location.href = LoginComponent._redirectUrl;
+  }
+
+  private handleErrorResponse(res) {
+    if (res.status === 400) {
+      let errorModel = res.json() as IValidationErrorModel;
+      errorModel.errors.forEach(error => {
+        if (error.field === 'email') {
+          error.messages.forEach(message => {
+            this.emailErrorMessage = message;
+          });
+          this.emailInputClasses.push(LoginComponent._invalidInputClass);
+        }
+
+        if (error.field === 'password') {
+          error.messages.forEach(message => {
+            this.passwordErrorMessage = message;
+          });
+          this.passwordInputClasses.push(LoginComponent._invalidInputClass);
+        }
+      });
+    }
   }
 }

@@ -416,6 +416,9 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
         if (bq.hasConditionQueryMemberStatus()) {
             uq.queryMemberStatus().reflectRelationOnUnionQuery(bq.queryMemberStatus(), uq.queryMemberStatus());
         }
+        if (bq.hasConditionQueryMemberAccessTokenAsOne()) {
+            uq.queryMemberAccessTokenAsOne().reflectRelationOnUnionQuery(bq.queryMemberAccessTokenAsOne(), uq.queryMemberAccessTokenAsOne());
+        }
     }
 
     // ===================================================================================
@@ -440,6 +443,24 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     }
     protected void xsetupOuterJoinMemberStatus() { xregOutJo("memberStatus"); }
     public boolean hasConditionQueryMemberStatus() { return xhasQueRlMap("memberStatus"); }
+
+    /**
+     * Get the condition-query for relation table. <br>
+     * (メンバーアクセストークン)MEMBER_ACCESS_TOKEN by MEMBER_ID, named 'memberAccessTokenAsOne'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MemberAccessTokenCQ queryMemberAccessTokenAsOne() { return xdfgetConditionQueryMemberAccessTokenAsOne(); }
+    public MemberAccessTokenCQ xdfgetConditionQueryMemberAccessTokenAsOne() {
+        String prop = "memberAccessTokenAsOne";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberAccessTokenAsOne()); xsetupOuterJoinMemberAccessTokenAsOne(); }
+        return xgetQueRlMap(prop);
+    }
+    protected MemberAccessTokenCQ xcreateQueryMemberAccessTokenAsOne() {
+        String nrp = xresolveNRP("MEMBER", "memberAccessTokenAsOne"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MemberAccessTokenCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberAccessTokenAsOne", nrp);
+    }
+    protected void xsetupOuterJoinMemberAccessTokenAsOne() { xregOutJo("memberAccessTokenAsOne"); }
+    public boolean hasConditionQueryMemberAccessTokenAsOne() { return xhasQueRlMap("memberAccessTokenAsOne"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;

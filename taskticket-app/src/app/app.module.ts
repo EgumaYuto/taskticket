@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule }   from '@angular/forms';
-import { AppRoutingModule } from "./app-routing.module";
+import { HttpModule } from "@angular/http";
+import { AppRoutingModule } from "./app.routing.module";
+import { MaterializeModule } from 'angular2-materialize';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
 import { MypageComponent } from "./mypage/mypage.component";
 
-import { Http, XHRBackend, RequestOptions, HttpModule } from "@angular/http";
-import { CustomHttp } from "./custom.http";
-import { LoginService } from "./login/login.service";
+import { AuthGuard } from "./auth.guard";
+import { UserInfoService } from "./_service/user.info";
+import { AuthService } from "./_service/auth.service";
 
 @NgModule({
   declarations: [
@@ -23,16 +25,13 @@ import { LoginService } from "./login/login.service";
     FormsModule,
     BrowserModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterializeModule
   ],
   providers: [
-    { provide: Http,
-      useFactory: (backend:XHRBackend, defaultOptions:RequestOptions) => {
-        return new CustomHttp(backend, defaultOptions)
-      },
-      deps: [XHRBackend, RequestOptions]
-    },
-    LoginService
+    AuthGuard,
+    AuthService,
+    UserInfoService
   ],
   bootstrap: [AppComponent]
 })

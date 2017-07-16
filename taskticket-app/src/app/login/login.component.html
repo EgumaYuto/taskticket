@@ -1,22 +1,24 @@
 <section id="signup-form">
   <h2 class="title is-2">Log in</h2>
-  <form >
-    <div class="field">
-      <label class="label">Email</label>
-      <p class="control">
-        <input class="input" [(ngModel)]="email" name="email" type="email" placeholder="email">
-      </p>
-    </div>
-    <div class="field">
-      <label class="label">Password</label>
-      <p class="control">
-        <input class="input" [(ngModel)]="password" name="password" type="password" placeholder="password">
-      </p>
-    </div>
-    <div class="field">
-      <p class="control">
-        <button class="waves-effect waves-light btn" (click)="doLogin()">Login</button>
-      </p>
-    </div>
-  </form>
+  <div class="row">
+    <form>
+      <div class="row">
+        <div class="input-field col s12">
+          <input [ngClass]="emailInputClasses" [(ngModel)]="email" name="email" type="email" id="email" placeholder="Email">
+          <label for="email" [attr.data-error]="emailErrorMessage">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input [ngClass]="passwordInputClasses" [(ngModel)]="password" name="password" type="password" id="password" placeholder="Password">
+          <label for="password" [attr.data-error]="passwordErrorMessage">Password</label>
+        </div>
+      </div>
+      <div class="field">
+        <p class="control">
+          <button class="waves-effect waves-light btn" (click)="login()">Login</button>
+        </p>
+      </div>
+    </form>
+  </div>
 </section>

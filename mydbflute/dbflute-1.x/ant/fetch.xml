@@ -144,7 +144,7 @@
   <!--
    This is not used as
    1. we want the names of the libraries to be fixed, or it will break  Ant's manifest.
-   2. We like to get the more recent artifacts than are in the repo at the time of writing (2006-10-16)
+   2. We like to getSavedUserBean the more recent artifacts than are in the repo at the time of writing (2006-10-16)
    3. Xerces has a dependency on v 1.3.03 of Xml-apis, which is wrong.
    If/when the artifacts stabilize, we could switch to it.
    -->

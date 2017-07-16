@@ -3,11 +3,18 @@ import { RouterModule, Routes }  from '@angular/router';
 import { SignupComponent } from "./signup/signup.component";
 import { LoginComponent } from "./login/login.component";
 import { MypageComponent } from "./mypage/mypage.component";
+import {AuthGuard} from "./auth.guard";
 
 const appRoutes: Routes = [
-  { path: '', component: MypageComponent },
+
+  // allow-anyone-access
   { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+
+  // login require
+  { path: '', component: MypageComponent, canActivate: [AuthGuard] },
+
+  { path: '**', redirectTo: ''}  // TODO make 404 page
 ];
 
 @NgModule({

@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package io.github.yutoeguma.app.web.login;
+package io.github.yutoeguma.app.web.auth.login;
 
 import org.lastaflute.web.validation.Required;
 
@@ -21,11 +21,10 @@ import org.lastaflute.web.validation.Required;
  * The form of member's Login.
  * @author cabos
  */
-public class LoginBody {
+public class AuthLoginBody {
 
     @Required
     public String email;
-
     @Required
     public String password;
 }

@@ -206,6 +206,81 @@
 			</table_properties>
 		</table>
 		<table>
+			<physical_name>MEMBER_ACCESS_TOKEN</physical_name>
+			<logical_name>メンバーアクセストークン</logical_name>
+			<description>本来であれば redis になって変わるテーブルです。</description>
+			<height>89</height>
+			<width>361</width>
+			<font_name>.SF NS Text</font_name>
+			<font_size>9</font_size>
+			<x>-163</x>
+			<y>613</y>
+			<color>
+				<r>128</r>
+				<g>128</g>
+				<b>192</b>
+			</color>
+			<connections>
+				<relationship>
+					<name>FK_MEMBER_ACCESS_TOKEN_MEMBER</name>
+					<source>table.MEMBER</source>
+					<target>table.MEMBER_ACCESS_TOKEN</target>
+					<fk_columns>
+						<fk_column>
+							<fk_column_name>MEMBER_ID</fk_column_name>
+						</fk_column>
+					</fk_columns>
+					<parent_cardinality>1</parent_cardinality>
+					<child_cardinality>0..n</child_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+				</relationship>
+			</connections>
+			<columns>
+				<normal_column>
+					<physical_name>MEMBER_ACCESS_TOKEN_ID</physical_name>
+					<logical_name>メンバーアクセストークンID</logical_name>
+					<type>bigint</type>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+					<auto_increment>true</auto_increment>
+				</normal_column>
+				<normal_column>
+					<physical_name>MEMBER_ID</physical_name>
+					<referred_column>table.MEMBER.MEMBER_ID</referred_column>
+					<relationship>FK_MEMBER_ACCESS_TOKEN_MEMBER</relationship>
+					<not_null>true</not_null>
+					<unique_key>true</unique_key>
+				</normal_column>
+				<normal_column>
+					<physical_name>ACCESS_TOKEN</physical_name>
+					<logical_name>アクセストークン</logical_name>
+					<type>character(n)</type>
+					<length>64</length>
+					<not_null>true</not_null>
+					<unique_key>true</unique_key>
+				</normal_column>
+				<column_group>共通カラム</column_group>
+			</columns>
+			<indexes>
+				<index>
+					<name>IX_MEMBER_ACCESS_TOKEN_ACCESS_TOKEN</name>
+					<type>BTREE</type>
+					<non_unique>true</non_unique>
+					<columns>
+						<column>
+							<column_id>table.MEMBER_ACCESS_TOKEN.ACCESS_TOKEN</column_id>
+						</column>
+					</columns>
+				</index>
+			</indexes>
+			<compound_unique_key_list>
+			</compound_unique_key_list>
+			<table_properties>
+			</table_properties>
+		</table>
+		<table>
 			<physical_name>MEMBER_STATUS</physical_name>
 			<logical_name>会員ステータス</logical_name>
 			<description>会員のステータスを示す固定的なマスタテーブル。いわゆるテーブル区分値！&#x0D;業務運用上で増えることはなく、増減するときはプログラム修正ともなうレベルの業務変更と考えられる。&#x0D;&#x0D;こういった固定的なマスタテーブルには、更新日時などの共通カラムは定義していないが、業務上そういった情報を管理する必要性が低いという理由に加え、ExampleDBとして共通カラムでER図が埋め尽くされてしまい見づらくなるというところで割り切っている。実業務では統一的に定義することもある。</description>
@@ -266,12 +341,12 @@
 			<physical_name>PROJECT</physical_name>
 			<logical_name>プロジェクト</logical_name>
 			<description></description>
-			<height>161</height>
+			<height>179</height>
 			<width>247</width>
 			<font_name>.SF NS Text</font_name>
 			<font_size>9</font_size>
-			<x>707</x>
-			<y>26</y>
+			<x>708</x>
+			<y>12</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -500,6 +575,11 @@
 					<name>FK_TICKET_TICKET_TYPE</name>
 					<source>table.TICKET_TYPE</source>
 					<target>table.TICKET</target>
+					<bendpoint>
+						<relative>false</relative>
+						<x>742</x>
+						<y>730</y>
+					</bendpoint>
 					<fk_columns>
 						<fk_column>
 							<fk_column_name>TICKET_TYPE_ID</fk_column_name>
@@ -705,8 +785,8 @@
 			<width>295</width>
 			<font_name>.SF NS Text</font_name>
 			<font_size>9</font_size>
-			<x>789</x>
-			<y>549</y>
+			<x>380</x>
+			<y>729</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -721,11 +801,6 @@
 						<relative>false</relative>
 						<x>303</x>
 						<y>747</y>
-					</bendpoint>
-					<bendpoint>
-						<relative>false</relative>
-						<x>776</x>
-						<y>751</y>
 					</bendpoint>
 					<fk_columns>
 						<fk_column>

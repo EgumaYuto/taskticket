@@ -193,7 +193,7 @@ table.child, table.child td, table.child th {
         <td class="rowcellnum">1</td>
         <td class="rowcell"><a href="#/login/">/login/</a></td>
         <td class="rowcell">@author&nbsp;cabos</td>
-        <td class="rowcell"><span title="io.github.yutoeguma.app.web.login.LoginAction">LoginAction</span>#index()</td>
+        <td class="rowcell"><span title="io.github.yutoeguma.app.web.auth.login.AuthLoginAction">LoginAction</span>#index()</td>
         <td class="rowcell">
         </td>
         <td class="rowcell">
@@ -207,9 +207,9 @@ table.child, table.child td, table.child th {
         <td class="rowcellnum">2</td>
         <td class="rowcell"><a href="#/login/doLogin">/login/doLogin</a></td>
         <td class="rowcell">@author&nbsp;cabos</td>
-        <td class="rowcell"><span title="io.github.yutoeguma.app.web.login.LoginAction">LoginAction</span>#doLogin()</td>
+        <td class="rowcell"><span title="io.github.yutoeguma.app.web.auth.login.AuthLoginAction">LoginAction</span>#doLogin()</td>
         <td class="rowcell">
-            <span title="io.github.yutoeguma.app.web.login.LoginBody">LoginForm</span>
+            <span title="io.github.yutoeguma.app.web.auth.login.AuthLoginBody">LoginForm</span>
         </td>
         <td class="rowcell">
             <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
@@ -222,7 +222,7 @@ table.child, table.child td, table.child th {
         <td class="rowcellnum">3</td>
         <td class="rowcell"><a href="#/logout/">/logout/</a></td>
         <td class="rowcell">@author&nbsp;yuto.eguma</td>
-        <td class="rowcell"><span title="io.github.yutoeguma.app.web.logout.LogoutAction">LogoutAction</span>#index()</td>
+        <td class="rowcell"><span title="io.github.yutoeguma.app.web.auth.logout.AuthLogoutAction">LogoutAction</span>#index()</td>
         <td class="rowcell">
         </td>
         <td class="rowcell">
@@ -278,9 +278,9 @@ table.child, table.child td, table.child th {
         <td class="rowcellnum">7</td>
         <td class="rowcell"><a href="#/signup/">/signup/</a></td>
         <td class="rowcell">@author&nbsp;yuto.eguma</td>
-        <td class="rowcell"><span title="io.github.yutoeguma.app.web.signup.SignupAction">SignupAction</span>#post$index()</td>
+        <td class="rowcell"><span title="io.github.yutoeguma.app.web.auth.signup.AuthSignupAction">SignupAction</span>#post$index()</td>
         <td class="rowcell">
-            <span title="io.github.yutoeguma.app.web.signup.SignupForm">SignupForm</span>
+            <span title="io.github.yutoeguma.app.web.auth.signup.AuthSignupBody">SignupForm</span>
         </td>
         <td class="rowcell">
             <span title="org.lastaflute.web.response.HtmlResponse">HtmlResponse</span>
@@ -296,7 +296,7 @@ table.child, table.child td, table.child th {
 /login/
 </h3>
 <p>
-<span class="doctitle">Execute Method:</span> <span class="docmainvalue">io.github.yutoeguma.app.web.login.LoginAction#index()</span>
+<span class="doctitle">Execute Method:</span> <span class="docmainvalue">io.github.yutoeguma.app.web.auth.login.LoginAction#index()</span>
 </p>
 <p class="docsubitem">
 <span class="docsubtitle">annotations:</span>
@@ -312,7 +312,7 @@ table.child, table.child td, table.child th {
 /login/doLogin
 </h3>
 <p>
-<span class="doctitle">Execute Method:</span> <span class="docmainvalue">io.github.yutoeguma.app.web.login.LoginAction#doLogin()</span>
+<span class="doctitle">Execute Method:</span> <span class="docmainvalue">io.github.yutoeguma.app.web.auth.login.LoginAction#doLogin()</span>
 </p>
 <p class="docsubitem">
 <span class="docsubtitle">annotations:</span>
@@ -320,7 +320,7 @@ table.child, table.child td, table.child th {
 <span class="docannotations docsubvalue">&#64;Execute</span>
 </p>
 <p class="tablecomment" style="white-space:pre-wrap;">@author&nbsp;cabos</p>
-<span class="doctitle">Form or Body:</span> <span class="docsubvalue"><span title="io.github.yutoeguma.app.web.login.LoginBody">LoginForm</span></span>
+<span class="doctitle">Form or Body:</span> <span class="docsubvalue"><span title="io.github.yutoeguma.app.web.auth.login.AuthLoginBody">LoginForm</span></span>
 <p class="tablecomment" title="The&nbsp;form&nbsp;of&nbsp;member's&nbsp;Login.<br><br>@author&nbsp;cabos">The&nbsp;form&nbsp;of&nbsp;member's&nbsp;Login.</p>
 <table>
     <thead>
@@ -366,7 +366,7 @@ table.child, table.child td, table.child th {
 /logout/
 </h3>
 <p>
-<span class="doctitle">Execute Method:</span> <span class="docmainvalue">io.github.yutoeguma.app.web.logout.LogoutAction#index()</span>
+<span class="doctitle">Execute Method:</span> <span class="docmainvalue">io.github.yutoeguma.app.web.auth.logout.LogoutAction#index()</span>
 </p>
 <p class="docsubitem">
 <span class="docsubtitle">annotations:</span>
@@ -513,7 +513,7 @@ table.child, table.child td, table.child th {
 /signup/
 </h3>
 <p>
-<span class="doctitle">Execute Method:</span> <span class="docmainvalue">io.github.yutoeguma.app.web.signup.SignupAction#post$index()</span>
+<span class="doctitle">Execute Method:</span> <span class="docmainvalue">io.github.yutoeguma.app.web.auth.signup.SignupAction#post$index()</span>
 </p>
 <p class="docsubitem">
 <span class="docsubtitle">annotations:</span>
@@ -521,7 +521,7 @@ table.child, table.child td, table.child th {
 <span class="docannotations docsubvalue">&#64;Execute</span>
 </p>
 <p class="tablecomment" style="white-space:pre-wrap;">@author&nbsp;yuto.eguma</p>
-<span class="doctitle">Form or Body:</span> <span class="docsubvalue"><span title="io.github.yutoeguma.app.web.signup.SignupForm">SignupForm</span></span>
+<span class="doctitle">Form or Body:</span> <span class="docsubvalue"><span title="io.github.yutoeguma.app.web.auth.signup.AuthSignupBody">SignupForm</span></span>
 <p class="tablecomment" title="@author&nbsp;yuto.eguma">@author&nbsp;yuto.eguma</p>
 <table>
     <thead>

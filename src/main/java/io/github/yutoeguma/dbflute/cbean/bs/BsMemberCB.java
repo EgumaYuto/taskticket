@@ -33,6 +33,7 @@ import io.github.yutoeguma.dbflute.allcommon.ImplementedInvokerAssistant;
 import io.github.yutoeguma.dbflute.allcommon.ImplementedSqlClauseCreator;
 import io.github.yutoeguma.dbflute.cbean.*;
 import io.github.yutoeguma.dbflute.cbean.cq.*;
+import io.github.yutoeguma.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of MEMBER.
@@ -284,6 +285,32 @@ public class BsMemberCB extends AbstractConditionBean {
         doSetupSelect(() -> query().queryMemberStatus());
     }
 
+    protected MemberAccessTokenNss _nssMemberAccessTokenAsOne;
+    public MemberAccessTokenNss xdfgetNssMemberAccessTokenAsOne() {
+        if (_nssMemberAccessTokenAsOne == null) { _nssMemberAccessTokenAsOne = new MemberAccessTokenNss(null); }
+        return _nssMemberAccessTokenAsOne;
+    }
+    /**
+     * Set up relation columns to select clause. <br>
+     * (メンバーアクセストークン)MEMBER_ACCESS_TOKEN by MEMBER_ID, named 'memberAccessTokenAsOne'.
+     * <pre>
+     * <span style="color: #0000C0">memberBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_MemberAccessTokenAsOne()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     *     <span style="color: #553000">cb</span>.query().set...
+     * }).alwaysPresent(<span style="color: #553000">member</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     ... = <span style="color: #553000">member</span>.<span style="color: #CC4747">getMemberAccessTokenAsOne()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * });
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public MemberAccessTokenNss setupSelect_MemberAccessTokenAsOne() {
+        assertSetupSelectPurpose("memberAccessTokenAsOne");
+        doSetupSelect(() -> query().queryMemberAccessTokenAsOne());
+        if (_nssMemberAccessTokenAsOne == null || !_nssMemberAccessTokenAsOne.hasConditionQuery())
+        { _nssMemberAccessTokenAsOne = new MemberAccessTokenNss(query().queryMemberAccessTokenAsOne()); }
+        return _nssMemberAccessTokenAsOne;
+    }
+
     // [DBFlute-0.7.4]
     // ===================================================================================
     //                                                                             Specify
@@ -326,6 +353,7 @@ public class BsMemberCB extends AbstractConditionBean {
 
     public static class HpSpecification extends HpAbstractSpecification<MemberCQ> {
         protected MemberStatusCB.HpSpecification _memberStatus;
+        protected MemberAccessTokenCB.HpSpecification _memberAccessTokenAsOne;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<MemberCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
@@ -411,6 +439,26 @@ public class BsMemberCB extends AbstractConditionBean {
                 }
             }
             return _memberStatus;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br>
+         * (メンバーアクセストークン)MEMBER_ACCESS_TOKEN by MEMBER_ID, named 'memberAccessTokenAsOne'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MemberAccessTokenCB.HpSpecification specifyMemberAccessTokenAsOne() {
+            assertRelation("memberAccessTokenAsOne");
+            if (_memberAccessTokenAsOne == null) {
+                _memberAccessTokenAsOne = new MemberAccessTokenCB.HpSpecification(_baseCB
+                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryMemberAccessTokenAsOne()
+                                    , () -> _qyCall.qy().queryMemberAccessTokenAsOne())
+                    , _purpose, _dbmetaProvider, xgetSDRFnFc());
+                if (xhasSyncQyCall()) { // inherits it
+                    _memberAccessTokenAsOne.xsetSyncQyCall(xcreateSpQyCall(
+                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberAccessTokenAsOne()
+                      , () -> xsyncQyCall().qy().queryMemberAccessTokenAsOne()));
+                }
+            }
+            return _memberAccessTokenAsOne;
         }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>

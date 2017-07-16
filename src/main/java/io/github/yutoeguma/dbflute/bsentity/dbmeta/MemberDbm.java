@@ -87,6 +87,7 @@ public class MemberDbm extends AbstractDBMeta {
     @SuppressWarnings("unchecked")
     protected void xsetupEfpg() {
         setupEfpg(_efpgMap, et -> ((Member)et).getMemberStatus(), (et, vl) -> ((Member)et).setMemberStatus((OptionalEntity<MemberStatus>)vl), "memberStatus");
+        setupEfpg(_efpgMap, et -> ((Member)et).getMemberAccessTokenAsOne(), (et, vl) -> ((Member)et).setMemberAccessTokenAsOne((OptionalEntity<MemberAccessToken>)vl), "memberAccessTokenAsOne");
     }
     public PropertyGateway findForeignPropertyGateway(String prop)
     { return doFindEfpg(_efpgMap, prop); }
@@ -218,6 +219,14 @@ public class MemberDbm extends AbstractDBMeta {
     public ForeignInfo foreignMemberStatus() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberStatusCode(), MemberStatusDbm.getInstance().columnMemberStatusCode());
         return cfi("FK_MEMBER_MEMBER_STATUS", "memberStatus", this, MemberStatusDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "memberList", false);
+    }
+    /**
+     * (メンバーアクセストークン)MEMBER_ACCESS_TOKEN by MEMBER_ID, named 'memberAccessTokenAsOne'.
+     * @return The information object of foreign property(referrer-as-one). (NotNull)
+     */
+    public ForeignInfo foreignMemberAccessTokenAsOne() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberAccessTokenDbm.getInstance().columnMemberId());
+        return cfi("FK_MEMBER_ACCESS_TOKEN_MEMBER", "memberAccessTokenAsOne", this, MemberAccessTokenDbm.getInstance(), mp, 1, org.dbflute.optional.OptionalEntity.class, true, false, true, false, null, null, false, "member", false);
     }
 
     // -----------------------------------------------------

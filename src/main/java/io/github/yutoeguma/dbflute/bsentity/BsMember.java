@@ -50,13 +50,13 @@ import io.github.yutoeguma.dbflute.exentity.*;
  *     VERSION_NO
  *
  * [foreign table]
- *     MEMBER_STATUS
+ *     MEMBER_STATUS, MEMBER_ACCESS_TOKEN(AsOne)
  *
  * [referrer table]
- *     PROJECT, PROJECT_MEMBER, TICKET, TICKET_STATUS, TICKET_TYPE
+ *     PROJECT, PROJECT_MEMBER, TICKET, TICKET_STATUS, TICKET_TYPE, MEMBER_ACCESS_TOKEN
  *
  * [foreign property]
- *     memberStatus
+ *     memberStatus, memberAccessTokenAsOne
  *
  * [referrer property]
  *     projectList, projectMemberList, ticketByAssigneedMemberIdList, ticketByMemberIdList, ticketStatusList, ticketTypeList
@@ -292,6 +292,27 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
         _memberStatus = memberStatus;
     }
 
+    /** (メンバーアクセストークン)MEMBER_ACCESS_TOKEN by MEMBER_ID, named 'memberAccessTokenAsOne'. */
+    protected OptionalEntity<MemberAccessToken> _memberAccessTokenAsOne;
+
+    /**
+     * [get] (メンバーアクセストークン)MEMBER_ACCESS_TOKEN by MEMBER_ID, named 'memberAccessTokenAsOne'.
+     * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
+     * @return the entity of foreign property(referrer-as-one) 'memberAccessTokenAsOne'. (NotNull, EmptyAllowed: when e.g. no data, no setupSelect)
+     */
+    public OptionalEntity<MemberAccessToken> getMemberAccessTokenAsOne() {
+        if (_memberAccessTokenAsOne == null) { _memberAccessTokenAsOne = OptionalEntity.relationEmpty(this, "memberAccessTokenAsOne"); }
+        return _memberAccessTokenAsOne;
+    }
+
+    /**
+     * [set] (メンバーアクセストークン)MEMBER_ACCESS_TOKEN by MEMBER_ID, named 'memberAccessTokenAsOne'.
+     * @param memberAccessTokenAsOne The entity of foreign property(referrer-as-one) 'memberAccessTokenAsOne'. (NullAllowed)
+     */
+    public void setMemberAccessTokenAsOne(OptionalEntity<MemberAccessToken> memberAccessTokenAsOne) {
+        _memberAccessTokenAsOne = memberAccessTokenAsOne;
+    }
+
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
@@ -446,6 +467,8 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
         StringBuilder sb = new StringBuilder();
         if (_memberStatus != null && _memberStatus.isPresent())
         { sb.append(li).append(xbRDS(_memberStatus, "memberStatus")); }
+        if (_memberAccessTokenAsOne != null && _memberAccessTokenAsOne.isPresent())
+        { sb.append(li).append(xbRDS(_memberAccessTokenAsOne, "memberAccessTokenAsOne")); }
         if (_projectList != null) { for (Project et : _projectList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "projectList")); } } }
         if (_projectMemberList != null) { for (ProjectMember et : _projectMemberList)
@@ -489,6 +512,8 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
         StringBuilder sb = new StringBuilder();
         if (_memberStatus != null && _memberStatus.isPresent())
         { sb.append(dm).append("memberStatus"); }
+        if (_memberAccessTokenAsOne != null && _memberAccessTokenAsOne.isPresent())
+        { sb.append(dm).append("memberAccessTokenAsOne"); }
         if (_projectList != null && !_projectList.isEmpty())
         { sb.append(dm).append("projectList"); }
         if (_projectMemberList != null && !_projectMemberList.isEmpty())

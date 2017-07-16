@@ -7,13 +7,13 @@ import io.github.yutoeguma.unit.UnitTaskticketTestCase;
  *
  * @author cabos
  */
-public class LoginActionTest extends UnitTaskticketTestCase {
+public class AuthLoginActionTest extends UnitTaskticketTestCase {
 
     //    public void test_signin_success() {
     //        // ## Arrange ##
-    //        LoginAction action = new LoginAction();
+    //        AuthLoginAction action = new AuthLoginAction();
     //        inject(action);
-    //        LoginBody form = new LoginBody();
+    //        AuthLoginBody form = new AuthLoginBody();
     //        form.email = "touyumague@gmail.com";
     //        form.password = "password";
     //
@@ -27,13 +27,13 @@ public class LoginActionTest extends UnitTaskticketTestCase {
     //
     //    public void test_signin_validationError_required() {
     //        // ## Arrange ##
-    //        LoginAction action = new LoginAction();
+    //        AuthLoginAction action = new AuthLoginAction();
     //        inject(action);
-    //        LoginBody form = new LoginBody();
+    //        AuthLoginBody form = new AuthLoginBody();
     //
     //        // ## Act ##
     //        // ## Assert ##
-    //        assertValidationError(() -> action.doLogin(form)).handle(data -> {
+    //        assertValidationError(() -> action.login(form)).handle(data -> {
     //            data.requiredMessageOf("email", Required.class);
     //            data.requiredMessageOf("password", Required.class);
     //            TestingHtmlData htmlData = validateHtmlData(data.hookError());
@@ -43,15 +43,15 @@ public class LoginActionTest extends UnitTaskticketTestCase {
     //
     //    public void test_signin_validationError_loginFailure() {
     //        // ## Arrange ##
-    //        LoginAction action = new LoginAction();
+    //        AuthLoginAction action = new AuthLoginAction();
     //        inject(action);
-    //        LoginBody form = new LoginBody();
+    //        AuthLoginBody form = new AuthLoginBody();
     //        form.email = "touyumague@gmail.com";
     //        form.password = "land";
     //
     //        // ## Act ##
     //        // ## Assert ##
-    //        assertValidationError(() -> action.doLogin(form)).handle(data -> {
+    //        assertValidationError(() -> action.login(form)).handle(data -> {
     //            data.requiredMessageOf("email", TaskticketMessages.ERRORS_LOGIN_FAILURE);
     //            TestingHtmlData htmlData = validateHtmlData(data.hookError());
     //            htmlData.assertHtmlForward(TaskticketHtmlPath.path_Login_LoginHtml);

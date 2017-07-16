@@ -51,6 +51,43 @@
             <index-column name="MEMBER_NAME" position="1"/>
         </index>
     </table>
+    <table comment="メンバーアクセストークン : 本来であれば redis になって変わるテーブルです。"
+        name="MEMBER_ACCESS_TOKEN"
+        schema="taskticketdb.$$NoNameSchema$$" type="TABLE">
+        <column autoIncrement="true" comment="メンバーアクセストークンID"
+            dbType="BIGINT" javaType="Long"
+            name="MEMBER_ACCESS_TOKEN_ID" pkName="PRIMARY"
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
+        <column comment="メンバーID" dbType="BIGINT" javaType="Long"
+            name="MEMBER_ID" required="true" size="19" type="BIGINT"/>
+        <column comment="アクセストークン" dbType="CHAR" javaType="String"
+            name="ACCESS_TOKEN" required="true" size="64" type="CHAR"/>
+        <column comment="登録日時 : レコードが登録された日時" dbType="DATETIME"
+            javaType="java.time.LocalDateTime" name="REGISTER_DATETIME"
+            required="true" size="19" type="TIMESTAMP"/>
+        <column comment="登録ユーザー : レコードを登録したユーザー" dbType="VARCHAR"
+            javaType="String" name="REGISTER_USER" required="true"
+            size="200" type="VARCHAR"/>
+        <column comment="更新日時 : レコードが(最後に)更新された日時" dbType="DATETIME"
+            javaType="java.time.LocalDateTime" name="UPDATE_DATETIME"
+            required="true" size="19" type="TIMESTAMP"/>
+        <column comment="更新ユーザー : レコードを(最後に)更新したユーザー" dbType="VARCHAR"
+            javaType="String" name="UPDATE_USER" required="true"
+            size="200" type="VARCHAR"/>
+        <foreign-key foreignSchema="taskticketdb.$$NoNameSchema$$"
+            foreignTable="MEMBER" name="FK_MEMBER_ACCESS_TOKEN_MEMBER">
+            <reference foreign="MEMBER_ID" local="MEMBER_ID"/>
+        </foreign-key>
+        <unique name="ACCESS_TOKEN">
+            <unique-column name="ACCESS_TOKEN" position="1"/>
+        </unique>
+        <unique name="MEMBER_ID">
+            <unique-column name="MEMBER_ID" position="1"/>
+        </unique>
+        <index name="IX_MEMBER_ACCESS_TOKEN_ACCESS_TOKEN">
+            <index-column name="ACCESS_TOKEN" position="1"/>
+        </index>
+    </table>
     <table
         comment="会員ステータス : 会員のステータスを示す固定的なマスタテーブル。いわゆるテーブル区分値！&#xa;業務運用上で増えることはなく、増減するときはプログラム修正ともなうレベルの業務変更と考えられる。&#xa;&#xa;こういった固定的なマスタテーブルには、更新日時などの共通カラムは定義していないが、業務上そういった情報を管理する必要性が低いという理由に加え、ExampleDBとして共通カラムでER図が埋め尽くされてしまい見づらくなるというところで割り切っている。実業務では統一的に定義することもある。"
         name="MEMBER_STATUS" schema="taskticketdb.$$NoNameSchema$$" type="TABLE">

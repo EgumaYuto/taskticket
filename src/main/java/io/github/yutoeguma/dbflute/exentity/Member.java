@@ -46,7 +46,7 @@ public class Member extends BsMember {
     protected LocalDateTime _latestLoginDatetime;
 
     /**
-     * [get] PURCHASE_COUNT: (Derived Referrer)
+     * [getSavedUserBean] PURCHASE_COUNT: (Derived Referrer)
      * @return The value of the column 'PURCHASE_COUNT'. (NullAllowed)
      */
     public Integer getPurchaseCount() {
@@ -62,7 +62,7 @@ public class Member extends BsMember {
     }
 
     /**
-     * [get] LATEST_LOGIN_DATETIME: (Derived Referrer)
+     * [getSavedUserBean] LATEST_LOGIN_DATETIME: (Derived Referrer)
      * @return The value of the column 'LATEST_LOGIN_DATETIME'. (NullAllowed)
      */
     public LocalDateTime getLatestLoginDatetime() {

@@ -40,4 +40,13 @@ public class MemberNss {
     public void withMemberStatus() {
         _query.xdoNss(() -> _query.queryMemberStatus());
     }
+    /**
+     * With nested relation columns to select clause. <br>
+     * (メンバーアクセストークン)MEMBER_ACCESS_TOKEN by MEMBER_ID, named 'memberAccessTokenAsOne'.
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public MemberAccessTokenNss withMemberAccessTokenAsOne() {
+        _query.xdoNss(() -> _query.queryMemberAccessTokenAsOne());
+        return new MemberAccessTokenNss(_query.queryMemberAccessTokenAsOne());
+    }
 }

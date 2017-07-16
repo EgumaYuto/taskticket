@@ -17,13 +17,13 @@ package io.github.yutoeguma.app.web.base;
 
 import javax.annotation.Resource;
 
-import org.dbflute.optional.OptionalThing;
 import io.github.yutoeguma.app.logic.context.AccessContextLogic;
 import io.github.yutoeguma.app.web.base.login.TaskticketLoginAssist;
 import io.github.yutoeguma.app.web.base.view.HeaderBean;
 import io.github.yutoeguma.mylasta.action.TaskticketHtmlPath;
 import io.github.yutoeguma.mylasta.action.TaskticketMessages;
 import io.github.yutoeguma.mylasta.action.TaskticketUserBean;
+import org.dbflute.optional.OptionalThing;
 import org.lastaflute.db.dbflute.accesscontext.AccessContextArranger;
 import org.lastaflute.web.TypicalAction;
 import org.lastaflute.web.login.LoginManager;
@@ -43,7 +43,7 @@ public abstract class TaskticketBaseAction extends TypicalAction // has several 
     //                                                                          Definition
     //                                                                          ==========
     /** The application type */
-    protected static final String APP_TYPE = "WEB";
+    protected static final String APP_TYPE = "API";
 
     /** The user type for Member */
     protected static final String USER_TYPE = "M";
@@ -106,7 +106,7 @@ public abstract class TaskticketBaseAction extends TypicalAction // has several 
     }
 
     // ===================================================================================
-    //                                                                           User Info
+    //                                                                           IUser Info
     //                                                                           =========
     // -----------------------------------------------------
     //                                      Application Info
@@ -119,7 +119,7 @@ public abstract class TaskticketBaseAction extends TypicalAction // has several 
     // -----------------------------------------------------
     //                                            Login Info
     //                                            ----------
-    // #app_customize return empty if doLogin is unused
+    // #app_customize return empty if login is unused
     @Override
     protected OptionalThing<TaskticketUserBean> getUserBean() { // application may call, overriding for co-variant
         return loginAssist.getSavedUserBean();

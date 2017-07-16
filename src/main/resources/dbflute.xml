@@ -14,6 +14,7 @@
 
 	<!-- The components of Behavior. -->
 	<component name="memberBhv" class="io.github.yutoeguma.dbflute.exbhv.MemberBhv"/>
+	<component name="memberAccessTokenBhv" class="io.github.yutoeguma.dbflute.exbhv.MemberAccessTokenBhv"/>
 	<component name="memberStatusBhv" class="io.github.yutoeguma.dbflute.exbhv.MemberStatusBhv"/>
 	<component name="projectBhv" class="io.github.yutoeguma.dbflute.exbhv.ProjectBhv"/>
 	<component name="projectMemberBhv" class="io.github.yutoeguma.dbflute.exbhv.ProjectMemberBhv"/>

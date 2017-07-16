@@ -137,7 +137,7 @@ public class TaskticketFwAssistantDirector extends CachedFwAssistantDirector {
         direction.directHtmlRendering(createHtmlRenderingProvider());
         direction.directMultipart(createMultipartResourceProvider());
 
-        // CORS対応
+        // APIクライアントを別のサービスで提供するため、CORS対応
         final String allowOrigin = "http://localhost:4200";
         direction.directCors(new CorsHook(allowOrigin));
     }

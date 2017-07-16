@@ -1,4 +1,4 @@
-package io.github.yutoeguma.app.web.signup;
+package io.github.yutoeguma.app.web.auth.signup;
 
 import javax.annotation.Resource;
 
@@ -16,7 +16,7 @@ import org.lastaflute.web.response.JsonResponse;
  * @author yuto.eguma
  */
 @AllowAnyoneAccess
-public class SignupAction extends TaskticketBaseAction {
+public class AuthSignupAction extends TaskticketBaseAction {
 
     // ===================================================================================
     //                                                                           Attribute
@@ -30,7 +30,7 @@ public class SignupAction extends TaskticketBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public JsonResponse<Void> post$index(SignupForm form) {
+    public JsonResponse<Void> post$index(AuthSignupBody form) {
         validate(form, messages -> moreValidate(form, messages), () -> {
             return JsonResponse.asEmptyBody();
         });
@@ -42,22 +42,22 @@ public class SignupAction extends TaskticketBaseAction {
     // ===================================================================================
     //                                                                        Small Helper
     //                                                                        ============
-    private void moreValidate(SignupForm form, TaskticketMessages messages) {
+    private void moreValidate(AuthSignupBody form, TaskticketMessages messages) {
         if (loginAssist.checkUserLoginable(createCredential(form))) {
             messages.addErrorsAppDbAlreadyExists("email");
         }
     }
 
-    private UserPasswordCredential createCredential(SignupForm form) {
+    private UserPasswordCredential createCredential(AuthSignupBody form) {
         return new UserPasswordCredential(form.email, form.password);
     }
 
-    private void registerMember(SignupForm form) {
+    private void registerMember(AuthSignupBody form) {
         insertMember(form);
         // TODO yuto メール送信 (2017/06/15)
     }
 
-    private void insertMember(SignupForm form) {
+    private void insertMember(AuthSignupBody form) {
         Member member = new Member();
         member.setMemberName(form.name);
         member.setPassword(loginAssist.encryptPassword(form.password));

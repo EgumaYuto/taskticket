@@ -47,6 +47,7 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
     static {
         final Map<String, String> tmpMap = newHashMap();
         tmpMap.put("MEMBER", "io.github.yutoeguma.dbflute.bsentity.dbmeta.MemberDbm");
+        tmpMap.put("MEMBER_ACCESS_TOKEN", "io.github.yutoeguma.dbflute.bsentity.dbmeta.MemberAccessTokenDbm");
         tmpMap.put("MEMBER_STATUS", "io.github.yutoeguma.dbflute.bsentity.dbmeta.MemberStatusDbm");
         tmpMap.put("PROJECT", "io.github.yutoeguma.dbflute.bsentity.dbmeta.ProjectDbm");
         tmpMap.put("PROJECT_MEMBER", "io.github.yutoeguma.dbflute.bsentity.dbmeta.ProjectMemberDbm");
