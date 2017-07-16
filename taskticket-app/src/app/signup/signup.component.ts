@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../_service/auth.service";
 import {UserInfoService} from "../_service/user.info";
-import {IUser} from "../_model/user.model";
-import {IValidationErrorModel} from "../_model/error.validation.model";
+import {IUser} from "../_model/user";
+import {IValidationErrorResp} from "../_model/error.validation";
 
 @Component({
   selector: 'signup',
@@ -74,7 +74,7 @@ export class SignupComponent implements OnInit {
 
   private handleErrorResponse(res) {
     if (res.status === 400) {
-      let errorModel = res.json() as IValidationErrorModel;
+      let errorModel = res.json() as IValidationErrorResp;
       errorModel.errors.forEach(error => {
         if (error.field === 'name') {
           error.messages.forEach(message => {

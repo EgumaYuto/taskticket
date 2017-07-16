@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../_service/auth.service";
 import {UserInfoService} from "../_service/user.info";
-import {IValidationErrorModel} from "../_model/error.validation.model";
-import {IUser} from "../_model/user.model";
+import {IValidationErrorResp} from "../_model/error.validation";
+import {IUser} from "../_model/user";
 
 @Component({
   selector: 'login',
@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
   //                                                                               Login
   //                                                                               =====
   login(): void {
-    console.log(this.email, this.password);
     this.authService.login(this.email, this.password)
       .then(res => {
         this.accessTokenService.setUserInfo(res.json() as IUser);
@@ -68,7 +67,7 @@ export class LoginComponent implements OnInit {
 
   private handleErrorResponse(res) {
     if (res.status === 400) {
-      let errorModel = res.json() as IValidationErrorModel;
+      let errorModel = res.json() as IValidationErrorResp;
       errorModel.errors.forEach(error => {
         if (error.field === 'email') {
           error.messages.forEach(message => {

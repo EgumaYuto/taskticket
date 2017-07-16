@@ -1,5 +1,5 @@
 
-export interface IErrorModel {
+export interface IErrorResp {
   notice: string;
   cause: string
 }
