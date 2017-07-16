@@ -18,7 +18,6 @@ package io.github.yutoeguma.app.web.base.login;
 import javax.annotation.Resource;
 
 import io.github.yutoeguma.app.web.auth.login.AuthLoginAction;
-import io.github.yutoeguma.app.web.auth.login.LoginResult;
 import io.github.yutoeguma.dbflute.cbean.MemberCB;
 import io.github.yutoeguma.dbflute.exbhv.MemberBhv;
 import io.github.yutoeguma.dbflute.exentity.Member;
@@ -102,18 +101,18 @@ public class TaskticketLoginAssist extends TypicalLoginAssist<Long, TaskticketUs
     //                                                                       Login Process
     //                                                                       =============
     // TODO yuto Model クラスを作って返す (これが、jsonの戻り値と同じクラスなのがちょっと...) (2017/07/16)
-    public LoginResult login(LoginCredential credential) throws LoginFailureException {
+    public LoginResultModel login(LoginCredential credential) throws LoginFailureException {
         return handleLoginSuccess(findLoginUser(credential).orElseThrow(() -> {
             final String msg = "Not found the user by the credential: " + credential;
             return handleLoginFailure(msg, credential, OptionalThing.empty());
         }));
     }
 
-    protected LoginResult handleLoginSuccess(Member userEntity) {
+    protected LoginResultModel handleLoginSuccess(Member userEntity) {
         assertUserEntityRequired(userEntity);
         final TaskticketUserBean userBean = createUserBean(userEntity);
         String accessToken = provideAndRegisterAccessToken(userBean);
-        return new LoginResult(userBean.getMemberId(), accessToken);
+        return new LoginResultModel(userBean.getMemberId(), accessToken);
     }
 
     private String provideAndRegisterAccessToken(TaskticketUserBean userBean) {

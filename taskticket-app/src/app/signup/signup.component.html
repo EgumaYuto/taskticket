@@ -1,27 +1,27 @@
 <section id="signup-form">
   <h2 class="title is-2">Sign up</h2>
   <form>
-    <div class="field">
-      <label class="label">Email</label>
-      <p class="control">
-        <input class="input" type="email" name="email" />
-      </p>
+    <div class="row">
+      <div class="input-field col s12">
+        <input [ngClass]="nameInputClasses" [(ngModel)]="name" name="name" type="text" id="name" placeholder="Email">
+        <label for="name" [attr.data-error]="nameErrorMessage">Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input [ngClass]="emailInputClasses" [(ngModel)]="email" name="email" type="email" id="email" placeholder="Email">
+        <label for="email" [attr.data-error]="emailErrorMessage">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input [ngClass]="passwordInputClasses" [(ngModel)]="password" name="password" type="password" id="password" placeholder="Password">
+        <label for="password" [attr.data-error]="passwordErrorMessage">Password</label>
+      </div>
     </div>
     <div class="field">
-      <label class="label">Name</label>
       <p class="control">
-        <input class="input" type="text" name="name" />
-      </p>
-    </div>
-    <div class="field">
-      <label class="label">Password</label>
-      <p class="control">
-        <input class="input" type="password" name="password" />
-      </p>
-    </div>
-    <div class="field">
-      <p class="control">
-        <button class="waves-effect waves-light btn">Signup</button>
+        <button class="waves-effect waves-light btn" (click)="signup()">Signup</button>
       </p>
     </div>
   </form>

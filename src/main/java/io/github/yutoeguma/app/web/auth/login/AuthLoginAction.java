@@ -18,6 +18,7 @@ package io.github.yutoeguma.app.web.auth.login;
 import javax.annotation.Resource;
 
 import io.github.yutoeguma.app.web.base.TaskticketBaseAction;
+import io.github.yutoeguma.app.web.base.login.LoginResultModel;
 import io.github.yutoeguma.app.web.base.login.TaskticketLoginAssist;
 import io.github.yutoeguma.mylasta.action.TaskticketMessages;
 import org.lastaflute.core.util.LaStringUtil;
@@ -44,8 +45,8 @@ public class AuthLoginAction extends TaskticketBaseAction {
     @Execute
     public JsonResponse<LoginResult> post$index(AuthLoginBody form) {
         validateApi(form, messages -> moreValidate(form, messages));
-        LoginResult result = loginAssist.login(createCredential(form));
-        return asJson(result);
+        LoginResultModel result = loginAssist.login(createCredential(form));
+        return asJson(new LoginResult(result));
     }
 
     @Execute

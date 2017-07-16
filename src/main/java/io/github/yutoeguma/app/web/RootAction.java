@@ -15,12 +15,10 @@
  */
 package io.github.yutoeguma.app.web;
 
-import io.github.yutoeguma.app.web.mypage.MypageAction;
+import io.github.yutoeguma.app.web.base.TaskticketBaseAction;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
-import org.lastaflute.web.response.HtmlResponse;
-
-import io.github.yutoeguma.app.web.base.TaskticketBaseAction;
+import org.lastaflute.web.response.JsonResponse;
 
 /**
  * @author cabos
@@ -32,9 +30,8 @@ public class RootAction extends TaskticketBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public HtmlResponse index() {
-        return getUserBean().map(user -> {
-            return redirect(MypageAction.class);
-        }).orElseGet(() -> asHtml(path_IndexHtml));
+    public JsonResponse<Void> index() {
+        // do nothing
+        return JsonResponse.asEmptyBody();
     }
 }

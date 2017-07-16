@@ -30,13 +30,10 @@ public class AuthSignupAction extends TaskticketBaseAction {
     //                                                                             Execute
     //                                                                             =======
     @Execute
-    public JsonResponse<Void> post$index(AuthSignupBody form) {
-        validate(form, messages -> moreValidate(form, messages), () -> {
-            return JsonResponse.asEmptyBody();
-        });
-        registerMember(form);
-        loginAssist.login(createCredential(form), op -> op.rememberMe(true));
-        return JsonResponse.asEmptyBody();
+    public JsonResponse<SignupResult> post$index(AuthSignupBody body) {
+        validateApi(body, messages -> moreValidate(body, messages));
+        registerMember(body);
+        return asJson(new SignupResult(loginAssist.login(createCredential(body))));
     }
 
     // ===================================================================================
