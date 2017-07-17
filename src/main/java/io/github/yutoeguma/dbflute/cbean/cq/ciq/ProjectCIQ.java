@@ -97,8 +97,9 @@ public class ProjectCIQ extends AbstractBsProjectCQ {
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepProjectId_QueryDerivedReferrer_TicketListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    protected ConditionValue xgetCValueProjectName() { return _myCQ.xdfgetProjectName(); }
     protected ConditionValue xgetCValueMemberId() { return _myCQ.xdfgetMemberId(); }
+    protected ConditionValue xgetCValueProjectName() { return _myCQ.xdfgetProjectName(); }
+    protected ConditionValue xgetCValueProjectDetail() { return _myCQ.xdfgetProjectDetail(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueRegisterUser() { return _myCQ.xdfgetRegisterUser(); }
     protected ConditionValue xgetCValueUpdateDatetime() { return _myCQ.xdfgetUpdateDatetime(); }

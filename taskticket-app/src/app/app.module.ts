@@ -13,13 +13,15 @@ import { MypageComponent } from "./mypage/mypage.component";
 import { AuthGuard } from "./auth.guard";
 import { UserInfoService } from "./_service/user.info";
 import { AuthService } from "./_service/auth.service";
+import { ProjectAddComponent } from "./project/add/project.add.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    MypageComponent
+    MypageComponent,
+    ProjectAddComponent
   ],
   imports: [
     FormsModule,

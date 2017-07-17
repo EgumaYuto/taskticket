@@ -341,12 +341,12 @@
 			<physical_name>PROJECT</physical_name>
 			<logical_name>プロジェクト</logical_name>
 			<description></description>
-			<height>179</height>
+			<height>197</height>
 			<width>247</width>
 			<font_name>.SF NS Text</font_name>
 			<font_size>9</font_size>
-			<x>708</x>
-			<y>12</y>
+			<x>712</x>
+			<y>-3</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -384,6 +384,13 @@
 					<auto_increment>true</auto_increment>
 				</normal_column>
 				<normal_column>
+					<physical_name>MEMBER_ID</physical_name>
+					<referred_column>table.MEMBER.MEMBER_ID</referred_column>
+					<relationship>FK_PROJECT_MEMBER</relationship>
+					<description>プロジェクトを作成したメンバーのID</description>
+					<not_null>true</not_null>
+				</normal_column>
+				<normal_column>
 					<physical_name>PROJECT_NAME</physical_name>
 					<logical_name>プロジェクト名</logical_name>
 					<type>varchar(n)</type>
@@ -391,10 +398,9 @@
 					<not_null>true</not_null>
 				</normal_column>
 				<normal_column>
-					<physical_name>MEMBER_ID</physical_name>
-					<referred_column>table.MEMBER.MEMBER_ID</referred_column>
-					<relationship>FK_PROJECT_MEMBER</relationship>
-					<description>プロジェクトを作成したメンバーのID</description>
+					<physical_name>PROJECT_DETAIL</physical_name>
+					<logical_name>プロジェクト詳細</logical_name>
+					<type>text</type>
 					<not_null>true</not_null>
 				</normal_column>
 				<column_group>共通カラム</column_group>

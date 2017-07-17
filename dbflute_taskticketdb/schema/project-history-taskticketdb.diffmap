@@ -1,4 +1,23 @@
 map:{
+    ; 2017/07/17 14:27:26 = map:{
+        ; diffDate = 2017/07/17 14:27:26
+        ; tableDiff = map:{
+            ; PROJECT = map:{
+                ; tableName = PROJECT
+                ; diffType = CHANGE
+                ; columnDefOrderDiff = map:{
+                    ; next = MEMBER_ID(2)
+                    ; previous = MEMBER_ID(3)
+                }
+                ; columnDiff = map:{
+                    ; PROJECT_DETAIL = map:{
+                        ; columnName = PROJECT_DETAIL
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
     ; 2017/07/15 18:33:54 = map:{
         ; diffDate = 2017/07/15 18:33:54
         ; tableDiff = map:{

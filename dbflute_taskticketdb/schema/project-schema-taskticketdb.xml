@@ -117,10 +117,12 @@
         <column autoIncrement="true" comment="プロジェクトID" dbType="BIGINT"
             javaType="Long" name="PROJECT_ID" pkName="PRIMARY"
             pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
-        <column comment="プロジェクト名" dbType="VARCHAR" javaType="String"
-            name="PROJECT_NAME" required="true" size="256" type="VARCHAR"/>
         <column comment="メンバーID : プロジェクトを作成したメンバーのID" dbType="BIGINT"
             javaType="Long" name="MEMBER_ID" required="true" size="19" type="BIGINT"/>
+        <column comment="プロジェクト名" dbType="VARCHAR" javaType="String"
+            name="PROJECT_NAME" required="true" size="256" type="VARCHAR"/>
+        <column comment="プロジェクト詳細" dbType="TEXT" javaType="String"
+            name="PROJECT_DETAIL" required="true" size="65535" type="LONGVARCHAR"/>
         <column comment="登録日時 : レコードが登録された日時" dbType="DATETIME"
             javaType="java.time.LocalDateTime" name="REGISTER_DATETIME"
             required="true" size="19" type="TIMESTAMP"/>

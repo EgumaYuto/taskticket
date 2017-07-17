@@ -1,4 +1,35 @@
-<section id="signup-form">
-  <h2 class="title is-2">Mypage</h2>
-  <button class="waves-effect waves-light btn" (click)="logout()">logout</button>
-</section>
+<header>
+  <ul class="side-nav fixed">
+    <li><a href="/" class="brand-logo"><h3>Taskticket</h3></a></li>
+    <li><a href="/">My Page</a></li>
+    <li><a href="/" (click)="logout()">Logout</a></li>
+  </ul>
+  <nav class="light-blue lighten-5">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="#" class="page-title">My Page</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main role="main">
+  <div class="container">
+    <section id="project">
+      <h2>Projects</h2>
+      <div class="row">
+        <a href="/project/add" class="black-text">
+          <div class="col s6 m6 l4">
+            <div class="card grey lighten-1">
+              <div class="card-content">
+                <span class="card-title">Add Project</span>
+                <p><i class="material-icons">&#xE3BA;</i></p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
+</main>
+

@@ -334,66 +334,6 @@ public abstract class AbstractBsProjectCQ extends AbstractConditionQuery {
     protected abstract ConditionValue xgetCValueProjectId();
 
     /**
-     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)}
-     * @param projectName The value of projectName as equal. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setProjectName_Equal(String projectName) {
-        doSetProjectName_Equal(fRES(projectName));
-    }
-
-    protected void doSetProjectName_Equal(String projectName) {
-        regProjectName(CK_EQ, projectName);
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)} <br>
-     * <pre>e.g. setProjectName_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param projectName The value of projectName as likeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setProjectName_LikeSearch(String projectName, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setProjectName_LikeSearch(projectName, xcLSOP(opLambda));
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)} <br>
-     * <pre>e.g. setProjectName_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param projectName The value of projectName as likeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of like-search. (NotNull)
-     */
-    protected void setProjectName_LikeSearch(String projectName, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_LS, fRES(projectName), xgetCValueProjectName(), "PROJECT_NAME", likeSearchOption);
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)}
-     * @param projectName The value of projectName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setProjectName_NotLikeSearch(String projectName, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setProjectName_NotLikeSearch(projectName, xcLSOP(opLambda));
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)}
-     * @param projectName The value of projectName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of not-like-search. (NotNull)
-     */
-    protected void setProjectName_NotLikeSearch(String projectName, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(projectName), xgetCValueProjectName(), "PROJECT_NAME", likeSearchOption);
-    }
-
-    protected void regProjectName(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueProjectName(), "PROJECT_NAME"); }
-    protected abstract ConditionValue xgetCValueProjectName();
-
-    /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
      * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
      * @param memberId The value of memberId as equal. (basically NotNull: error as default, or no condition as option)
@@ -509,6 +449,126 @@ public abstract class AbstractBsProjectCQ extends AbstractConditionQuery {
 
     protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueMemberId(), "MEMBER_ID"); }
     protected abstract ConditionValue xgetCValueMemberId();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)}
+     * @param projectName The value of projectName as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setProjectName_Equal(String projectName) {
+        doSetProjectName_Equal(fRES(projectName));
+    }
+
+    protected void doSetProjectName_Equal(String projectName) {
+        regProjectName(CK_EQ, projectName);
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)} <br>
+     * <pre>e.g. setProjectName_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param projectName The value of projectName as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setProjectName_LikeSearch(String projectName, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setProjectName_LikeSearch(projectName, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)} <br>
+     * <pre>e.g. setProjectName_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param projectName The value of projectName as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setProjectName_LikeSearch(String projectName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(projectName), xgetCValueProjectName(), "PROJECT_NAME", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)}
+     * @param projectName The value of projectName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setProjectName_NotLikeSearch(String projectName, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setProjectName_NotLikeSearch(projectName, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)}
+     * @param projectName The value of projectName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setProjectName_NotLikeSearch(String projectName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(projectName), xgetCValueProjectName(), "PROJECT_NAME", likeSearchOption);
+    }
+
+    protected void regProjectName(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueProjectName(), "PROJECT_NAME"); }
+    protected abstract ConditionValue xgetCValueProjectName();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * (プロジェクト詳細)PROJECT_DETAIL: {NotNull, TEXT(65535)}
+     * @param projectDetail The value of projectDetail as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setProjectDetail_Equal(String projectDetail) {
+        doSetProjectDetail_Equal(fRES(projectDetail));
+    }
+
+    protected void doSetProjectDetail_Equal(String projectDetail) {
+        regProjectDetail(CK_EQ, projectDetail);
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (プロジェクト詳細)PROJECT_DETAIL: {NotNull, TEXT(65535)} <br>
+     * <pre>e.g. setProjectDetail_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param projectDetail The value of projectDetail as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setProjectDetail_LikeSearch(String projectDetail, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setProjectDetail_LikeSearch(projectDetail, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (プロジェクト詳細)PROJECT_DETAIL: {NotNull, TEXT(65535)} <br>
+     * <pre>e.g. setProjectDetail_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param projectDetail The value of projectDetail as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setProjectDetail_LikeSearch(String projectDetail, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(projectDetail), xgetCValueProjectDetail(), "PROJECT_DETAIL", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (プロジェクト詳細)PROJECT_DETAIL: {NotNull, TEXT(65535)}
+     * @param projectDetail The value of projectDetail as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setProjectDetail_NotLikeSearch(String projectDetail, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setProjectDetail_NotLikeSearch(projectDetail, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (プロジェクト詳細)PROJECT_DETAIL: {NotNull, TEXT(65535)}
+     * @param projectDetail The value of projectDetail as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setProjectDetail_NotLikeSearch(String projectDetail, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(projectDetail), xgetCValueProjectDetail(), "PROJECT_DETAIL", likeSearchOption);
+    }
+
+    protected void regProjectDetail(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueProjectDetail(), "PROJECT_DETAIL"); }
+    protected abstract ConditionValue xgetCValueProjectDetail();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>

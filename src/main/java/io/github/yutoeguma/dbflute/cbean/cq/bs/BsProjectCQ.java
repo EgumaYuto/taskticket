@@ -136,6 +136,26 @@ public class BsProjectCQ extends AbstractBsProjectCQ {
      */
     public BsProjectCQ addOrderBy_ProjectId_Desc() { regOBD("PROJECT_ID"); return this; }
 
+    protected ConditionValue _memberId;
+    public ConditionValue xdfgetMemberId()
+    { if (_memberId == null) { _memberId = nCV(); }
+      return _memberId; }
+    protected ConditionValue xgetCValueMemberId() { return xdfgetMemberId(); }
+
+    /** 
+     * Add order-by as ascend. <br>
+     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @return this. (NotNull)
+     */
+    public BsProjectCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @return this. (NotNull)
+     */
+    public BsProjectCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
+
     protected ConditionValue _projectName;
     public ConditionValue xdfgetProjectName()
     { if (_projectName == null) { _projectName = nCV(); }
@@ -156,25 +176,11 @@ public class BsProjectCQ extends AbstractBsProjectCQ {
      */
     public BsProjectCQ addOrderBy_ProjectName_Desc() { regOBD("PROJECT_NAME"); return this; }
 
-    protected ConditionValue _memberId;
-    public ConditionValue xdfgetMemberId()
-    { if (_memberId == null) { _memberId = nCV(); }
-      return _memberId; }
-    protected ConditionValue xgetCValueMemberId() { return xdfgetMemberId(); }
-
-    /** 
-     * Add order-by as ascend. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @return this. (NotNull)
-     */
-    public BsProjectCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @return this. (NotNull)
-     */
-    public BsProjectCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
+    protected ConditionValue _projectDetail;
+    public ConditionValue xdfgetProjectDetail()
+    { if (_projectDetail == null) { _projectDetail = nCV(); }
+      return _projectDetail; }
+    protected ConditionValue xgetCValueProjectDetail() { return xdfgetProjectDetail(); }
 
     protected ConditionValue _registerDatetime;
     public ConditionValue xdfgetRegisterDatetime()

@@ -34,7 +34,7 @@ import io.github.yutoeguma.dbflute.exentity.*;
  *     PROJECT_ID
  *
  * [column]
- *     PROJECT_ID, PROJECT_NAME, MEMBER_ID, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
+ *     PROJECT_ID, MEMBER_ID, PROJECT_NAME, PROJECT_DETAIL, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER, VERSION_NO
  *
  * [sequence]
  *     
@@ -60,16 +60,18 @@ import io.github.yutoeguma.dbflute.exentity.*;
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Long projectId = entity.getProjectId();
- * String projectName = entity.getProjectName();
  * Long memberId = entity.getMemberId();
+ * String projectName = entity.getProjectName();
+ * String projectDetail = entity.getProjectDetail();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * String registerUser = entity.getRegisterUser();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * String updateUser = entity.getUpdateUser();
  * Long versionNo = entity.getVersionNo();
  * entity.setProjectId(projectId);
- * entity.setProjectName(projectName);
  * entity.setMemberId(memberId);
+ * entity.setProjectName(projectName);
+ * entity.setProjectDetail(projectDetail);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setRegisterUser(registerUser);
  * entity.setUpdateDatetime(updateDatetime);
@@ -93,11 +95,14 @@ public abstract class BsProject extends AbstractEntity implements DomainEntity, 
     /** (プロジェクトID)PROJECT_ID: {PK, ID, NotNull, BIGINT(19)} */
     protected Long _projectId;
 
+    /** (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} */
+    protected Long _memberId;
+
     /** (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)} */
     protected String _projectName;
 
-    /** (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} */
-    protected Long _memberId;
+    /** (プロジェクト詳細)PROJECT_DETAIL: {NotNull, TEXT(65535)} */
+    protected String _projectDetail;
 
     /** (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)} */
     protected java.time.LocalDateTime _registerDatetime;
@@ -248,8 +253,9 @@ public abstract class BsProject extends AbstractEntity implements DomainEntity, 
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
         sb.append(dm).append(xfND(_projectId));
-        sb.append(dm).append(xfND(_projectName));
         sb.append(dm).append(xfND(_memberId));
+        sb.append(dm).append(xfND(_projectName));
+        sb.append(dm).append(xfND(_projectDetail));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_registerUser));
         sb.append(dm).append(xfND(_updateDatetime));
@@ -304,6 +310,26 @@ public abstract class BsProject extends AbstractEntity implements DomainEntity, 
     }
 
     /**
+     * [get] (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} <br>
+     * プロジェクトを作成したメンバーのID
+     * @return The value of the column 'MEMBER_ID'. (basically NotNull if selected: for the constraint)
+     */
+    public Long getMemberId() {
+        checkSpecifiedProperty("memberId");
+        return _memberId;
+    }
+
+    /**
+     * [set] (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} <br>
+     * プロジェクトを作成したメンバーのID
+     * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
+     */
+    public void setMemberId(Long memberId) {
+        registerModifiedProperty("memberId");
+        _memberId = memberId;
+    }
+
+    /**
      * [get] (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)} <br>
      * @return The value of the column 'PROJECT_NAME'. (basically NotNull if selected: for the constraint)
      */
@@ -322,23 +348,21 @@ public abstract class BsProject extends AbstractEntity implements DomainEntity, 
     }
 
     /**
-     * [get] (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} <br>
-     * プロジェクトを作成したメンバーのID
-     * @return The value of the column 'MEMBER_ID'. (basically NotNull if selected: for the constraint)
+     * [get] (プロジェクト詳細)PROJECT_DETAIL: {NotNull, TEXT(65535)} <br>
+     * @return The value of the column 'PROJECT_DETAIL'. (basically NotNull if selected: for the constraint)
      */
-    public Long getMemberId() {
-        checkSpecifiedProperty("memberId");
-        return _memberId;
+    public String getProjectDetail() {
+        checkSpecifiedProperty("projectDetail");
+        return convertEmptyToNull(_projectDetail);
     }
 
     /**
-     * [set] (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} <br>
-     * プロジェクトを作成したメンバーのID
-     * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
+     * [set] (プロジェクト詳細)PROJECT_DETAIL: {NotNull, TEXT(65535)} <br>
+     * @param projectDetail The value of the column 'PROJECT_DETAIL'. (basically NotNull if update: for the constraint)
      */
-    public void setMemberId(Long memberId) {
-        registerModifiedProperty("memberId");
-        _memberId = memberId;
+    public void setProjectDetail(String projectDetail) {
+        registerModifiedProperty("projectDetail");
+        _projectDetail = projectDetail;
     }
 
     /**

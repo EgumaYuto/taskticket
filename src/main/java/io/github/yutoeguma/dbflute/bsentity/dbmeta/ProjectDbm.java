@@ -59,8 +59,9 @@ public class ProjectDbm extends AbstractDBMeta {
     { xsetupEpg(); }
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((Project)et).getProjectId(), (et, vl) -> ((Project)et).setProjectId(ctl(vl)), "projectId");
-        setupEpg(_epgMap, et -> ((Project)et).getProjectName(), (et, vl) -> ((Project)et).setProjectName((String)vl), "projectName");
         setupEpg(_epgMap, et -> ((Project)et).getMemberId(), (et, vl) -> ((Project)et).setMemberId(ctl(vl)), "memberId");
+        setupEpg(_epgMap, et -> ((Project)et).getProjectName(), (et, vl) -> ((Project)et).setProjectName((String)vl), "projectName");
+        setupEpg(_epgMap, et -> ((Project)et).getProjectDetail(), (et, vl) -> ((Project)et).setProjectDetail((String)vl), "projectDetail");
         setupEpg(_epgMap, et -> ((Project)et).getRegisterDatetime(), (et, vl) -> ((Project)et).setRegisterDatetime(ctldt(vl)), "registerDatetime");
         setupEpg(_epgMap, et -> ((Project)et).getRegisterUser(), (et, vl) -> ((Project)et).setRegisterUser((String)vl), "registerUser");
         setupEpg(_epgMap, et -> ((Project)et).getUpdateDatetime(), (et, vl) -> ((Project)et).setUpdateDatetime(ctldt(vl)), "updateDatetime");
@@ -101,8 +102,9 @@ public class ProjectDbm extends AbstractDBMeta {
     //                                                                         Column Info
     //                                                                         ===========
     protected final ColumnInfo _columnProjectId = cci("PROJECT_ID", "PROJECT_ID", null, "プロジェクトID", Long.class, "projectId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "projectMemberList,ticketList", null, false);
-    protected final ColumnInfo _columnProjectName = cci("PROJECT_NAME", "PROJECT_NAME", null, "プロジェクト名", String.class, "projectName", null, false, false, true, "VARCHAR", 256, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, "メンバーID", Long.class, "memberId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "member", null, null, false);
+    protected final ColumnInfo _columnProjectName = cci("PROJECT_NAME", "PROJECT_NAME", null, "プロジェクト名", String.class, "projectName", null, false, false, true, "VARCHAR", 256, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnProjectDetail = cci("PROJECT_DETAIL", "PROJECT_DETAIL", null, "プロジェクト詳細", String.class, "projectDetail", null, false, false, true, "TEXT", 65535, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, "登録日時", java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, "登録ユーザー", String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, "更新日時", java.time.LocalDateTime.class, "updateDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
@@ -115,15 +117,20 @@ public class ProjectDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnProjectId() { return _columnProjectId; }
     /**
+     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
      * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnProjectName() { return _columnProjectName; }
     /**
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * (プロジェクト詳細)PROJECT_DETAIL: {NotNull, TEXT(65535)}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnMemberId() { return _columnMemberId; }
+    public ColumnInfo columnProjectDetail() { return _columnProjectDetail; }
     /**
      * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
      * @return The information object of specified column. (NotNull)
@@ -153,8 +160,9 @@ public class ProjectDbm extends AbstractDBMeta {
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnProjectId());
-        ls.add(columnProjectName());
         ls.add(columnMemberId());
+        ls.add(columnProjectName());
+        ls.add(columnProjectDetail());
         ls.add(columnRegisterDatetime());
         ls.add(columnRegisterUser());
         ls.add(columnUpdateDatetime());

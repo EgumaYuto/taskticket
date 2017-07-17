@@ -3,7 +3,8 @@ import {AuthService} from "../_service/auth.service";
 
 @Component({
   selector: 'mypage',
-  templateUrl: './mypage.component.html'
+  templateUrl: './mypage.component.html',
+  styleUrls: ['./mypage.component.css']
 })
 export class MypageComponent implements OnInit {
 

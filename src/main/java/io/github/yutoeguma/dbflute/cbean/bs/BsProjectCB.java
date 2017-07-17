@@ -334,15 +334,20 @@ public class BsProjectCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnProjectId() { return doColumn("PROJECT_ID"); }
         /**
+         * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
+        /**
          * (プロジェクト名)PROJECT_NAME: {NotNull, VARCHAR(256)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnProjectName() { return doColumn("PROJECT_NAME"); }
         /**
-         * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+         * (プロジェクト詳細)PROJECT_DETAIL: {NotNull, TEXT(65535)}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
+        public SpecifiedColumn columnProjectDetail() { return doColumn("PROJECT_DETAIL"); }
         /**
          * (登録日時)REGISTER_DATETIME: {NotNull, DATETIME(19)}
          * @return The information object of specified column. (NotNull)

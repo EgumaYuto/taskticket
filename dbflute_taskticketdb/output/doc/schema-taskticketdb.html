@@ -337,7 +337,7 @@ dl.procedurelist dd.column pre {
 	<tr>
 		<td class="rownumcell">4</td>
 		<td class="aliascell">プロジェクト</td>
-		<td><a href="#project" title="type=TABLE, primaryKey={PROJECT_ID}, nameLength=7, columnCount=8">PROJECT</a></td>
+		<td><a href="#project" title="type=TABLE, primaryKey={PROJECT_ID}, nameLength=7, columnCount=9">PROJECT</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell"><a href="#member" title="FK_PROJECT_MEMBER">MEMBER</a></td>
 		<td class="relcell"><a href="#project_member" title="FK_PROJECT_MEMBER_PROJECT">PROJECT_MEMBER</a>, <a href="#ticket" title="FK_TICKET_PROJECT">TICKET</a></td>
@@ -843,7 +843,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">Integer</td>
 	</tr>
 </table>
-<h2 id="project" title="type=TABLE, primaryKey={PROJECT_ID}, nameLength=7, columnCount=8">
+<h2 id="project" title="type=TABLE, primaryKey={PROJECT_ID}, nameLength=7, columnCount=9">
 (プロジェクト)PROJECT
 </h2>
 <table>
@@ -890,24 +890,6 @@ dl.procedurelist dd.column pre {
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">*</td>
-		<td class="aliascell">プロジェクト名</td>
-		<td id="project_project_name">PROJECT_NAME</td>
-		<td class="typecell">VARCHAR</td>
-		<td class="sizecell"> 256 </td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> &nbsp;</td>
-		<td class="subcell">projectName</td>
-		<td class="subcell">String</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">3</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell" title="FK_PROJECT_MEMBER(MEMBER_ID)">o</td>
 		<td class="flgcell">*</td>
 		<td class="aliascell">メンバーID</td>
@@ -922,7 +904,43 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">Long</td>
 	</tr>
 	<tr>
+		<td class="rownumcell">3</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell">プロジェクト名</td>
+		<td id="project_project_name">PROJECT_NAME</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 256 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">projectName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
 		<td class="rownumcell">4</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell">プロジェクト詳細</td>
+		<td id="project_project_detail">PROJECT_DETAIL</td>
+		<td class="typecell">TEXT</td>
+		<td class="sizecell"> 65535 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">projectDetail</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">5</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -940,7 +958,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">5</td>
+		<td class="rownumcell">6</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -958,7 +976,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
+		<td class="rownumcell">7</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -976,7 +994,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">LocalDateTime</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">7</td>
+		<td class="rownumcell">8</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -994,7 +1012,7 @@ dl.procedurelist dd.column pre {
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">8</td>
+		<td class="rownumcell">9</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
