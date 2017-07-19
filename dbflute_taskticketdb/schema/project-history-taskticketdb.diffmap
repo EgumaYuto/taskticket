@@ -1,4 +1,89 @@
 map:{
+    ; 2017/07/17 21:57:19 = map:{
+        ; diffDate = 2017/07/17 21:57:19
+        ; tableDiff = map:{
+            ; TICKET_STATUS = map:{
+                ; tableName = TICKET_STATUS
+                ; diffType = CHANGE
+                ; columnDefOrderDiff = map:{
+                    ; next = TICKET_STATUS_NAME(3)
+                    ; previous = TICKET_STATUS_NAME(4)
+                }
+                ; columnDiff = map:{
+                    ; PROJECT_ID = map:{
+                        ; columnName = PROJECT_ID
+                        ; diffType = ADD
+                    }
+                    ; MEMBER_ID = map:{
+                        ; columnName = MEMBER_ID
+                        ; diffType = DELETE
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; FK_TICKET_STATUS_PROJECT = map:{
+                        ; constraintName = FK_TICKET_STATUS_PROJECT
+                        ; diffType = ADD
+                    }
+                    ; FK_TICKET_STATUS_MEMBER = map:{
+                        ; constraintName = FK_TICKET_STATUS_MEMBER
+                        ; diffType = DELETE
+                    }
+                }
+                ; uniqueKeyDiff = map:{
+                    ; UQ_TICKET_STATUS_PROJECT_ID_TICKET_STATUS_NAME = map:{
+                        ; constraintName = UQ_TICKET_STATUS_PROJECT_ID_TICKET_STATUS_NAME
+                        ; diffType = ADD
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_TICKET_STATUS_MEMBER = map:{
+                        ; constraintName = FK_TICKET_STATUS_MEMBER
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; TICKET_TYPE = map:{
+                ; tableName = TICKET_TYPE
+                ; diffType = CHANGE
+                ; columnDefOrderDiff = map:{
+                    ; next = TICKET_TYPE_NAME(3)
+                    ; previous = TICKET_TYPE_NAME(4)
+                }
+                ; columnDiff = map:{
+                    ; PROJECT_ID = map:{
+                        ; columnName = PROJECT_ID
+                        ; diffType = ADD
+                    }
+                    ; MEMBER_ID = map:{
+                        ; columnName = MEMBER_ID
+                        ; diffType = DELETE
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; FK_TICKET_TYPE_PROJECT = map:{
+                        ; constraintName = FK_TICKET_TYPE_PROJECT
+                        ; diffType = ADD
+                    }
+                    ; FK_TICKET_TYPE_MEMBER = map:{
+                        ; constraintName = FK_TICKET_TYPE_MEMBER
+                        ; diffType = DELETE
+                    }
+                }
+                ; uniqueKeyDiff = map:{
+                    ; UQ_TICKET_TYPE_PROJECT_ID_TICKET_TYPE_NAME = map:{
+                        ; constraintName = UQ_TICKET_TYPE_PROJECT_ID_TICKET_TYPE_NAME
+                        ; diffType = ADD
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_TICKET_TYPE_MEMBER = map:{
+                        ; constraintName = FK_TICKET_TYPE_MEMBER
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
     ; 2017/07/17 14:27:26 = map:{
         ; diffDate = 2017/07/17 14:27:26
         ; tableDiff = map:{

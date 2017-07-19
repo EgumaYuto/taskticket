@@ -59,9 +59,9 @@ public class TicketTypeDbm extends AbstractDBMeta {
     { xsetupEpg(); }
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((TicketType)et).getTicketTypeId(), (et, vl) -> ((TicketType)et).setTicketTypeId(ctl(vl)), "ticketTypeId");
-        setupEpg(_epgMap, et -> ((TicketType)et).getMemberId(), (et, vl) -> ((TicketType)et).setMemberId(ctl(vl)), "memberId");
-        setupEpg(_epgMap, et -> ((TicketType)et).getTicketTypeIcon(), (et, vl) -> ((TicketType)et).setTicketTypeIcon((String)vl), "ticketTypeIcon");
+        setupEpg(_epgMap, et -> ((TicketType)et).getProjectId(), (et, vl) -> ((TicketType)et).setProjectId(ctl(vl)), "projectId");
         setupEpg(_epgMap, et -> ((TicketType)et).getTicketTypeName(), (et, vl) -> ((TicketType)et).setTicketTypeName((String)vl), "ticketTypeName");
+        setupEpg(_epgMap, et -> ((TicketType)et).getTicketTypeIcon(), (et, vl) -> ((TicketType)et).setTicketTypeIcon((String)vl), "ticketTypeIcon");
         setupEpg(_epgMap, et -> ((TicketType)et).getDelFlg(), (et, vl) -> {
             ((TicketType)et).setDelFlg((Boolean)vl);
         }, "delFlg");
@@ -80,7 +80,7 @@ public class TicketTypeDbm extends AbstractDBMeta {
     { xsetupEfpg(); }
     @SuppressWarnings("unchecked")
     protected void xsetupEfpg() {
-        setupEfpg(_efpgMap, et -> ((TicketType)et).getMember(), (et, vl) -> ((TicketType)et).setMember((OptionalEntity<Member>)vl), "member");
+        setupEfpg(_efpgMap, et -> ((TicketType)et).getProject(), (et, vl) -> ((TicketType)et).setProject((OptionalEntity<Project>)vl), "project");
     }
     public PropertyGateway findForeignPropertyGateway(String prop)
     { return doFindEfpg(_efpgMap, prop); }
@@ -104,9 +104,9 @@ public class TicketTypeDbm extends AbstractDBMeta {
     //                                                                         Column Info
     //                                                                         ===========
     protected final ColumnInfo _columnTicketTypeId = cci("TICKET_TYPE_ID", "TICKET_TYPE_ID", null, "チケットタイプID", Long.class, "ticketTypeId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "ticketList", null, false);
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, "メンバーID", Long.class, "memberId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "member", null, null, false);
-    protected final ColumnInfo _columnTicketTypeIcon = cci("TICKET_TYPE_ICON", "TICKET_TYPE_ICON", null, "チケットタイプアイコン", String.class, "ticketTypeIcon", null, false, false, true, "VARCHAR", 128, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnProjectId = cci("PROJECT_ID", "PROJECT_ID", null, "プロジェクトID", Long.class, "projectId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "project", null, null, false);
     protected final ColumnInfo _columnTicketTypeName = cci("TICKET_TYPE_NAME", "TICKET_TYPE_NAME", null, "チケットタイプ名", String.class, "ticketTypeName", null, false, false, true, "VARCHAR", 128, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnTicketTypeIcon = cci("TICKET_TYPE_ICON", "TICKET_TYPE_ICON", null, "チケットタイプアイコン", String.class, "ticketTypeIcon", null, false, false, true, "VARCHAR", 128, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDelFlg = cci("DEL_FLG", "DEL_FLG", null, "削除フラグ", Boolean.class, "delFlg", null, false, false, true, "BIT", null, null, null, false, null, null, null, null, CDef.DefMeta.Flg, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, "登録日時", java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, "登録ユーザー", String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null, false);
@@ -119,20 +119,20 @@ public class TicketTypeDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnTicketTypeId() { return _columnTicketTypeId; }
     /**
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnMemberId() { return _columnMemberId; }
+    public ColumnInfo columnProjectId() { return _columnProjectId; }
+    /**
+     * (チケットタイプ名)TICKET_TYPE_NAME: {+UQ, NotNull, VARCHAR(128)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnTicketTypeName() { return _columnTicketTypeName; }
     /**
      * (チケットタイプアイコン)TICKET_TYPE_ICON: {NotNull, VARCHAR(128)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnTicketTypeIcon() { return _columnTicketTypeIcon; }
-    /**
-     * (チケットタイプ名)TICKET_TYPE_NAME: {NotNull, VARCHAR(128)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnTicketTypeName() { return _columnTicketTypeName; }
     /**
      * (削除フラグ)DEL_FLG: {NotNull, BIT, classification=Flg}
      * @return The information object of specified column. (NotNull)
@@ -162,9 +162,9 @@ public class TicketTypeDbm extends AbstractDBMeta {
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnTicketTypeId());
-        ls.add(columnMemberId());
-        ls.add(columnTicketTypeIcon());
+        ls.add(columnProjectId());
         ls.add(columnTicketTypeName());
+        ls.add(columnTicketTypeIcon());
         ls.add(columnDelFlg());
         ls.add(columnRegisterDatetime());
         ls.add(columnRegisterUser());
@@ -185,6 +185,16 @@ public class TicketTypeDbm extends AbstractDBMeta {
     public boolean hasPrimaryKey() { return true; }
     public boolean hasCompoundPrimaryKey() { return false; }
 
+    // -----------------------------------------------------
+    //                                        Unique Element
+    //                                        --------------
+    public UniqueInfo uniqueOf() {
+        List<ColumnInfo> ls = newArrayListSized(4);
+        ls.add(columnProjectId());
+        ls.add(columnTicketTypeName());
+        return hpcui(ls);
+    }
+
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
@@ -194,12 +204,12 @@ public class TicketTypeDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     /**
-     * (メンバー)MEMBER by my MEMBER_ID, named 'member'.
+     * (プロジェクト)PROJECT by my PROJECT_ID, named 'project'.
      * @return The information object of foreign property. (NotNull)
      */
-    public ForeignInfo foreignMember() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
-        return cfi("FK_TICKET_TYPE_MEMBER", "member", this, MemberDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "ticketTypeList", false);
+    public ForeignInfo foreignProject() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProjectId(), ProjectDbm.getInstance().columnProjectId());
+        return cfi("FK_TICKET_TYPE_PROJECT", "project", this, ProjectDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "ticketTypeList", false);
     }
 
     // -----------------------------------------------------

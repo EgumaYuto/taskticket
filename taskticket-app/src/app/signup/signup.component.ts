@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../_service/auth.service";
-import {UserInfoService} from "../_service/user.info";
+import {UserInfoService} from "../_service/user.info.service";
 import {IUser} from "../_model/user";
 import {IValidationErrorResp} from "../_model/error.validation";
 

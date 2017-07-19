@@ -6,7 +6,7 @@
       <a href="/project" class="collapsible-header active waves-effect waves-teal">Project</a>
       <div class="collapsible-body" style="display: block;">
         <ul>
-          <li *ngFor="let name of projectNameList"><a href="#">{{name}}</a></li>
+          <li *ngFor="let project of projectList"><a href="{{getProjectUrl(project)}}">{{project.projectName}}</a></li>
           <li><a href="/project/add"><i class="material-icons">add</i></a></li>
         </ul>
       </div>

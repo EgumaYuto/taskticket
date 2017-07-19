@@ -273,14 +273,14 @@
             dbType="BIGINT" javaType="Long" name="TICKET_STATUS_ID"
             pkName="PRIMARY" pkPosition="1" primaryKey="true"
             required="true" size="19" type="BIGINT"/>
-        <column comment="メンバーID : このステータスを作ったメンバー" dbType="BIGINT"
-            javaType="Long" name="MEMBER_ID" required="true" size="19" type="BIGINT"/>
+        <column comment="プロジェクトID" dbType="BIGINT" javaType="Long"
+            name="PROJECT_ID" required="true" size="19" type="BIGINT"/>
+        <column comment="チケットステータス名" dbType="VARCHAR" javaType="String"
+            name="TICKET_STATUS_NAME" required="true" size="128" type="VARCHAR"/>
         <column
             comment="チケットステータスアイコン : http://fontawesome.io/icons/ を参考に"
             dbType="VARCHAR" javaType="String" name="TICKET_STATUS_ICON"
             required="true" size="128" type="VARCHAR"/>
-        <column comment="チケットステータス名" dbType="VARCHAR" javaType="String"
-            name="TICKET_STATUS_NAME" required="true" size="128" type="VARCHAR"/>
         <column comment="削除フラグ" dbType="BIT" javaType="Boolean"
             name="DEL_FLG" required="true" type="BIT"/>
         <column comment="登録日時 : レコードが登録された日時" dbType="DATETIME"
@@ -296,24 +296,25 @@
             javaType="String" name="UPDATE_USER" required="true"
             size="200" type="VARCHAR"/>
         <foreign-key foreignSchema="taskticketdb.$$NoNameSchema$$"
-            foreignTable="MEMBER" name="FK_TICKET_STATUS_MEMBER">
-            <reference foreign="MEMBER_ID" local="MEMBER_ID"/>
+            foreignTable="PROJECT" name="FK_TICKET_STATUS_PROJECT">
+            <reference foreign="PROJECT_ID" local="PROJECT_ID"/>
         </foreign-key>
-        <index name="FK_TICKET_STATUS_MEMBER">
-            <index-column name="MEMBER_ID" position="1"/>
-        </index>
+        <unique name="UQ_TICKET_STATUS_PROJECT_ID_TICKET_STATUS_NAME">
+            <unique-column name="PROJECT_ID" position="1"/>
+            <unique-column name="TICKET_STATUS_NAME" position="2"/>
+        </unique>
     </table>
     <table comment="チケットタイプ" name="TICKET_TYPE"
         schema="taskticketdb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="チケットタイプID" dbType="BIGINT"
             javaType="Long" name="TICKET_TYPE_ID" pkName="PRIMARY"
             pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
-        <column comment="メンバーID : このチケットタイプを作ったメンバー" dbType="BIGINT"
-            javaType="Long" name="MEMBER_ID" required="true" size="19" type="BIGINT"/>
-        <column comment="チケットタイプアイコン" dbType="VARCHAR" javaType="String"
-            name="TICKET_TYPE_ICON" required="true" size="128" type="VARCHAR"/>
+        <column comment="プロジェクトID" dbType="BIGINT" javaType="Long"
+            name="PROJECT_ID" required="true" size="19" type="BIGINT"/>
         <column comment="チケットタイプ名" dbType="VARCHAR" javaType="String"
             name="TICKET_TYPE_NAME" required="true" size="128" type="VARCHAR"/>
+        <column comment="チケットタイプアイコン" dbType="VARCHAR" javaType="String"
+            name="TICKET_TYPE_ICON" required="true" size="128" type="VARCHAR"/>
         <column comment="削除フラグ" dbType="BIT" javaType="Boolean"
             name="DEL_FLG" required="true" type="BIT"/>
         <column comment="登録日時 : レコードが登録された日時" dbType="DATETIME"
@@ -329,12 +330,13 @@
             javaType="String" name="UPDATE_USER" required="true"
             size="200" type="VARCHAR"/>
         <foreign-key foreignSchema="taskticketdb.$$NoNameSchema$$"
-            foreignTable="MEMBER" name="FK_TICKET_TYPE_MEMBER">
-            <reference foreign="MEMBER_ID" local="MEMBER_ID"/>
+            foreignTable="PROJECT" name="FK_TICKET_TYPE_PROJECT">
+            <reference foreign="PROJECT_ID" local="PROJECT_ID"/>
         </foreign-key>
-        <index name="FK_TICKET_TYPE_MEMBER">
-            <index-column name="MEMBER_ID" position="1"/>
-        </index>
+        <unique name="UQ_TICKET_TYPE_PROJECT_ID_TICKET_TYPE_NAME">
+            <unique-column name="PROJECT_ID" position="1"/>
+            <unique-column name="TICKET_TYPE_NAME" position="2"/>
+        </unique>
     </table>
     <procedureGroup/>
 </database>

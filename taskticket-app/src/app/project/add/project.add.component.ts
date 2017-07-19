@@ -1,8 +1,9 @@
 ///<reference path="../../../../node_modules/rxjs/add/operator/toPromise.d.ts"/>
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers } from "@angular/http";
-import { UserInfoService } from "../../_service/user.info";
-import {validateProjectName} from "@angular/cli/utilities/validate-project-name";
+import { UserInfoService } from "../../_service/user.info.service";
+import {IProject, IProjectList} from "../../_model/project";
+import {ProjectService} from "../../_service/project.service";
 
 @Component({
   selector: 'project-add',
@@ -21,27 +22,20 @@ export class ProjectAddComponent implements OnInit {
   //                                                                           =========
   projectName: string;
   projectDetail: string;
-  projectNameList: Array<string>;
+  projectList: Array<IProject>;
 
   // ===================================================================================
   //                                                                         Constructor
   //                                                                         ===========
-  constructor(private http: Http, private userInfoService: UserInfoService) {}
+  constructor(private http: Http, private userInfoService: UserInfoService, private projectSerivce: ProjectService) { }
 
   ngOnInit() {
     this.getProjectList();
   }
 
   private getProjectList(): void {
-    let headers = new Headers({
-      'Content-Type': 'application/json',
-      'Authorization' : this.userInfoService.getUserInfo().accessToken
-    });
-    this.http.get(ProjectAddComponent._projectUrl, {headers: headers}).toPromise()
-      .then(res => {
-        this.projectNameList = res.json().projectList.map(project => {
-          return project.projectName;
-        });
+    this.projectSerivce.getProjectList().then(res => {
+        this.projectList = (res.json() as IProjectList).projectList;
       }).catch(res => console.log(res));
   }
 
@@ -55,7 +49,15 @@ export class ProjectAddComponent implements OnInit {
       projectDetail: this.projectDetail
     });
     this.http.post(ProjectAddComponent._projectUrl, body, {headers: headers}).toPromise()
-      .then(res => {})
-      .catch(res => console.log(res));
+      .then(res => {
+        console.log(res);
+        let project = res.json() as IProject;
+        console.log(project);
+        window.location.href = '/project/' + project.projectId;
+      }).catch(res => console.log(res));
+  }
+
+  public getProjectUrl(project: IProject) {
+    return '/project/' + project.projectId;
   }
 }

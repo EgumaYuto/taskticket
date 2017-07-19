@@ -2,7 +2,7 @@
 import { Http, Headers } from "@angular/http";
 import { Injectable } from "@angular/core";
 import { Promise } from "es6-promise";
-import { UserInfoService } from "./user.info";
+import { UserInfoService } from "./user.info.service";
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()

@@ -11,9 +11,11 @@ import { SignupComponent } from "./signup/signup.component";
 import { MypageComponent } from "./mypage/mypage.component";
 
 import { AuthGuard } from "./auth.guard";
-import { UserInfoService } from "./_service/user.info";
+import { UserInfoService } from "./_service/user.info.service";
 import { AuthService } from "./_service/auth.service";
+import { ProjectComponent } from "./project/project.component";
 import { ProjectAddComponent } from "./project/add/project.add.component";
+import {ProjectService} from "./_service/project.service";
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { ProjectAddComponent } from "./project/add/project.add.component";
     LoginComponent,
     SignupComponent,
     MypageComponent,
+    ProjectComponent,
     ProjectAddComponent
   ],
   imports: [
@@ -33,7 +36,8 @@ import { ProjectAddComponent } from "./project/add/project.add.component";
   providers: [
     AuthGuard,
     AuthService,
-    UserInfoService
+    UserInfoService,
+    ProjectService
   ],
   bootstrap: [AppComponent]
 })

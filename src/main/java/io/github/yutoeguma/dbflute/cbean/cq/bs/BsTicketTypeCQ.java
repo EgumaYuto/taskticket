@@ -122,25 +122,45 @@ public class BsTicketTypeCQ extends AbstractBsTicketTypeCQ {
      */
     public BsTicketTypeCQ addOrderBy_TicketTypeId_Desc() { regOBD("TICKET_TYPE_ID"); return this; }
 
-    protected ConditionValue _memberId;
-    public ConditionValue xdfgetMemberId()
-    { if (_memberId == null) { _memberId = nCV(); }
-      return _memberId; }
-    protected ConditionValue xgetCValueMemberId() { return xdfgetMemberId(); }
+    protected ConditionValue _projectId;
+    public ConditionValue xdfgetProjectId()
+    { if (_projectId == null) { _projectId = nCV(); }
+      return _projectId; }
+    protected ConditionValue xgetCValueProjectId() { return xdfgetProjectId(); }
 
     /** 
      * Add order-by as ascend. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
      * @return this. (NotNull)
      */
-    public BsTicketTypeCQ addOrderBy_MemberId_Asc() { regOBA("MEMBER_ID"); return this; }
+    public BsTicketTypeCQ addOrderBy_ProjectId_Asc() { regOBA("PROJECT_ID"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
      * @return this. (NotNull)
      */
-    public BsTicketTypeCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
+    public BsTicketTypeCQ addOrderBy_ProjectId_Desc() { regOBD("PROJECT_ID"); return this; }
+
+    protected ConditionValue _ticketTypeName;
+    public ConditionValue xdfgetTicketTypeName()
+    { if (_ticketTypeName == null) { _ticketTypeName = nCV(); }
+      return _ticketTypeName; }
+    protected ConditionValue xgetCValueTicketTypeName() { return xdfgetTicketTypeName(); }
+
+    /** 
+     * Add order-by as ascend. <br>
+     * (チケットタイプ名)TICKET_TYPE_NAME: {+UQ, NotNull, VARCHAR(128)}
+     * @return this. (NotNull)
+     */
+    public BsTicketTypeCQ addOrderBy_TicketTypeName_Asc() { regOBA("TICKET_TYPE_NAME"); return this; }
+
+    /**
+     * Add order-by as descend. <br>
+     * (チケットタイプ名)TICKET_TYPE_NAME: {+UQ, NotNull, VARCHAR(128)}
+     * @return this. (NotNull)
+     */
+    public BsTicketTypeCQ addOrderBy_TicketTypeName_Desc() { regOBD("TICKET_TYPE_NAME"); return this; }
 
     protected ConditionValue _ticketTypeIcon;
     public ConditionValue xdfgetTicketTypeIcon()
@@ -161,26 +181,6 @@ public class BsTicketTypeCQ extends AbstractBsTicketTypeCQ {
      * @return this. (NotNull)
      */
     public BsTicketTypeCQ addOrderBy_TicketTypeIcon_Desc() { regOBD("TICKET_TYPE_ICON"); return this; }
-
-    protected ConditionValue _ticketTypeName;
-    public ConditionValue xdfgetTicketTypeName()
-    { if (_ticketTypeName == null) { _ticketTypeName = nCV(); }
-      return _ticketTypeName; }
-    protected ConditionValue xgetCValueTicketTypeName() { return xdfgetTicketTypeName(); }
-
-    /** 
-     * Add order-by as ascend. <br>
-     * (チケットタイプ名)TICKET_TYPE_NAME: {NotNull, VARCHAR(128)}
-     * @return this. (NotNull)
-     */
-    public BsTicketTypeCQ addOrderBy_TicketTypeName_Asc() { regOBA("TICKET_TYPE_NAME"); return this; }
-
-    /**
-     * Add order-by as descend. <br>
-     * (チケットタイプ名)TICKET_TYPE_NAME: {NotNull, VARCHAR(128)}
-     * @return this. (NotNull)
-     */
-    public BsTicketTypeCQ addOrderBy_TicketTypeName_Desc() { regOBD("TICKET_TYPE_NAME"); return this; }
 
     protected ConditionValue _delFlg;
     public ConditionValue xdfgetDelFlg()
@@ -323,8 +323,8 @@ public class BsTicketTypeCQ extends AbstractBsTicketTypeCQ {
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         TicketTypeCQ bq = (TicketTypeCQ)bqs;
         TicketTypeCQ uq = (TicketTypeCQ)uqs;
-        if (bq.hasConditionQueryMember()) {
-            uq.queryMember().reflectRelationOnUnionQuery(bq.queryMember(), uq.queryMember());
+        if (bq.hasConditionQueryProject()) {
+            uq.queryProject().reflectRelationOnUnionQuery(bq.queryProject(), uq.queryProject());
         }
     }
 
@@ -333,23 +333,23 @@ public class BsTicketTypeCQ extends AbstractBsTicketTypeCQ {
     //                                                                       =============
     /**
      * Get the condition-query for relation table. <br>
-     * (メンバー)MEMBER by my MEMBER_ID, named 'member'.
+     * (プロジェクト)PROJECT by my PROJECT_ID, named 'project'.
      * @return The instance of condition-query. (NotNull)
      */
-    public MemberCQ queryMember() {
-        return xdfgetConditionQueryMember();
+    public ProjectCQ queryProject() {
+        return xdfgetConditionQueryProject();
     }
-    public MemberCQ xdfgetConditionQueryMember() {
-        String prop = "member";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMember()); xsetupOuterJoinMember(); }
+    public ProjectCQ xdfgetConditionQueryProject() {
+        String prop = "project";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryProject()); xsetupOuterJoinProject(); }
         return xgetQueRlMap(prop);
     }
-    protected MemberCQ xcreateQueryMember() {
-        String nrp = xresolveNRP("TICKET_TYPE", "member"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new MemberCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "member", nrp);
+    protected ProjectCQ xcreateQueryProject() {
+        String nrp = xresolveNRP("TICKET_TYPE", "project"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new ProjectCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "project", nrp);
     }
-    protected void xsetupOuterJoinMember() { xregOutJo("member"); }
-    public boolean hasConditionQueryMember() { return xhasQueRlMap("member"); }
+    protected void xsetupOuterJoinProject() { xregOutJo("project"); }
+    public boolean hasConditionQueryProject() { return xhasQueRlMap("project"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;

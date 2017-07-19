@@ -85,10 +85,6 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     { throwIICBOE("ExistsReferrer"); return null; }
     public String keepMemberId_ExistsReferrer_TicketByMemberIdList(TicketCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepMemberId_ExistsReferrer_TicketStatusList(TicketStatusCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepMemberId_ExistsReferrer_TicketTypeList(TicketTypeCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
     public String keepMemberId_NotExistsReferrer_ProjectList(ProjectCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepMemberId_NotExistsReferrer_ProjectMemberList(ProjectMemberCQ sq)
@@ -97,10 +93,6 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepMemberId_NotExistsReferrer_TicketByMemberIdList(TicketCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepMemberId_NotExistsReferrer_TicketStatusList(TicketStatusCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepMemberId_NotExistsReferrer_TicketTypeList(TicketTypeCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepMemberId_SpecifyDerivedReferrer_ProjectList(ProjectCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepMemberId_SpecifyDerivedReferrer_ProjectMemberList(ProjectMemberCQ sq)
@@ -108,10 +100,6 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     public String keepMemberId_SpecifyDerivedReferrer_TicketByAssigneedMemberIdList(TicketCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepMemberId_SpecifyDerivedReferrer_TicketByMemberIdList(TicketCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepMemberId_SpecifyDerivedReferrer_TicketStatusList(TicketStatusCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepMemberId_SpecifyDerivedReferrer_TicketTypeList(TicketTypeCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepMemberId_QueryDerivedReferrer_ProjectList(ProjectCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
@@ -128,14 +116,6 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     public String keepMemberId_QueryDerivedReferrer_TicketByMemberIdList(TicketCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepMemberId_QueryDerivedReferrer_TicketByMemberIdListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_TicketStatusList(TicketStatusCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_TicketStatusListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_TicketTypeList(TicketTypeCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepMemberId_QueryDerivedReferrer_TicketTypeListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueMemberName() { return _myCQ.xdfgetMemberName(); }
     protected ConditionValue xgetCValuePassword() { return _myCQ.xdfgetPassword(); }

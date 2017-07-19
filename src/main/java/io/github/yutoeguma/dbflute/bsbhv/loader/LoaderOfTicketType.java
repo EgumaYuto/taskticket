@@ -30,7 +30,7 @@ import io.github.yutoeguma.dbflute.cbean.*;
  *     TICKET_TYPE_ID
  *
  * [column]
- *     TICKET_TYPE_ID, MEMBER_ID, TICKET_TYPE_ICON, TICKET_TYPE_NAME, DEL_FLG, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER
+ *     TICKET_TYPE_ID, PROJECT_ID, TICKET_TYPE_NAME, TICKET_TYPE_ICON, DEL_FLG, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER
  *
  * [sequence]
  *     
@@ -42,13 +42,13 @@ import io.github.yutoeguma.dbflute.cbean.*;
  *     
  *
  * [foreign table]
- *     MEMBER
+ *     PROJECT
  *
  * [referrer table]
  *     TICKET
  *
  * [foreign property]
- *     member
+ *     project
  *
  * [referrer property]
  *     ticketList
@@ -113,11 +113,11 @@ public class LoaderOfTicketType {
     // ===================================================================================
     //                                                                    Pull out Foreign
     //                                                                    ================
-    protected LoaderOfMember _foreignMemberLoader;
-    public LoaderOfMember pulloutMember() {
-        if (_foreignMemberLoader == null)
-        { _foreignMemberLoader = new LoaderOfMember().ready(myBhv().pulloutMember(_selectedList), _selector); }
-        return _foreignMemberLoader;
+    protected LoaderOfProject _foreignProjectLoader;
+    public LoaderOfProject pulloutProject() {
+        if (_foreignProjectLoader == null)
+        { _foreignProjectLoader = new LoaderOfProject().ready(myBhv().pulloutProject(_selectedList), _selector); }
+        return _foreignProjectLoader;
     }
 
     // ===================================================================================

@@ -262,120 +262,180 @@ public abstract class AbstractBsTicketStatusCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @param memberId The value of memberId as equal. (basically NotNull: error as default, or no condition as option)
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
+     * @param projectId The value of projectId as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_Equal(Long memberId) {
-        doSetMemberId_Equal(memberId);
+    public void setProjectId_Equal(Long projectId) {
+        doSetProjectId_Equal(projectId);
     }
 
-    protected void doSetMemberId_Equal(Long memberId) {
-        regMemberId(CK_EQ, memberId);
+    protected void doSetProjectId_Equal(Long projectId) {
+        regProjectId(CK_EQ, projectId);
     }
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @param memberId The value of memberId as notEqual. (basically NotNull: error as default, or no condition as option)
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
+     * @param projectId The value of projectId as notEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_NotEqual(Long memberId) {
-        doSetMemberId_NotEqual(memberId);
+    public void setProjectId_NotEqual(Long projectId) {
+        doSetProjectId_NotEqual(projectId);
     }
 
-    protected void doSetMemberId_NotEqual(Long memberId) {
-        regMemberId(CK_NES, memberId);
+    protected void doSetProjectId_NotEqual(Long projectId) {
+        regProjectId(CK_NES, projectId);
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @param memberId The value of memberId as greaterThan. (basically NotNull: error as default, or no condition as option)
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
+     * @param projectId The value of projectId as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_GreaterThan(Long memberId) {
-        regMemberId(CK_GT, memberId);
+    public void setProjectId_GreaterThan(Long projectId) {
+        regProjectId(CK_GT, projectId);
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @param memberId The value of memberId as lessThan. (basically NotNull: error as default, or no condition as option)
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
+     * @param projectId The value of projectId as lessThan. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_LessThan(Long memberId) {
-        regMemberId(CK_LT, memberId);
+    public void setProjectId_LessThan(Long projectId) {
+        regProjectId(CK_LT, projectId);
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @param memberId The value of memberId as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
+     * @param projectId The value of projectId as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_GreaterEqual(Long memberId) {
-        regMemberId(CK_GE, memberId);
+    public void setProjectId_GreaterEqual(Long projectId) {
+        regProjectId(CK_GE, projectId);
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @param memberId The value of memberId as lessEqual. (basically NotNull: error as default, or no condition as option)
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
+     * @param projectId The value of projectId as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
-    public void setMemberId_LessEqual(Long memberId) {
-        regMemberId(CK_LE, memberId);
+    public void setProjectId_LessEqual(Long projectId) {
+        regProjectId(CK_LE, projectId);
     }
 
     /**
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
-     * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
+     * @param minNumber The min number of projectId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of projectId. (NullAllowed: if null, no to-condition)
      * @param opLambda The callback for option of range-of. (NotNull)
      */
-    public void setMemberId_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
-        setMemberId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    public void setProjectId_RangeOf(Long minNumber, Long maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setProjectId_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
     }
 
     /**
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
-     * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
+     * @param minNumber The min number of projectId. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of projectId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
      */
-    protected void setMemberId_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
-        regROO(minNumber, maxNumber, xgetCValueMemberId(), "MEMBER_ID", rangeOfOption);
+    protected void setProjectId_RangeOf(Long minNumber, Long maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueProjectId(), "PROJECT_ID", rangeOfOption);
     }
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @param memberIdList The collection of memberId as inScope. (NullAllowed: if null (or empty), no condition)
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
+     * @param projectIdList The collection of projectId as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setMemberId_InScope(Collection<Long> memberIdList) {
-        doSetMemberId_InScope(memberIdList);
+    public void setProjectId_InScope(Collection<Long> projectIdList) {
+        doSetProjectId_InScope(projectIdList);
     }
 
-    protected void doSetMemberId_InScope(Collection<Long> memberIdList) {
-        regINS(CK_INS, cTL(memberIdList), xgetCValueMemberId(), "MEMBER_ID");
+    protected void doSetProjectId_InScope(Collection<Long> projectIdList) {
+        regINS(CK_INS, cTL(projectIdList), xgetCValueProjectId(), "PROJECT_ID");
     }
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
-     * @param memberIdList The collection of memberId as notInScope. (NullAllowed: if null (or empty), no condition)
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
+     * @param projectIdList The collection of projectId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setMemberId_NotInScope(Collection<Long> memberIdList) {
-        doSetMemberId_NotInScope(memberIdList);
+    public void setProjectId_NotInScope(Collection<Long> projectIdList) {
+        doSetProjectId_NotInScope(projectIdList);
     }
 
-    protected void doSetMemberId_NotInScope(Collection<Long> memberIdList) {
-        regINS(CK_NINS, cTL(memberIdList), xgetCValueMemberId(), "MEMBER_ID");
+    protected void doSetProjectId_NotInScope(Collection<Long> projectIdList) {
+        regINS(CK_NINS, cTL(projectIdList), xgetCValueProjectId(), "PROJECT_ID");
     }
 
-    protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueMemberId(), "MEMBER_ID"); }
-    protected abstract ConditionValue xgetCValueMemberId();
+    protected void regProjectId(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueProjectId(), "PROJECT_ID"); }
+    protected abstract ConditionValue xgetCValueProjectId();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
+     * (チケットステータス名)TICKET_STATUS_NAME: {+UQ, NotNull, VARCHAR(128)}
+     * @param ticketStatusName The value of ticketStatusName as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setTicketStatusName_Equal(String ticketStatusName) {
+        doSetTicketStatusName_Equal(fRES(ticketStatusName));
+    }
+
+    protected void doSetTicketStatusName_Equal(String ticketStatusName) {
+        regTicketStatusName(CK_EQ, ticketStatusName);
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (チケットステータス名)TICKET_STATUS_NAME: {+UQ, NotNull, VARCHAR(128)} <br>
+     * <pre>e.g. setTicketStatusName_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
+     * @param ticketStatusName The value of ticketStatusName as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setTicketStatusName_LikeSearch(String ticketStatusName, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setTicketStatusName_LikeSearch(ticketStatusName, xcLSOP(opLambda));
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (チケットステータス名)TICKET_STATUS_NAME: {+UQ, NotNull, VARCHAR(128)} <br>
+     * <pre>e.g. setTicketStatusName_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param ticketStatusName The value of ticketStatusName as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    protected void setTicketStatusName_LikeSearch(String ticketStatusName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(ticketStatusName), xgetCValueTicketStatusName(), "TICKET_STATUS_NAME", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (チケットステータス名)TICKET_STATUS_NAME: {+UQ, NotNull, VARCHAR(128)}
+     * @param ticketStatusName The value of ticketStatusName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param opLambda The callback for option of like-search. (NotNull)
+     */
+    public void setTicketStatusName_NotLikeSearch(String ticketStatusName, ConditionOptionCall<LikeSearchOption> opLambda) {
+        setTicketStatusName_NotLikeSearch(ticketStatusName, xcLSOP(opLambda));
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
+     * And NullOrEmptyIgnored, SeveralRegistered. <br>
+     * (チケットステータス名)TICKET_STATUS_NAME: {+UQ, NotNull, VARCHAR(128)}
+     * @param ticketStatusName The value of ticketStatusName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    protected void setTicketStatusName_NotLikeSearch(String ticketStatusName, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(ticketStatusName), xgetCValueTicketStatusName(), "TICKET_STATUS_NAME", likeSearchOption);
+    }
+
+    protected void regTicketStatusName(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueTicketStatusName(), "TICKET_STATUS_NAME"); }
+    protected abstract ConditionValue xgetCValueTicketStatusName();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
@@ -475,66 +535,6 @@ public abstract class AbstractBsTicketStatusCQ extends AbstractConditionQuery {
 
     protected void regTicketStatusIcon(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueTicketStatusIcon(), "TICKET_STATUS_ICON"); }
     protected abstract ConditionValue xgetCValueTicketStatusIcon();
-
-    /**
-     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * (チケットステータス名)TICKET_STATUS_NAME: {NotNull, VARCHAR(128)}
-     * @param ticketStatusName The value of ticketStatusName as equal. (NullAllowed: if null (or empty), no condition)
-     */
-    public void setTicketStatusName_Equal(String ticketStatusName) {
-        doSetTicketStatusName_Equal(fRES(ticketStatusName));
-    }
-
-    protected void doSetTicketStatusName_Equal(String ticketStatusName) {
-        regTicketStatusName(CK_EQ, ticketStatusName);
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (チケットステータス名)TICKET_STATUS_NAME: {NotNull, VARCHAR(128)} <br>
-     * <pre>e.g. setTicketStatusName_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
-     * @param ticketStatusName The value of ticketStatusName as likeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setTicketStatusName_LikeSearch(String ticketStatusName, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setTicketStatusName_LikeSearch(ticketStatusName, xcLSOP(opLambda));
-    }
-
-    /**
-     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (チケットステータス名)TICKET_STATUS_NAME: {NotNull, VARCHAR(128)} <br>
-     * <pre>e.g. setTicketStatusName_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
-     * @param ticketStatusName The value of ticketStatusName as likeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of like-search. (NotNull)
-     */
-    protected void setTicketStatusName_LikeSearch(String ticketStatusName, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_LS, fRES(ticketStatusName), xgetCValueTicketStatusName(), "TICKET_STATUS_NAME", likeSearchOption);
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (チケットステータス名)TICKET_STATUS_NAME: {NotNull, VARCHAR(128)}
-     * @param ticketStatusName The value of ticketStatusName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param opLambda The callback for option of like-search. (NotNull)
-     */
-    public void setTicketStatusName_NotLikeSearch(String ticketStatusName, ConditionOptionCall<LikeSearchOption> opLambda) {
-        setTicketStatusName_NotLikeSearch(ticketStatusName, xcLSOP(opLambda));
-    }
-
-    /**
-     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
-     * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * (チケットステータス名)TICKET_STATUS_NAME: {NotNull, VARCHAR(128)}
-     * @param ticketStatusName The value of ticketStatusName as notLikeSearch. (NullAllowed: if null (or empty), no condition)
-     * @param likeSearchOption The option of not-like-search. (NotNull)
-     */
-    protected void setTicketStatusName_NotLikeSearch(String ticketStatusName, LikeSearchOption likeSearchOption) {
-        regLSQ(CK_NLS, fRES(ticketStatusName), xgetCValueTicketStatusName(), "TICKET_STATUS_NAME", likeSearchOption);
-    }
-
-    protected void regTicketStatusName(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueTicketStatusName(), "TICKET_STATUS_NAME"); }
-    protected abstract ConditionValue xgetCValueTicketStatusName();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>

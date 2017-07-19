@@ -35,11 +35,11 @@ public class TicketTypeNss {
     //                                                                     ===============
     /**
      * With nested relation columns to select clause. <br>
-     * (メンバー)MEMBER by my MEMBER_ID, named 'member'.
+     * (プロジェクト)PROJECT by my PROJECT_ID, named 'project'.
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public MemberNss withMember() {
-        _query.xdoNss(() -> _query.queryMember());
-        return new MemberNss(_query.queryMember());
+    public ProjectNss withProject() {
+        _query.xdoNss(() -> _query.queryProject());
+        return new ProjectNss(_query.queryProject());
     }
 }

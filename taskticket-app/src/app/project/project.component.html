@@ -1,0 +1,38 @@
+<header>
+  <ul class="side-nav fixed">
+    <li><a href="/" class="brand-logo collapsible-header active waves-effect waves-teal"><h3>Taskticket</h3></a></li>
+    <li><a href="/" class="collapsible-header active waves-effect waves-teal">My Page</a></li>
+    <li>
+      <a href="/project" class="collapsible-header active waves-effect waves-teal">Project</a>
+      <div class="collapsible-body" style="display: block;">
+        <ul>
+          <li *ngFor="let project of projectList"><a href="{{getProjectUrl(project)}}">{{project.projectName}}</a></li>
+          <li><a href="/project/add"><i class="material-icons">add</i></a></li>
+        </ul>
+      </div>
+    </li>
+    <li><a href="/" class="collapsible-header active waves-effect waves-teal">Logout</a></li>
+  </ul>
+  <nav class="light-blue lighten-3">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="#" class="page-title">Project</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main role="main">
+  <div class="container">
+    <section id="project">
+      <h2>{{project?.projectId}}</h2>
+      <p>{{project?.projectName}}</p>
+      <div class="row">
+        <div class="collection">
+          <a href="#" class="collection-item">Task</a>
+          <a href="#" class="collection-item">Task</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>

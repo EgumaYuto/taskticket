@@ -87,9 +87,9 @@ public class TicketTypeCIQ extends AbstractBsTicketTypeCQ {
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepTicketTypeId_QueryDerivedReferrer_TicketListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    protected ConditionValue xgetCValueMemberId() { return _myCQ.xdfgetMemberId(); }
-    protected ConditionValue xgetCValueTicketTypeIcon() { return _myCQ.xdfgetTicketTypeIcon(); }
+    protected ConditionValue xgetCValueProjectId() { return _myCQ.xdfgetProjectId(); }
     protected ConditionValue xgetCValueTicketTypeName() { return _myCQ.xdfgetTicketTypeName(); }
+    protected ConditionValue xgetCValueTicketTypeIcon() { return _myCQ.xdfgetTicketTypeIcon(); }
     protected ConditionValue xgetCValueDelFlg() { return _myCQ.xdfgetDelFlg(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueRegisterUser() { return _myCQ.xdfgetRegisterUser(); }

@@ -211,6 +211,44 @@ public abstract class AbstractBsProjectCQ extends AbstractConditionQuery {
     public abstract String keepProjectId_ExistsReferrer_TicketList(TicketCQ sq);
 
     /**
+     * Set up ExistsReferrer (correlated sub-query). <br>
+     * {exists (select PROJECT_ID from TICKET_STATUS where ...)} <br>
+     * (チケットステータス)TICKET_STATUS by PROJECT_ID, named 'ticketStatusAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">existsTicketStatus</span>(statusCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     statusCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of TicketStatusList for 'exists'. (NotNull)
+     */
+    public void existsTicketStatus(SubQuery<TicketStatusCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        TicketStatusCB cb = new TicketStatusCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepProjectId_ExistsReferrer_TicketStatusList(cb.query());
+        registerExistsReferrer(cb.query(), "PROJECT_ID", "PROJECT_ID", pp, "ticketStatusList");
+    }
+    public abstract String keepProjectId_ExistsReferrer_TicketStatusList(TicketStatusCQ sq);
+
+    /**
+     * Set up ExistsReferrer (correlated sub-query). <br>
+     * {exists (select PROJECT_ID from TICKET_TYPE where ...)} <br>
+     * (チケットタイプ)TICKET_TYPE by PROJECT_ID, named 'ticketTypeAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">existsTicketType</span>(typeCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     typeCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of TicketTypeList for 'exists'. (NotNull)
+     */
+    public void existsTicketType(SubQuery<TicketTypeCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        TicketTypeCB cb = new TicketTypeCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepProjectId_ExistsReferrer_TicketTypeList(cb.query());
+        registerExistsReferrer(cb.query(), "PROJECT_ID", "PROJECT_ID", pp, "ticketTypeList");
+    }
+    public abstract String keepProjectId_ExistsReferrer_TicketTypeList(TicketTypeCQ sq);
+
+    /**
      * Set up NotExistsReferrer (correlated sub-query). <br>
      * {not exists (select PROJECT_ID from PROJECT_MEMBER where ...)} <br>
      * (プロジェクトメンバー)PROJECT_MEMBER by PROJECT_ID, named 'projectMemberAsOne'.
@@ -248,6 +286,44 @@ public abstract class AbstractBsProjectCQ extends AbstractConditionQuery {
     }
     public abstract String keepProjectId_NotExistsReferrer_TicketList(TicketCQ sq);
 
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br>
+     * {not exists (select PROJECT_ID from TICKET_STATUS where ...)} <br>
+     * (チケットステータス)TICKET_STATUS by PROJECT_ID, named 'ticketStatusAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">notExistsTicketStatus</span>(statusCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     statusCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of ProjectId_NotExistsReferrer_TicketStatusList for 'not exists'. (NotNull)
+     */
+    public void notExistsTicketStatus(SubQuery<TicketStatusCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        TicketStatusCB cb = new TicketStatusCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepProjectId_NotExistsReferrer_TicketStatusList(cb.query());
+        registerNotExistsReferrer(cb.query(), "PROJECT_ID", "PROJECT_ID", pp, "ticketStatusList");
+    }
+    public abstract String keepProjectId_NotExistsReferrer_TicketStatusList(TicketStatusCQ sq);
+
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br>
+     * {not exists (select PROJECT_ID from TICKET_TYPE where ...)} <br>
+     * (チケットタイプ)TICKET_TYPE by PROJECT_ID, named 'ticketTypeAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">notExistsTicketType</span>(typeCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     typeCB.query().set...
+     * });
+     * </pre>
+     * @param subCBLambda The callback for sub-query of ProjectId_NotExistsReferrer_TicketTypeList for 'not exists'. (NotNull)
+     */
+    public void notExistsTicketType(SubQuery<TicketTypeCB> subCBLambda) {
+        assertObjectNotNull("subCBLambda", subCBLambda);
+        TicketTypeCB cb = new TicketTypeCB(); cb.xsetupForExistsReferrer(this);
+        lockCall(() -> subCBLambda.query(cb)); String pp = keepProjectId_NotExistsReferrer_TicketTypeList(cb.query());
+        registerNotExistsReferrer(cb.query(), "PROJECT_ID", "PROJECT_ID", pp, "ticketTypeList");
+    }
+    public abstract String keepProjectId_NotExistsReferrer_TicketTypeList(TicketTypeCQ sq);
+
     public void xsderiveProjectMemberList(String fn, SubQuery<ProjectMemberCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
         ProjectMemberCB cb = new ProjectMemberCB(); cb.xsetupForDerivedReferrer(this);
@@ -263,6 +339,22 @@ public abstract class AbstractBsProjectCQ extends AbstractConditionQuery {
         registerSpecifyDerivedReferrer(fn, cb.query(), "PROJECT_ID", "PROJECT_ID", pp, "ticketList", al, op);
     }
     public abstract String keepProjectId_SpecifyDerivedReferrer_TicketList(TicketCQ sq);
+
+    public void xsderiveTicketStatusList(String fn, SubQuery<TicketStatusCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        TicketStatusCB cb = new TicketStatusCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepProjectId_SpecifyDerivedReferrer_TicketStatusList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "PROJECT_ID", "PROJECT_ID", pp, "ticketStatusList", al, op);
+    }
+    public abstract String keepProjectId_SpecifyDerivedReferrer_TicketStatusList(TicketStatusCQ sq);
+
+    public void xsderiveTicketTypeList(String fn, SubQuery<TicketTypeCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        TicketTypeCB cb = new TicketTypeCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String pp = keepProjectId_SpecifyDerivedReferrer_TicketTypeList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "PROJECT_ID", "PROJECT_ID", pp, "ticketTypeList", al, op);
+    }
+    public abstract String keepProjectId_SpecifyDerivedReferrer_TicketTypeList(TicketTypeCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
@@ -317,6 +409,60 @@ public abstract class AbstractBsProjectCQ extends AbstractConditionQuery {
     }
     public abstract String keepProjectId_QueryDerivedReferrer_TicketList(TicketCQ sq);
     public abstract String keepProjectId_QueryDerivedReferrer_TicketListParameter(Object vl);
+
+    /**
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
+     * {FOO &lt;= (select max(BAR) from TICKET_STATUS where ...)} <br>
+     * (チケットステータス)TICKET_STATUS by PROJECT_ID, named 'ticketStatusAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">derivedTicketStatus()</span>.<span style="color: #CC4747">max</span>(statusCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     statusCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     statusCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<TicketStatusCB> derivedTicketStatus() {
+        return xcreateQDRFunctionTicketStatusList();
+    }
+    protected HpQDRFunction<TicketStatusCB> xcreateQDRFunctionTicketStatusList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveTicketStatusList(fn, sq, rd, vl, op));
+    }
+    public void xqderiveTicketStatusList(String fn, SubQuery<TicketStatusCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        TicketStatusCB cb = new TicketStatusCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepProjectId_QueryDerivedReferrer_TicketStatusList(cb.query()); String prpp = keepProjectId_QueryDerivedReferrer_TicketStatusListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "PROJECT_ID", "PROJECT_ID", sqpp, "ticketStatusList", rd, vl, prpp, op);
+    }
+    public abstract String keepProjectId_QueryDerivedReferrer_TicketStatusList(TicketStatusCQ sq);
+    public abstract String keepProjectId_QueryDerivedReferrer_TicketStatusListParameter(Object vl);
+
+    /**
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br>
+     * {FOO &lt;= (select max(BAR) from TICKET_TYPE where ...)} <br>
+     * (チケットタイプ)TICKET_TYPE by PROJECT_ID, named 'ticketTypeAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #CC4747">derivedTicketType()</span>.<span style="color: #CC4747">max</span>(typeCB <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     typeCB.specify().<span style="color: #CC4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *     typeCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     * }).<span style="color: #CC4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<TicketTypeCB> derivedTicketType() {
+        return xcreateQDRFunctionTicketTypeList();
+    }
+    protected HpQDRFunction<TicketTypeCB> xcreateQDRFunctionTicketTypeList() {
+        return xcQDRFunc((fn, sq, rd, vl, op) -> xqderiveTicketTypeList(fn, sq, rd, vl, op));
+    }
+    public void xqderiveTicketTypeList(String fn, SubQuery<TicketTypeCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        TicketTypeCB cb = new TicketTypeCB(); cb.xsetupForDerivedReferrer(this);
+        lockCall(() -> sq.query(cb)); String sqpp = keepProjectId_QueryDerivedReferrer_TicketTypeList(cb.query()); String prpp = keepProjectId_QueryDerivedReferrer_TicketTypeListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "PROJECT_ID", "PROJECT_ID", sqpp, "ticketTypeList", rd, vl, prpp, op);
+    }
+    public abstract String keepProjectId_QueryDerivedReferrer_TicketTypeList(TicketTypeCQ sq);
+    public abstract String keepProjectId_QueryDerivedReferrer_TicketTypeListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>

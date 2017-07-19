@@ -310,7 +310,7 @@ dl.procedurelist dd.column pre {
 		<td><a href="#member" title="type=TABLE, primaryKey={MEMBER_ID}, nameLength=6, columnCount=10">MEMBER</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell"><a href="#member_status" title="FK_MEMBER_MEMBER_STATUS">MEMBER_STATUS</a></td>
-		<td class="relcell"><a href="#member_access_token" title="FK_MEMBER_ACCESS_TOKEN_MEMBER">MEMBER_ACCESS_TOKEN</a>, <a href="#project" title="FK_PROJECT_MEMBER">PROJECT</a>, <a href="#project_member" title="FK_PROJECT_MEMBER_MEMBER">PROJECT_MEMBER</a>, <a href="#ticket" title="FK_TICKET_ASIGNEED_MEMBER">TICKET</a>, <a href="#ticket" title="FK_TICKET_MEMBER">TICKET</a>, <a href="#ticket_status" title="FK_TICKET_STATUS_MEMBER">TICKET_STATUS</a>, <a href="#ticket_type" title="FK_TICKET_TYPE_MEMBER">TICKET_TYPE</a></td>
+		<td class="relcell"><a href="#member_access_token" title="FK_MEMBER_ACCESS_TOKEN_MEMBER">MEMBER_ACCESS_TOKEN</a>, <a href="#project" title="FK_PROJECT_MEMBER">PROJECT</a>, <a href="#project_member" title="FK_PROJECT_MEMBER_MEMBER">PROJECT_MEMBER</a>, <a href="#ticket" title="FK_TICKET_ASIGNEED_MEMBER">TICKET</a>, <a href="#ticket" title="FK_TICKET_MEMBER">TICKET</a></td>
 		<td class="commentcell"> 会員のプロフィールやアカウントなどの基本情報を保持する。<br>基本的に物理削除はなく、退会したらステータスが退会会員になる。<br>ライフサイクルやカテゴリの違う会員情報は、one-to-oneなどの関連テーブルにて。</td>
 		<td class="subcell">Member</td>
 	</tr>
@@ -340,7 +340,7 @@ dl.procedurelist dd.column pre {
 		<td><a href="#project" title="type=TABLE, primaryKey={PROJECT_ID}, nameLength=7, columnCount=9">PROJECT</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="relcell"><a href="#member" title="FK_PROJECT_MEMBER">MEMBER</a></td>
-		<td class="relcell"><a href="#project_member" title="FK_PROJECT_MEMBER_PROJECT">PROJECT_MEMBER</a>, <a href="#ticket" title="FK_TICKET_PROJECT">TICKET</a></td>
+		<td class="relcell"><a href="#project_member" title="FK_PROJECT_MEMBER_PROJECT">PROJECT_MEMBER</a>, <a href="#ticket" title="FK_TICKET_PROJECT">TICKET</a>, <a href="#ticket_status" title="FK_TICKET_STATUS_PROJECT">TICKET_STATUS</a>, <a href="#ticket_type" title="FK_TICKET_TYPE_PROJECT">TICKET_TYPE</a></td>
 		<td class="commentcell"> &nbsp;</td>
 		<td class="subcell">Project</td>
 	</tr>
@@ -369,7 +369,7 @@ dl.procedurelist dd.column pre {
 		<td class="aliascell">チケットステータス</td>
 		<td><a href="#ticket_status" title="type=TABLE, primaryKey={TICKET_STATUS_ID}, nameLength=13, columnCount=9">TICKET_STATUS</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#member" title="FK_TICKET_STATUS_MEMBER">MEMBER</a></td>
+		<td class="relcell"><a href="#project" title="FK_TICKET_STATUS_PROJECT">PROJECT</a></td>
 		<td class="relcell"><a href="#ticket" title="FK_TICKET_TICKET_STATUS">TICKET</a></td>
 		<td class="commentcell"> &nbsp;</td>
 		<td class="subcell">TicketStatus</td>
@@ -379,7 +379,7 @@ dl.procedurelist dd.column pre {
 		<td class="aliascell">チケットタイプ</td>
 		<td><a href="#ticket_type" title="type=TABLE, primaryKey={TICKET_TYPE_ID}, nameLength=11, columnCount=9">TICKET_TYPE</a></td>
 		<td class="typecell">TABLE</td>
-		<td class="relcell"><a href="#member" title="FK_TICKET_TYPE_MEMBER">MEMBER</a></td>
+		<td class="relcell"><a href="#project" title="FK_TICKET_TYPE_PROJECT">PROJECT</a></td>
 		<td class="relcell"><a href="#ticket" title="FK_TICKET_TICKET_TYPE">TICKET</a></td>
 		<td class="commentcell"> &nbsp;</td>
 		<td class="subcell">TicketType</td>
@@ -424,7 +424,7 @@ dl.procedurelist dd.column pre {
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell"><a href="#member_access_token" title="FK_MEMBER_ACCESS_TOKEN_MEMBER">MEMBER_ACCESS_TOKEN</a>,<br><a href="#project" title="FK_PROJECT_MEMBER">PROJECT</a>,<br><a href="#project_member" title="FK_PROJECT_MEMBER_MEMBER">PROJECT_MEMBER</a>,<br><a href="#ticket" title="FK_TICKET_ASIGNEED_MEMBER">TICKET</a>,<br><a href="#ticket" title="FK_TICKET_MEMBER">TICKET</a>,<br><a href="#ticket_status" title="FK_TICKET_STATUS_MEMBER">TICKET_STATUS</a>,<br><a href="#ticket_type" title="FK_TICKET_TYPE_MEMBER">TICKET_TYPE</a>&nbsp;</td>
+		<td class="relcell"><a href="#member_access_token" title="FK_MEMBER_ACCESS_TOKEN_MEMBER">MEMBER_ACCESS_TOKEN</a>,<br><a href="#project" title="FK_PROJECT_MEMBER">PROJECT</a>,<br><a href="#project_member" title="FK_PROJECT_MEMBER_MEMBER">PROJECT_MEMBER</a>,<br><a href="#ticket" title="FK_TICKET_ASIGNEED_MEMBER">TICKET</a>,<br><a href="#ticket" title="FK_TICKET_MEMBER">TICKET</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="commentcell"> &nbsp;</td>
 		<td class="subcell">memberId</td>
@@ -879,7 +879,7 @@ dl.procedurelist dd.column pre {
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell"><a href="#project_member" title="FK_PROJECT_MEMBER_PROJECT">PROJECT_MEMBER</a>,<br><a href="#ticket" title="FK_TICKET_PROJECT">TICKET</a>&nbsp;</td>
+		<td class="relcell"><a href="#project_member" title="FK_PROJECT_MEMBER_PROJECT">PROJECT_MEMBER</a>,<br><a href="#ticket" title="FK_TICKET_PROJECT">TICKET</a>,<br><a href="#ticket_status" title="FK_TICKET_STATUS_PROJECT">TICKET_STATUS</a>,<br><a href="#ticket_type" title="FK_TICKET_TYPE_PROJECT">TICKET_TYPE</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="commentcell"> &nbsp;</td>
 		<td class="subcell">projectId</td>
@@ -1523,22 +1523,40 @@ dl.procedurelist dd.column pre {
 		<td class="rownumcell">2</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell" title="UQ_TICKET_STATUS_PROJECT_ID_TICKET_STATUS_NAME(PROJECT_ID, TICKET_STATUS_NAME)">o<span class="flgplus">+</span></td>
 		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell" title="FK_TICKET_STATUS_MEMBER(MEMBER_ID)">o</td>
 		<td class="flgcell">*</td>
-		<td class="aliascell">メンバーID</td>
-		<td id="ticket_status_member_id">MEMBER_ID</td>
+		<td class="aliascell">プロジェクトID</td>
+		<td id="ticket_status_project_id">PROJECT_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
-		<td class="relcell"><a href="#member" title="FK_TICKET_STATUS_MEMBER">MEMBER</a>&nbsp;</td>
+		<td class="relcell"><a href="#project" title="FK_TICKET_STATUS_PROJECT">PROJECT</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> このステータスを作ったメンバー</td>
-		<td class="subcell">memberId</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">projectId</td>
 		<td class="subcell">Long</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">3</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell" title="UQ_TICKET_STATUS_PROJECT_ID_TICKET_STATUS_NAME(PROJECT_ID, TICKET_STATUS_NAME)"><span class="flgplus">+</span>o</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell">チケットステータス名</td>
+		<td id="ticket_status_ticket_status_name">TICKET_STATUS_NAME</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 128 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">ticketStatusName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1553,24 +1571,6 @@ dl.procedurelist dd.column pre {
 		<td class="relcell"> &nbsp;</td>
 		<td class="commentcell"> http://fontawesome.io/icons/&nbsp;を参考に</td>
 		<td class="subcell">ticketStatusIcon</td>
-		<td class="subcell">String</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">4</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">*</td>
-		<td class="aliascell">チケットステータス名</td>
-		<td id="ticket_status_ticket_status_name">TICKET_STATUS_NAME</td>
-		<td class="typecell">VARCHAR</td>
-		<td class="sizecell"> 128 </td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> &nbsp;</td>
-		<td class="subcell">ticketStatusName</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
@@ -1710,22 +1710,40 @@ dl.procedurelist dd.column pre {
 		<td class="rownumcell">2</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell" title="UQ_TICKET_TYPE_PROJECT_ID_TICKET_TYPE_NAME(PROJECT_ID, TICKET_TYPE_NAME)">o<span class="flgplus">+</span></td>
 		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell" title="FK_TICKET_TYPE_MEMBER(MEMBER_ID)">o</td>
 		<td class="flgcell">*</td>
-		<td class="aliascell">メンバーID</td>
-		<td id="ticket_type_member_id">MEMBER_ID</td>
+		<td class="aliascell">プロジェクトID</td>
+		<td id="ticket_type_project_id">PROJECT_ID</td>
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
-		<td class="relcell"><a href="#member" title="FK_TICKET_TYPE_MEMBER">MEMBER</a>&nbsp;</td>
+		<td class="relcell"><a href="#project" title="FK_TICKET_TYPE_PROJECT">PROJECT</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> このチケットタイプを作ったメンバー</td>
-		<td class="subcell">memberId</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">projectId</td>
 		<td class="subcell">Long</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">3</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell" title="UQ_TICKET_TYPE_PROJECT_ID_TICKET_TYPE_NAME(PROJECT_ID, TICKET_TYPE_NAME)"><span class="flgplus">+</span>o</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell">チケットタイプ名</td>
+		<td id="ticket_type_ticket_type_name">TICKET_TYPE_NAME</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 128 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">ticketTypeName</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -1740,24 +1758,6 @@ dl.procedurelist dd.column pre {
 		<td class="relcell"> &nbsp;</td>
 		<td class="commentcell"> &nbsp;</td>
 		<td class="subcell">ticketTypeIcon</td>
-		<td class="subcell">String</td>
-	</tr>
-	<tr>
-		<td class="rownumcell">4</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
-		<td class="flgcell">*</td>
-		<td class="aliascell">チケットタイプ名</td>
-		<td id="ticket_type_ticket_type_name">TICKET_TYPE_NAME</td>
-		<td class="typecell">VARCHAR</td>
-		<td class="sizecell"> 128 </td>
-		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
-		<td class="relcell"> &nbsp;</td>
-		<td class="commentcell"> &nbsp;</td>
-		<td class="subcell">ticketTypeName</td>
 		<td class="subcell">String</td>
 	</tr>
 	<tr>

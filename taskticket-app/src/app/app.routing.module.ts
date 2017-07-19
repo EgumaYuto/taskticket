@@ -3,6 +3,7 @@ import { RouterModule, Routes }  from '@angular/router';
 import { SignupComponent } from "./signup/signup.component";
 import { LoginComponent } from "./login/login.component";
 import { MypageComponent } from "./mypage/mypage.component";
+import { ProjectComponent } from "./project/project.component";
 import { ProjectAddComponent } from "./project/add/project.add.component";
 import { AuthGuard } from "./auth.guard";
 
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   // login require
   { path: '', component: MypageComponent, canActivate: [AuthGuard] },
   { path: 'project/add', component: ProjectAddComponent, canActivate: [AuthGuard] },
+  { path: 'project/:id', component: ProjectComponent, canActivate: [AuthGuard] },
 
   { path: '**', redirectTo: ''}  // TODO make 404 page
 ];

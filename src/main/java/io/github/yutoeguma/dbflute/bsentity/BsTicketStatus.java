@@ -35,7 +35,7 @@ import io.github.yutoeguma.dbflute.exentity.*;
  *     TICKET_STATUS_ID
  *
  * [column]
- *     TICKET_STATUS_ID, MEMBER_ID, TICKET_STATUS_ICON, TICKET_STATUS_NAME, DEL_FLG, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER
+ *     TICKET_STATUS_ID, PROJECT_ID, TICKET_STATUS_NAME, TICKET_STATUS_ICON, DEL_FLG, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER
  *
  * [sequence]
  *     
@@ -47,13 +47,13 @@ import io.github.yutoeguma.dbflute.exentity.*;
  *     
  *
  * [foreign table]
- *     MEMBER
+ *     PROJECT
  *
  * [referrer table]
  *     TICKET
  *
  * [foreign property]
- *     member
+ *     project
  *
  * [referrer property]
  *     ticketList
@@ -61,18 +61,18 @@ import io.github.yutoeguma.dbflute.exentity.*;
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Long ticketStatusId = entity.getTicketStatusId();
- * Long memberId = entity.getMemberId();
- * String ticketStatusIcon = entity.getTicketStatusIcon();
+ * Long projectId = entity.getProjectId();
  * String ticketStatusName = entity.getTicketStatusName();
+ * String ticketStatusIcon = entity.getTicketStatusIcon();
  * Boolean delFlg = entity.getDelFlg();
  * java.time.LocalDateTime registerDatetime = entity.getRegisterDatetime();
  * String registerUser = entity.getRegisterUser();
  * java.time.LocalDateTime updateDatetime = entity.getUpdateDatetime();
  * String updateUser = entity.getUpdateUser();
  * entity.setTicketStatusId(ticketStatusId);
- * entity.setMemberId(memberId);
- * entity.setTicketStatusIcon(ticketStatusIcon);
+ * entity.setProjectId(projectId);
  * entity.setTicketStatusName(ticketStatusName);
+ * entity.setTicketStatusIcon(ticketStatusIcon);
  * entity.setDelFlg(delFlg);
  * entity.setRegisterDatetime(registerDatetime);
  * entity.setRegisterUser(registerUser);
@@ -96,14 +96,14 @@ public abstract class BsTicketStatus extends AbstractEntity implements DomainEnt
     /** (チケットステータスID)TICKET_STATUS_ID: {PK, ID, NotNull, BIGINT(19)} */
     protected Long _ticketStatusId;
 
-    /** (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} */
-    protected Long _memberId;
+    /** (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT} */
+    protected Long _projectId;
+
+    /** (チケットステータス名)TICKET_STATUS_NAME: {+UQ, NotNull, VARCHAR(128)} */
+    protected String _ticketStatusName;
 
     /** (チケットステータスアイコン)TICKET_STATUS_ICON: {NotNull, VARCHAR(128)} */
     protected String _ticketStatusIcon;
-
-    /** (チケットステータス名)TICKET_STATUS_NAME: {NotNull, VARCHAR(128)} */
-    protected String _ticketStatusName;
 
     /** (削除フラグ)DEL_FLG: {NotNull, BIT, classification=Flg} */
     protected Boolean _delFlg;
@@ -140,6 +140,19 @@ public abstract class BsTicketStatus extends AbstractEntity implements DomainEnt
     public boolean hasPrimaryKeyValue() {
         if (_ticketStatusId == null) { return false; }
         return true;
+    }
+
+    /**
+     * To be unique by the unique column. <br>
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param projectId (プロジェクトID): UQ+, NotNull, BIGINT(19), FK to PROJECT. (NotNull)
+     * @param ticketStatusName (チケットステータス名): +UQ, NotNull, VARCHAR(128). (NotNull)
+     */
+    public void uniqueBy(Long projectId, String ticketStatusName) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("projectId");
+        __uniqueDrivenProperties.addPropertyName("ticketStatusName");
+        setProjectId(projectId);setTicketStatusName(ticketStatusName);
     }
 
     // ===================================================================================
@@ -244,25 +257,25 @@ public abstract class BsTicketStatus extends AbstractEntity implements DomainEnt
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
-    /** (メンバー)MEMBER by my MEMBER_ID, named 'member'. */
-    protected OptionalEntity<Member> _member;
+    /** (プロジェクト)PROJECT by my PROJECT_ID, named 'project'. */
+    protected OptionalEntity<Project> _project;
 
     /**
-     * [get] (メンバー)MEMBER by my MEMBER_ID, named 'member'. <br>
+     * [get] (プロジェクト)PROJECT by my PROJECT_ID, named 'project'. <br>
      * Optional: alwaysPresent(), ifPresent().orElse(), get(), ...
-     * @return The entity of foreign property 'member'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
+     * @return The entity of foreign property 'project'. (NotNull, EmptyAllowed: when e.g. null FK column, no setupSelect)
      */
-    public OptionalEntity<Member> getMember() {
-        if (_member == null) { _member = OptionalEntity.relationEmpty(this, "member"); }
-        return _member;
+    public OptionalEntity<Project> getProject() {
+        if (_project == null) { _project = OptionalEntity.relationEmpty(this, "project"); }
+        return _project;
     }
 
     /**
-     * [set] (メンバー)MEMBER by my MEMBER_ID, named 'member'.
-     * @param member The entity of foreign property 'member'. (NullAllowed)
+     * [set] (プロジェクト)PROJECT by my PROJECT_ID, named 'project'.
+     * @param project The entity of foreign property 'project'. (NullAllowed)
      */
-    public void setMember(OptionalEntity<Member> member) {
-        _member = member;
+    public void setProject(OptionalEntity<Project> project) {
+        _project = project;
     }
 
     // ===================================================================================
@@ -317,8 +330,8 @@ public abstract class BsTicketStatus extends AbstractEntity implements DomainEnt
     @Override
     protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        if (_member != null && _member.isPresent())
-        { sb.append(li).append(xbRDS(_member, "member")); }
+        if (_project != null && _project.isPresent())
+        { sb.append(li).append(xbRDS(_project, "project")); }
         if (_ticketList != null) { for (Ticket et : _ticketList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "ticketList")); } } }
         return sb.toString();
@@ -331,9 +344,9 @@ public abstract class BsTicketStatus extends AbstractEntity implements DomainEnt
     protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
         sb.append(dm).append(xfND(_ticketStatusId));
-        sb.append(dm).append(xfND(_memberId));
-        sb.append(dm).append(xfND(_ticketStatusIcon));
+        sb.append(dm).append(xfND(_projectId));
         sb.append(dm).append(xfND(_ticketStatusName));
+        sb.append(dm).append(xfND(_ticketStatusIcon));
         sb.append(dm).append(xfND(_delFlg));
         sb.append(dm).append(xfND(_registerDatetime));
         sb.append(dm).append(xfND(_registerUser));
@@ -349,8 +362,8 @@ public abstract class BsTicketStatus extends AbstractEntity implements DomainEnt
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_member != null && _member.isPresent())
-        { sb.append(dm).append("member"); }
+        if (_project != null && _project.isPresent())
+        { sb.append(dm).append("project"); }
         if (_ticketList != null && !_ticketList.isEmpty())
         { sb.append(dm).append("ticketList"); }
         if (sb.length() > dm.length()) {
@@ -386,23 +399,39 @@ public abstract class BsTicketStatus extends AbstractEntity implements DomainEnt
     }
 
     /**
-     * [get] (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} <br>
-     * このステータスを作ったメンバー
-     * @return The value of the column 'MEMBER_ID'. (basically NotNull if selected: for the constraint)
+     * [get] (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT} <br>
+     * @return The value of the column 'PROJECT_ID'. (basically NotNull if selected: for the constraint)
      */
-    public Long getMemberId() {
-        checkSpecifiedProperty("memberId");
-        return _memberId;
+    public Long getProjectId() {
+        checkSpecifiedProperty("projectId");
+        return _projectId;
     }
 
     /**
-     * [set] (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER} <br>
-     * このステータスを作ったメンバー
-     * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
+     * [set] (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT} <br>
+     * @param projectId The value of the column 'PROJECT_ID'. (basically NotNull if update: for the constraint)
      */
-    public void setMemberId(Long memberId) {
-        registerModifiedProperty("memberId");
-        _memberId = memberId;
+    public void setProjectId(Long projectId) {
+        registerModifiedProperty("projectId");
+        _projectId = projectId;
+    }
+
+    /**
+     * [get] (チケットステータス名)TICKET_STATUS_NAME: {+UQ, NotNull, VARCHAR(128)} <br>
+     * @return The value of the column 'TICKET_STATUS_NAME'. (basically NotNull if selected: for the constraint)
+     */
+    public String getTicketStatusName() {
+        checkSpecifiedProperty("ticketStatusName");
+        return convertEmptyToNull(_ticketStatusName);
+    }
+
+    /**
+     * [set] (チケットステータス名)TICKET_STATUS_NAME: {+UQ, NotNull, VARCHAR(128)} <br>
+     * @param ticketStatusName The value of the column 'TICKET_STATUS_NAME'. (basically NotNull if update: for the constraint)
+     */
+    public void setTicketStatusName(String ticketStatusName) {
+        registerModifiedProperty("ticketStatusName");
+        _ticketStatusName = ticketStatusName;
     }
 
     /**
@@ -423,24 +452,6 @@ public abstract class BsTicketStatus extends AbstractEntity implements DomainEnt
     public void setTicketStatusIcon(String ticketStatusIcon) {
         registerModifiedProperty("ticketStatusIcon");
         _ticketStatusIcon = ticketStatusIcon;
-    }
-
-    /**
-     * [get] (チケットステータス名)TICKET_STATUS_NAME: {NotNull, VARCHAR(128)} <br>
-     * @return The value of the column 'TICKET_STATUS_NAME'. (basically NotNull if selected: for the constraint)
-     */
-    public String getTicketStatusName() {
-        checkSpecifiedProperty("ticketStatusName");
-        return convertEmptyToNull(_ticketStatusName);
-    }
-
-    /**
-     * [set] (チケットステータス名)TICKET_STATUS_NAME: {NotNull, VARCHAR(128)} <br>
-     * @param ticketStatusName The value of the column 'TICKET_STATUS_NAME'. (basically NotNull if update: for the constraint)
-     */
-    public void setTicketStatusName(String ticketStatusName) {
-        registerModifiedProperty("ticketStatusName");
-        _ticketStatusName = ticketStatusName;
     }
 
     /**

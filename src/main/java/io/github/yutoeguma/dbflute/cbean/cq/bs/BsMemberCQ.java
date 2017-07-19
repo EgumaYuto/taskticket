@@ -106,12 +106,6 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     public Map<String, TicketCQ> xdfgetMemberId_ExistsReferrer_TicketByMemberIdList() { return xgetSQueMap("memberId_ExistsReferrer_TicketByMemberIdList"); }
     public String keepMemberId_ExistsReferrer_TicketByMemberIdList(TicketCQ sq) { return xkeepSQue("memberId_ExistsReferrer_TicketByMemberIdList", sq); }
 
-    public Map<String, TicketStatusCQ> xdfgetMemberId_ExistsReferrer_TicketStatusList() { return xgetSQueMap("memberId_ExistsReferrer_TicketStatusList"); }
-    public String keepMemberId_ExistsReferrer_TicketStatusList(TicketStatusCQ sq) { return xkeepSQue("memberId_ExistsReferrer_TicketStatusList", sq); }
-
-    public Map<String, TicketTypeCQ> xdfgetMemberId_ExistsReferrer_TicketTypeList() { return xgetSQueMap("memberId_ExistsReferrer_TicketTypeList"); }
-    public String keepMemberId_ExistsReferrer_TicketTypeList(TicketTypeCQ sq) { return xkeepSQue("memberId_ExistsReferrer_TicketTypeList", sq); }
-
     public Map<String, ProjectCQ> xdfgetMemberId_NotExistsReferrer_ProjectList() { return xgetSQueMap("memberId_NotExistsReferrer_ProjectList"); }
     public String keepMemberId_NotExistsReferrer_ProjectList(ProjectCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_ProjectList", sq); }
 
@@ -124,12 +118,6 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     public Map<String, TicketCQ> xdfgetMemberId_NotExistsReferrer_TicketByMemberIdList() { return xgetSQueMap("memberId_NotExistsReferrer_TicketByMemberIdList"); }
     public String keepMemberId_NotExistsReferrer_TicketByMemberIdList(TicketCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_TicketByMemberIdList", sq); }
 
-    public Map<String, TicketStatusCQ> xdfgetMemberId_NotExistsReferrer_TicketStatusList() { return xgetSQueMap("memberId_NotExistsReferrer_TicketStatusList"); }
-    public String keepMemberId_NotExistsReferrer_TicketStatusList(TicketStatusCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_TicketStatusList", sq); }
-
-    public Map<String, TicketTypeCQ> xdfgetMemberId_NotExistsReferrer_TicketTypeList() { return xgetSQueMap("memberId_NotExistsReferrer_TicketTypeList"); }
-    public String keepMemberId_NotExistsReferrer_TicketTypeList(TicketTypeCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_TicketTypeList", sq); }
-
     public Map<String, ProjectCQ> xdfgetMemberId_SpecifyDerivedReferrer_ProjectList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_ProjectList"); }
     public String keepMemberId_SpecifyDerivedReferrer_ProjectList(ProjectCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_ProjectList", sq); }
 
@@ -141,12 +129,6 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
 
     public Map<String, TicketCQ> xdfgetMemberId_SpecifyDerivedReferrer_TicketByMemberIdList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_TicketByMemberIdList"); }
     public String keepMemberId_SpecifyDerivedReferrer_TicketByMemberIdList(TicketCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_TicketByMemberIdList", sq); }
-
-    public Map<String, TicketStatusCQ> xdfgetMemberId_SpecifyDerivedReferrer_TicketStatusList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_TicketStatusList"); }
-    public String keepMemberId_SpecifyDerivedReferrer_TicketStatusList(TicketStatusCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_TicketStatusList", sq); }
-
-    public Map<String, TicketTypeCQ> xdfgetMemberId_SpecifyDerivedReferrer_TicketTypeList() { return xgetSQueMap("memberId_SpecifyDerivedReferrer_TicketTypeList"); }
-    public String keepMemberId_SpecifyDerivedReferrer_TicketTypeList(TicketTypeCQ sq) { return xkeepSQue("memberId_SpecifyDerivedReferrer_TicketTypeList", sq); }
 
     public Map<String, ProjectCQ> xdfgetMemberId_QueryDerivedReferrer_ProjectList() { return xgetSQueMap("memberId_QueryDerivedReferrer_ProjectList"); }
     public String keepMemberId_QueryDerivedReferrer_ProjectList(ProjectCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_ProjectList", sq); }
@@ -167,16 +149,6 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     public String keepMemberId_QueryDerivedReferrer_TicketByMemberIdList(TicketCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_TicketByMemberIdList", sq); }
     public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_TicketByMemberIdListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_TicketByMemberIdList"); }
     public String keepMemberId_QueryDerivedReferrer_TicketByMemberIdListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_TicketByMemberIdList", pm); }
-
-    public Map<String, TicketStatusCQ> xdfgetMemberId_QueryDerivedReferrer_TicketStatusList() { return xgetSQueMap("memberId_QueryDerivedReferrer_TicketStatusList"); }
-    public String keepMemberId_QueryDerivedReferrer_TicketStatusList(TicketStatusCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_TicketStatusList", sq); }
-    public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_TicketStatusListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_TicketStatusList"); }
-    public String keepMemberId_QueryDerivedReferrer_TicketStatusListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_TicketStatusList", pm); }
-
-    public Map<String, TicketTypeCQ> xdfgetMemberId_QueryDerivedReferrer_TicketTypeList() { return xgetSQueMap("memberId_QueryDerivedReferrer_TicketTypeList"); }
-    public String keepMemberId_QueryDerivedReferrer_TicketTypeList(TicketTypeCQ sq) { return xkeepSQue("memberId_QueryDerivedReferrer_TicketTypeList", sq); }
-    public Map<String, Object> xdfgetMemberId_QueryDerivedReferrer_TicketTypeListParameter() { return xgetSQuePmMap("memberId_QueryDerivedReferrer_TicketTypeList"); }
-    public String keepMemberId_QueryDerivedReferrer_TicketTypeListParameter(Object pm) { return xkeepSQuePm("memberId_QueryDerivedReferrer_TicketTypeList", pm); }
 
     /** 
      * Add order-by as ascend. <br>

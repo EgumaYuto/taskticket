@@ -41,7 +41,7 @@ import io.github.yutoeguma.dbflute.cbean.*;
  *     TICKET_STATUS_ID
  *
  * [column]
- *     TICKET_STATUS_ID, MEMBER_ID, TICKET_STATUS_ICON, TICKET_STATUS_NAME, DEL_FLG, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER
+ *     TICKET_STATUS_ID, PROJECT_ID, TICKET_STATUS_NAME, TICKET_STATUS_ICON, DEL_FLG, REGISTER_DATETIME, REGISTER_USER, UPDATE_DATETIME, UPDATE_USER
  *
  * [sequence]
  *     
@@ -53,13 +53,13 @@ import io.github.yutoeguma.dbflute.cbean.*;
  *     
  *
  * [foreign table]
- *     MEMBER
+ *     PROJECT
  *
  * [referrer table]
  *     TICKET
  *
  * [foreign property]
- *     member
+ *     project
  *
  * [referrer property]
  *     ticketList
@@ -197,6 +197,32 @@ public abstract class BsTicketStatusBhv extends AbstractBehaviorWritable<TicketS
     protected TicketStatusCB xprepareCBAsPK(Long ticketStatusId) {
         assertObjectNotNull("ticketStatusId", ticketStatusId);
         return newConditionBean().acceptPK(ticketStatusId);
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param projectId (プロジェクトID): UQ+, NotNull, BIGINT(19), FK to PROJECT. (NotNull)
+     * @param ticketStatusName (チケットステータス名): +UQ, NotNull, VARCHAR(128). (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @throws EntityDuplicatedException When the entity has been duplicated.
+     * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<TicketStatus> selectByUniqueOf(Long projectId, String ticketStatusName) {
+        return facadeSelectByUniqueOf(projectId, ticketStatusName);
+    }
+
+    protected OptionalEntity<TicketStatus> facadeSelectByUniqueOf(Long projectId, String ticketStatusName) {
+        return doSelectByUniqueOf(projectId, ticketStatusName, typeOfSelectedEntity());
+    }
+
+    protected <ENTITY extends TicketStatus> OptionalEntity<ENTITY> doSelectByUniqueOf(Long projectId, String ticketStatusName, Class<? extends ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(projectId, ticketStatusName), tp), projectId, ticketStatusName);
+    }
+
+    protected TicketStatusCB xprepareCBAsUniqueOf(Long projectId, String ticketStatusName) {
+        assertObjectNotNull("projectId", projectId);assertObjectNotNull("ticketStatusName", ticketStatusName);
+        return newConditionBean().acceptUniqueOf(projectId, ticketStatusName);
     }
 
     // ===================================================================================
@@ -442,12 +468,12 @@ public abstract class BsTicketStatusBhv extends AbstractBehaviorWritable<TicketS
     //                                                                   Pull out Relation
     //                                                                   =================
     /**
-     * Pull out the list of foreign table 'Member'.
+     * Pull out the list of foreign table 'Project'.
      * @param ticketStatusList The list of ticketStatus. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Member> pulloutMember(List<TicketStatus> ticketStatusList)
-    { return helpPulloutInternally(ticketStatusList, "member"); }
+    public List<Project> pulloutProject(List<TicketStatus> ticketStatusList)
+    { return helpPulloutInternally(ticketStatusList, "project"); }
 
     // ===================================================================================
     //                                                                      Extract Column

@@ -53,13 +53,13 @@ import io.github.yutoeguma.dbflute.exentity.*;
  *     MEMBER_STATUS, MEMBER_ACCESS_TOKEN(AsOne)
  *
  * [referrer table]
- *     PROJECT, PROJECT_MEMBER, TICKET, TICKET_STATUS, TICKET_TYPE, MEMBER_ACCESS_TOKEN
+ *     PROJECT, PROJECT_MEMBER, TICKET, MEMBER_ACCESS_TOKEN
  *
  * [foreign property]
  *     memberStatus, memberAccessTokenAsOne
  *
  * [referrer property]
- *     projectList, projectMemberList, ticketByAssigneedMemberIdList, ticketByMemberIdList, ticketStatusList, ticketTypeList
+ *     projectList, projectMemberList, ticketByAssigneedMemberIdList, ticketByMemberIdList
  *
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -396,46 +396,6 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
         _ticketByMemberIdList = ticketByMemberIdList;
     }
 
-    /** (チケットステータス)TICKET_STATUS by MEMBER_ID, named 'ticketStatusList'. */
-    protected List<TicketStatus> _ticketStatusList;
-
-    /**
-     * [get] (チケットステータス)TICKET_STATUS by MEMBER_ID, named 'ticketStatusList'.
-     * @return The entity list of referrer property 'ticketStatusList'. (NotNull: even if no loading, returns empty list)
-     */
-    public List<TicketStatus> getTicketStatusList() {
-        if (_ticketStatusList == null) { _ticketStatusList = newReferrerList(); }
-        return _ticketStatusList;
-    }
-
-    /**
-     * [set] (チケットステータス)TICKET_STATUS by MEMBER_ID, named 'ticketStatusList'.
-     * @param ticketStatusList The entity list of referrer property 'ticketStatusList'. (NullAllowed)
-     */
-    public void setTicketStatusList(List<TicketStatus> ticketStatusList) {
-        _ticketStatusList = ticketStatusList;
-    }
-
-    /** (チケットタイプ)TICKET_TYPE by MEMBER_ID, named 'ticketTypeList'. */
-    protected List<TicketType> _ticketTypeList;
-
-    /**
-     * [get] (チケットタイプ)TICKET_TYPE by MEMBER_ID, named 'ticketTypeList'.
-     * @return The entity list of referrer property 'ticketTypeList'. (NotNull: even if no loading, returns empty list)
-     */
-    public List<TicketType> getTicketTypeList() {
-        if (_ticketTypeList == null) { _ticketTypeList = newReferrerList(); }
-        return _ticketTypeList;
-    }
-
-    /**
-     * [set] (チケットタイプ)TICKET_TYPE by MEMBER_ID, named 'ticketTypeList'.
-     * @param ticketTypeList The entity list of referrer property 'ticketTypeList'. (NullAllowed)
-     */
-    public void setTicketTypeList(List<TicketType> ticketTypeList) {
-        _ticketTypeList = ticketTypeList;
-    }
-
     protected <ELEMENT> List<ELEMENT> newReferrerList() { // overriding to import
         return new ArrayList<ELEMENT>();
     }
@@ -477,10 +437,6 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
         { if (et != null) { sb.append(li).append(xbRDS(et, "ticketByAssigneedMemberIdList")); } } }
         if (_ticketByMemberIdList != null) { for (Ticket et : _ticketByMemberIdList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "ticketByMemberIdList")); } } }
-        if (_ticketStatusList != null) { for (TicketStatus et : _ticketStatusList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "ticketStatusList")); } } }
-        if (_ticketTypeList != null) { for (TicketType et : _ticketTypeList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "ticketTypeList")); } } }
         return sb.toString();
     }
     protected <ET extends Entity> String xbRDS(org.dbflute.optional.OptionalEntity<ET> et, String name) { // buildRelationDisplayString()
@@ -522,10 +478,6 @@ public abstract class BsMember extends AbstractEntity implements DomainEntity, E
         { sb.append(dm).append("ticketByAssigneedMemberIdList"); }
         if (_ticketByMemberIdList != null && !_ticketByMemberIdList.isEmpty())
         { sb.append(dm).append("ticketByMemberIdList"); }
-        if (_ticketStatusList != null && !_ticketStatusList.isEmpty())
-        { sb.append(dm).append("ticketStatusList"); }
-        if (_ticketTypeList != null && !_ticketTypeList.isEmpty())
-        { sb.append(dm).append("ticketTypeList"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }

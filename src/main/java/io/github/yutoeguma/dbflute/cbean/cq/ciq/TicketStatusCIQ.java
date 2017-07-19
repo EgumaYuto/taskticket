@@ -87,9 +87,9 @@ public class TicketStatusCIQ extends AbstractBsTicketStatusCQ {
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     public String keepTicketStatusId_QueryDerivedReferrer_TicketListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    protected ConditionValue xgetCValueMemberId() { return _myCQ.xdfgetMemberId(); }
-    protected ConditionValue xgetCValueTicketStatusIcon() { return _myCQ.xdfgetTicketStatusIcon(); }
+    protected ConditionValue xgetCValueProjectId() { return _myCQ.xdfgetProjectId(); }
     protected ConditionValue xgetCValueTicketStatusName() { return _myCQ.xdfgetTicketStatusName(); }
+    protected ConditionValue xgetCValueTicketStatusIcon() { return _myCQ.xdfgetTicketStatusIcon(); }
     protected ConditionValue xgetCValueDelFlg() { return _myCQ.xdfgetDelFlg(); }
     protected ConditionValue xgetCValueRegisterDatetime() { return _myCQ.xdfgetRegisterDatetime(); }
     protected ConditionValue xgetCValueRegisterUser() { return _myCQ.xdfgetRegisterUser(); }

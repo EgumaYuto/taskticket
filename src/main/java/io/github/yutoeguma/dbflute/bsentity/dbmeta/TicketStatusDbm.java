@@ -59,9 +59,9 @@ public class TicketStatusDbm extends AbstractDBMeta {
     { xsetupEpg(); }
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((TicketStatus)et).getTicketStatusId(), (et, vl) -> ((TicketStatus)et).setTicketStatusId(ctl(vl)), "ticketStatusId");
-        setupEpg(_epgMap, et -> ((TicketStatus)et).getMemberId(), (et, vl) -> ((TicketStatus)et).setMemberId(ctl(vl)), "memberId");
-        setupEpg(_epgMap, et -> ((TicketStatus)et).getTicketStatusIcon(), (et, vl) -> ((TicketStatus)et).setTicketStatusIcon((String)vl), "ticketStatusIcon");
+        setupEpg(_epgMap, et -> ((TicketStatus)et).getProjectId(), (et, vl) -> ((TicketStatus)et).setProjectId(ctl(vl)), "projectId");
         setupEpg(_epgMap, et -> ((TicketStatus)et).getTicketStatusName(), (et, vl) -> ((TicketStatus)et).setTicketStatusName((String)vl), "ticketStatusName");
+        setupEpg(_epgMap, et -> ((TicketStatus)et).getTicketStatusIcon(), (et, vl) -> ((TicketStatus)et).setTicketStatusIcon((String)vl), "ticketStatusIcon");
         setupEpg(_epgMap, et -> ((TicketStatus)et).getDelFlg(), (et, vl) -> {
             ((TicketStatus)et).setDelFlg((Boolean)vl);
         }, "delFlg");
@@ -80,7 +80,7 @@ public class TicketStatusDbm extends AbstractDBMeta {
     { xsetupEfpg(); }
     @SuppressWarnings("unchecked")
     protected void xsetupEfpg() {
-        setupEfpg(_efpgMap, et -> ((TicketStatus)et).getMember(), (et, vl) -> ((TicketStatus)et).setMember((OptionalEntity<Member>)vl), "member");
+        setupEfpg(_efpgMap, et -> ((TicketStatus)et).getProject(), (et, vl) -> ((TicketStatus)et).setProject((OptionalEntity<Project>)vl), "project");
     }
     public PropertyGateway findForeignPropertyGateway(String prop)
     { return doFindEfpg(_efpgMap, prop); }
@@ -104,9 +104,9 @@ public class TicketStatusDbm extends AbstractDBMeta {
     //                                                                         Column Info
     //                                                                         ===========
     protected final ColumnInfo _columnTicketStatusId = cci("TICKET_STATUS_ID", "TICKET_STATUS_ID", null, "チケットステータスID", Long.class, "ticketStatusId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "ticketList", null, false);
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, "メンバーID", Long.class, "memberId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "member", null, null, false);
-    protected final ColumnInfo _columnTicketStatusIcon = cci("TICKET_STATUS_ICON", "TICKET_STATUS_ICON", null, "チケットステータスアイコン", String.class, "ticketStatusIcon", null, false, false, true, "VARCHAR", 128, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnProjectId = cci("PROJECT_ID", "PROJECT_ID", null, "プロジェクトID", Long.class, "projectId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "project", null, null, false);
     protected final ColumnInfo _columnTicketStatusName = cci("TICKET_STATUS_NAME", "TICKET_STATUS_NAME", null, "チケットステータス名", String.class, "ticketStatusName", null, false, false, true, "VARCHAR", 128, 0, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnTicketStatusIcon = cci("TICKET_STATUS_ICON", "TICKET_STATUS_ICON", null, "チケットステータスアイコン", String.class, "ticketStatusIcon", null, false, false, true, "VARCHAR", 128, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDelFlg = cci("DEL_FLG", "DEL_FLG", null, "削除フラグ", Boolean.class, "delFlg", null, false, false, true, "BIT", null, null, null, false, null, null, null, null, CDef.DefMeta.Flg, false);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, "登録日時", java.time.LocalDateTime.class, "registerDatetime", null, false, false, true, "DATETIME", 19, 0, null, true, null, null, null, null, null, false);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, "登録ユーザー", String.class, "registerUser", null, false, false, true, "VARCHAR", 200, 0, null, true, null, null, null, null, null, false);
@@ -119,20 +119,20 @@ public class TicketStatusDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnTicketStatusId() { return _columnTicketStatusId; }
     /**
-     * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+     * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnMemberId() { return _columnMemberId; }
+    public ColumnInfo columnProjectId() { return _columnProjectId; }
+    /**
+     * (チケットステータス名)TICKET_STATUS_NAME: {+UQ, NotNull, VARCHAR(128)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnTicketStatusName() { return _columnTicketStatusName; }
     /**
      * (チケットステータスアイコン)TICKET_STATUS_ICON: {NotNull, VARCHAR(128)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnTicketStatusIcon() { return _columnTicketStatusIcon; }
-    /**
-     * (チケットステータス名)TICKET_STATUS_NAME: {NotNull, VARCHAR(128)}
-     * @return The information object of specified column. (NotNull)
-     */
-    public ColumnInfo columnTicketStatusName() { return _columnTicketStatusName; }
     /**
      * (削除フラグ)DEL_FLG: {NotNull, BIT, classification=Flg}
      * @return The information object of specified column. (NotNull)
@@ -162,9 +162,9 @@ public class TicketStatusDbm extends AbstractDBMeta {
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnTicketStatusId());
-        ls.add(columnMemberId());
-        ls.add(columnTicketStatusIcon());
+        ls.add(columnProjectId());
         ls.add(columnTicketStatusName());
+        ls.add(columnTicketStatusIcon());
         ls.add(columnDelFlg());
         ls.add(columnRegisterDatetime());
         ls.add(columnRegisterUser());
@@ -185,6 +185,16 @@ public class TicketStatusDbm extends AbstractDBMeta {
     public boolean hasPrimaryKey() { return true; }
     public boolean hasCompoundPrimaryKey() { return false; }
 
+    // -----------------------------------------------------
+    //                                        Unique Element
+    //                                        --------------
+    public UniqueInfo uniqueOf() {
+        List<ColumnInfo> ls = newArrayListSized(4);
+        ls.add(columnProjectId());
+        ls.add(columnTicketStatusName());
+        return hpcui(ls);
+    }
+
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
@@ -194,12 +204,12 @@ public class TicketStatusDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     /**
-     * (メンバー)MEMBER by my MEMBER_ID, named 'member'.
+     * (プロジェクト)PROJECT by my PROJECT_ID, named 'project'.
      * @return The information object of foreign property. (NotNull)
      */
-    public ForeignInfo foreignMember() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
-        return cfi("FK_TICKET_STATUS_MEMBER", "member", this, MemberDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "ticketStatusList", false);
+    public ForeignInfo foreignProject() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProjectId(), ProjectDbm.getInstance().columnProjectId());
+        return cfi("FK_TICKET_STATUS_PROJECT", "project", this, ProjectDbm.getInstance(), mp, 0, org.dbflute.optional.OptionalEntity.class, false, false, false, false, null, null, false, "ticketStatusList", false);
     }
 
     // -----------------------------------------------------

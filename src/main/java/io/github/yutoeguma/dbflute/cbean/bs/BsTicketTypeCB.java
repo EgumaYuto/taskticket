@@ -106,6 +106,19 @@ public class BsTicketTypeCB extends AbstractConditionBean {
         return (TicketTypeCB)this;
     }
 
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param projectId (プロジェクトID): UQ+, NotNull, BIGINT(19), FK to PROJECT. (NotNull)
+     * @param ticketTypeName (チケットタイプ名): +UQ, NotNull, VARCHAR(128). (NotNull)
+     * @return this. (NotNull)
+     */
+    public TicketTypeCB acceptUniqueOf(Long projectId, String ticketTypeName) {
+        assertObjectNotNull("projectId", projectId);assertObjectNotNull("ticketTypeName", ticketTypeName);
+        BsTicketTypeCB cb = this;
+        cb.query().setProjectId_Equal(projectId);cb.query().setTicketTypeName_Equal(ticketTypeName);
+        return (TicketTypeCB)this;
+    }
+
     public ConditionBean addOrderBy_PK_Asc() {
         query().addOrderBy_TicketTypeId_Asc();
         return this;
@@ -253,33 +266,33 @@ public class BsTicketTypeCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected MemberNss _nssMember;
-    public MemberNss xdfgetNssMember() {
-        if (_nssMember == null) { _nssMember = new MemberNss(null); }
-        return _nssMember;
+    protected ProjectNss _nssProject;
+    public ProjectNss xdfgetNssProject() {
+        if (_nssProject == null) { _nssProject = new ProjectNss(null); }
+        return _nssProject;
     }
     /**
      * Set up relation columns to select clause. <br>
-     * (メンバー)MEMBER by my MEMBER_ID, named 'member'.
+     * (プロジェクト)PROJECT by my PROJECT_ID, named 'project'.
      * <pre>
      * <span style="color: #0000C0">ticketTypeBhv</span>.selectEntity(<span style="color: #553000">cb</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_Member()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     *     <span style="color: #553000">cb</span>.<span style="color: #CC4747">setupSelect_Project()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      *     <span style="color: #553000">cb</span>.query().set...
      * }).alwaysPresent(<span style="color: #553000">ticketType</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
-     *     ... = <span style="color: #553000">ticketType</span>.<span style="color: #CC4747">getMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     *     ... = <span style="color: #553000">ticketType</span>.<span style="color: #CC4747">getProject()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * });
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public MemberNss setupSelect_Member() {
-        assertSetupSelectPurpose("member");
+    public ProjectNss setupSelect_Project() {
+        assertSetupSelectPurpose("project");
         if (hasSpecifiedLocalColumn()) {
-            specify().columnMemberId();
+            specify().columnProjectId();
         }
-        doSetupSelect(() -> query().queryMember());
-        if (_nssMember == null || !_nssMember.hasConditionQuery())
-        { _nssMember = new MemberNss(query().queryMember()); }
-        return _nssMember;
+        doSetupSelect(() -> query().queryProject());
+        if (_nssProject == null || !_nssProject.hasConditionQuery())
+        { _nssProject = new ProjectNss(query().queryProject()); }
+        return _nssProject;
     }
 
     // [DBFlute-0.7.4]
@@ -323,7 +336,7 @@ public class BsTicketTypeCB extends AbstractConditionBean {
     }
 
     public static class HpSpecification extends HpAbstractSpecification<TicketTypeCQ> {
-        protected MemberCB.HpSpecification _member;
+        protected ProjectCB.HpSpecification _project;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<TicketTypeCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider
                              , HpSDRFunctionFactory sdrFuncFactory)
@@ -334,20 +347,20 @@ public class BsTicketTypeCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnTicketTypeId() { return doColumn("TICKET_TYPE_ID"); }
         /**
-         * (メンバーID)MEMBER_ID: {IX, NotNull, BIGINT(19), FK to MEMBER}
+         * (プロジェクトID)PROJECT_ID: {UQ+, NotNull, BIGINT(19), FK to PROJECT}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
+        public SpecifiedColumn columnProjectId() { return doColumn("PROJECT_ID"); }
+        /**
+         * (チケットタイプ名)TICKET_TYPE_NAME: {+UQ, NotNull, VARCHAR(128)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public SpecifiedColumn columnTicketTypeName() { return doColumn("TICKET_TYPE_NAME"); }
         /**
          * (チケットタイプアイコン)TICKET_TYPE_ICON: {NotNull, VARCHAR(128)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnTicketTypeIcon() { return doColumn("TICKET_TYPE_ICON"); }
-        /**
-         * (チケットタイプ名)TICKET_TYPE_NAME: {NotNull, VARCHAR(128)}
-         * @return The information object of specified column. (NotNull)
-         */
-        public SpecifiedColumn columnTicketTypeName() { return doColumn("TICKET_TYPE_NAME"); }
         /**
          * (削除フラグ)DEL_FLG: {NotNull, BIT, classification=Flg}
          * @return The information object of specified column. (NotNull)
@@ -378,32 +391,32 @@ public class BsTicketTypeCB extends AbstractConditionBean {
         @Override
         protected void doSpecifyRequiredColumn() {
             columnTicketTypeId(); // PK
-            if (qyCall().qy().hasConditionQueryMember()
-                    || qyCall().qy().xgetReferrerQuery() instanceof MemberCQ) {
-                columnMemberId(); // FK or one-to-one referrer
+            if (qyCall().qy().hasConditionQueryProject()
+                    || qyCall().qy().xgetReferrerQuery() instanceof ProjectCQ) {
+                columnProjectId(); // FK or one-to-one referrer
             }
         }
         @Override
         protected String getTableDbName() { return "TICKET_TYPE"; }
         /**
          * Prepare to specify functions about relation table. <br>
-         * (メンバー)MEMBER by my MEMBER_ID, named 'member'.
+         * (プロジェクト)PROJECT by my PROJECT_ID, named 'project'.
          * @return The instance for specification for relation table to specify. (NotNull)
          */
-        public MemberCB.HpSpecification specifyMember() {
-            assertRelation("member");
-            if (_member == null) {
-                _member = new MemberCB.HpSpecification(_baseCB
-                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryMember()
-                                    , () -> _qyCall.qy().queryMember())
+        public ProjectCB.HpSpecification specifyProject() {
+            assertRelation("project");
+            if (_project == null) {
+                _project = new ProjectCB.HpSpecification(_baseCB
+                    , xcreateSpQyCall(() -> _qyCall.has() && _qyCall.qy().hasConditionQueryProject()
+                                    , () -> _qyCall.qy().queryProject())
                     , _purpose, _dbmetaProvider, xgetSDRFnFc());
                 if (xhasSyncQyCall()) { // inherits it
-                    _member.xsetSyncQyCall(xcreateSpQyCall(
-                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMember()
-                      , () -> xsyncQyCall().qy().queryMember()));
+                    _project.xsetSyncQyCall(xcreateSpQyCall(
+                        () -> xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryProject()
+                      , () -> xsyncQyCall().qy().queryProject()));
                 }
             }
-            return _member;
+            return _project;
         }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br>

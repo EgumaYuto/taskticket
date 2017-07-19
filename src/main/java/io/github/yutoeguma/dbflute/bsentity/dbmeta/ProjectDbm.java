@@ -101,7 +101,7 @@ public class ProjectDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnProjectId = cci("PROJECT_ID", "PROJECT_ID", null, "プロジェクトID", Long.class, "projectId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "projectMemberList,ticketList", null, false);
+    protected final ColumnInfo _columnProjectId = cci("PROJECT_ID", "PROJECT_ID", null, "プロジェクトID", Long.class, "projectId", null, true, true, true, "BIGINT", 19, 0, null, false, null, null, null, "projectMemberList,ticketList,ticketStatusList,ticketTypeList", null, false);
     protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, "メンバーID", Long.class, "memberId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "member", null, null, false);
     protected final ColumnInfo _columnProjectName = cci("PROJECT_NAME", "PROJECT_NAME", null, "プロジェクト名", String.class, "projectName", null, false, false, true, "VARCHAR", 256, 0, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnProjectDetail = cci("PROJECT_DETAIL", "PROJECT_DETAIL", null, "プロジェクト詳細", String.class, "projectDetail", null, false, false, true, "TEXT", 65535, 0, null, false, null, null, null, null, null, false);
@@ -218,6 +218,22 @@ public class ProjectDbm extends AbstractDBMeta {
     public ReferrerInfo referrerTicketList() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProjectId(), TicketDbm.getInstance().columnProjectId());
         return cri("FK_TICKET_PROJECT", "ticketList", this, TicketDbm.getInstance(), mp, false, "project");
+    }
+    /**
+     * (チケットステータス)TICKET_STATUS by PROJECT_ID, named 'ticketStatusList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerTicketStatusList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProjectId(), TicketStatusDbm.getInstance().columnProjectId());
+        return cri("FK_TICKET_STATUS_PROJECT", "ticketStatusList", this, TicketStatusDbm.getInstance(), mp, false, "project");
+    }
+    /**
+     * (チケットタイプ)TICKET_TYPE by PROJECT_ID, named 'ticketTypeList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerTicketTypeList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProjectId(), TicketTypeDbm.getInstance().columnProjectId());
+        return cri("FK_TICKET_TYPE_PROJECT", "ticketTypeList", this, TicketTypeDbm.getInstance(), mp, false, "project");
     }
 
     // ===================================================================================

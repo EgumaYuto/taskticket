@@ -26,4 +26,14 @@ import io.github.yutoeguma.dbflute.cbean.bs.BsProjectCB;
  * @author DBFlute(AutoGenerator)
  */
 public class ProjectCB extends BsProjectCB {
+
+    public void arrangeApprovalProject(Long memberId) {
+        orScopeQuery(orCB -> {
+            orCB.query().setMemberId_Equal(memberId);
+            orCB.query().existsProjectMember(projectMemberCB -> {
+                projectMemberCB.query().setMemberId_Equal(memberId);
+                projectMemberCB.query().setDelFlg_Equal_False();
+            });
+        });
+    }
 }

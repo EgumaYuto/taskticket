@@ -45,13 +45,13 @@ import io.github.yutoeguma.dbflute.cbean.*;
  *     MEMBER
  *
  * [referrer table]
- *     PROJECT_MEMBER, TICKET
+ *     PROJECT_MEMBER, TICKET, TICKET_STATUS, TICKET_TYPE
  *
  * [foreign property]
  *     member
  *
  * [referrer property]
- *     projectMemberList, ticketList
+ *     projectMemberList, ticketList, ticketStatusList, ticketTypeList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -142,6 +142,74 @@ public class LoaderOfProject {
     public NestedReferrerLoaderGateway<LoaderOfTicket> loadTicket(ReferrerConditionSetupper<TicketCB> refCBLambda) {
         myBhv().loadTicket(_selectedList, refCBLambda).withNestedReferrer(refLs -> _referrerTicket = refLs);
         return hd -> hd.handle(new LoaderOfTicket().ready(_referrerTicket, _selector));
+    }
+
+    protected List<TicketStatus> _referrerTicketStatus;
+
+    /**
+     * Load referrer of ticketStatusList by the set-upper of referrer. <br>
+     * (チケットステータス)TICKET_STATUS by PROJECT_ID, named 'ticketStatusList'.
+     * <pre>
+     * <span style="color: #0000C0">projectBhv</span>.<span style="color: #994747">load</span>(<span style="color: #553000">projectList</span>, <span style="color: #553000">projectLoader</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">projectLoader</span>.<span style="color: #CC4747">loadTicketStatus</span>(<span style="color: #553000">statusCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">statusCB</span>.setupSelect...
+     *         <span style="color: #553000">statusCB</span>.query().set...
+     *         <span style="color: #553000">statusCB</span>.query().addOrderBy...
+     *     }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedReferrer(<span style="color: #553000">statusLoader</span> -&gt; {</span>
+     *     <span style="color: #3F7E5E">//    statusLoader.load...</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     * });
+     * for (Project project : <span style="color: #553000">projectList</span>) {
+     *     ... = project.<span style="color: #CC4747">getTicketStatusList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setProjectId_InScope(pkList);
+     * cb.query().addOrderBy_ProjectId_Asc();
+     * </pre>
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoaderGateway<LoaderOfTicketStatus> loadTicketStatus(ReferrerConditionSetupper<TicketStatusCB> refCBLambda) {
+        myBhv().loadTicketStatus(_selectedList, refCBLambda).withNestedReferrer(refLs -> _referrerTicketStatus = refLs);
+        return hd -> hd.handle(new LoaderOfTicketStatus().ready(_referrerTicketStatus, _selector));
+    }
+
+    protected List<TicketType> _referrerTicketType;
+
+    /**
+     * Load referrer of ticketTypeList by the set-upper of referrer. <br>
+     * (チケットタイプ)TICKET_TYPE by PROJECT_ID, named 'ticketTypeList'.
+     * <pre>
+     * <span style="color: #0000C0">projectBhv</span>.<span style="color: #994747">load</span>(<span style="color: #553000">projectList</span>, <span style="color: #553000">projectLoader</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *     <span style="color: #553000">projectLoader</span>.<span style="color: #CC4747">loadTicketType</span>(<span style="color: #553000">typeCB</span> <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> {
+     *         <span style="color: #553000">typeCB</span>.setupSelect...
+     *         <span style="color: #553000">typeCB</span>.query().set...
+     *         <span style="color: #553000">typeCB</span>.query().addOrderBy...
+     *     }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedReferrer(<span style="color: #553000">typeLoader</span> -&gt; {</span>
+     *     <span style="color: #3F7E5E">//    typeLoader.load...</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     * });
+     * for (Project project : <span style="color: #553000">projectList</span>) {
+     *     ... = project.<span style="color: #CC4747">getTicketTypeList()</span>;
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br>
+     * The condition-bean, which the set-upper provides, has settings before callback as follows:
+     * <pre>
+     * cb.query().setProjectId_InScope(pkList);
+     * cb.query().addOrderBy_ProjectId_Asc();
+     * </pre>
+     * @param refCBLambda The callback to set up referrer condition-bean for loading referrer. (NotNull)
+     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
+     */
+    public NestedReferrerLoaderGateway<LoaderOfTicketType> loadTicketType(ReferrerConditionSetupper<TicketTypeCB> refCBLambda) {
+        myBhv().loadTicketType(_selectedList, refCBLambda).withNestedReferrer(refLs -> _referrerTicketType = refLs);
+        return hd -> hd.handle(new LoaderOfTicketType().ready(_referrerTicketType, _selector));
     }
 
     // ===================================================================================
