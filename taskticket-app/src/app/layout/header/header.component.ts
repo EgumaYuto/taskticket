@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {ProjectService} from "../../_service/project.service";
 import {IProjectList, IProject} from "../../_model/project";
+import {AuthService} from "../../_service/auth.service";
 
 @Component({
   moduleId: module.id,
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
   // ===================================================================================
   //                                                                         Constructor
   //                                                                         ===========
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -28,7 +29,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  public getProjectUrl(project: IProject) {
+  public getProjectUrl(project: IProject): string {
     return '/project/' + project.projectId;
+  }
+
+  public logout(): void {
+    this.authService.logout();
   }
 }
